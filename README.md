@@ -14,11 +14,9 @@
 ## 셔클 레터 Issue. 001 (2026.05.27.)
 
 - **[셔클레터_Issue.001](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.001.html)**
-  최신본 — 자세히 읽기 버튼 테이블 기반, 다크모드 대응, 모바일 크로스 클라이언트 호환
 
 ---
 
-## 셔클 레터 Issue. 002
+## 셔클 레터 Issue. 002 (2026.06.30.)
 
 - **[셔클레터_Issue.002](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002.html)**
-  Issue. 001 기반 초안 — 콘텐츠·이미지 교체 예정
