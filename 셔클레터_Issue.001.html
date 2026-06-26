@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>셔클 레터 Issue.001</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+
+<!--[if mso]>
+<style type="text/css">
+  td, th, div, p, a, h1, h2, h3 { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif !important; }
+</style>
+<![endif]-->
+<style>
+  body, table, td, p, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  img { border:0; outline:none; text-decoration:none; display:block; }
+  body { margin:0; padding:0; background-color:#d8dce8; }
+  a { color:inherit; text-decoration:none; }
+
+  /* 다크모드 커스텀 디자인 */
+  @media (prefers-color-scheme: dark) {
+    body         { background-color: #0f1117 !important; }
+    .wrap-outer  { background-color: #0f1117 !important; }
+    .wrap-main   { background-color: #1a1d2e !important; }
+    .sec-meta    { background-color: #1a2a4a !important; border-color: #89b4ff !important; }
+    .sec-summary { background-color: #1e2a4a !important; }
+    .sec-related { background-color: #161b30 !important; }
+    .badge       { background-color: #65A0FF !important; }
+    .btn-primary { background-color: #1761FE !important; }
+    .card-bg     { background: #1e2438 !important; }
+    .sec-meta td { color: #89b4ff !important; }
+    .txt-blue    { color: #89b4ff !important; }
+    .txt-summary { color: #c8cce8 !important; }
+    .txt-body    { color: #d0d4e8 !important; }
+    .txt-caption { color: #8890a8 !important; }
+    .txt-related-title { color: #89b4ff !important; }
+    .txt-card-title    { color: #d8dce8 !important; }
+    .txt-card-desc     { color: #8890a8 !important; }
+  }
+
+  /* Outlook 모바일 다크모드 */
+  [data-ogsc] body         { background-color: #0f1117 !important; }
+  [data-ogsc] .wrap-outer  { background-color: #0f1117 !important; }
+  [data-ogsc] .wrap-main   { background-color: #1a1d2e !important; }
+  [data-ogsc] .sec-meta    { background-color: #1a2a4a !important; }
+  [data-ogsc] .sec-summary { background-color: #1e2a4a !important; }
+  [data-ogsc] .sec-related { background-color: #161b30 !important; }
+  [data-ogsc] .badge       { background-color: #65A0FF !important; }
+  [data-ogsc] .btn-primary { background-color: #1761FE !important; }
+  [data-ogsc] .card-bg     { background-color: #1e2438 !important; }
+  [data-ogsc] .sec-meta td { color: #89b4ff !important; }
+  [data-ogsc] .txt-blue    { color: #89b4ff !important; }
+  [data-ogsc] .txt-summary { color: #c8cce8 !important; }
+  [data-ogsc] .txt-body    { color: #d0d4e8 !important; }
+  [data-ogsc] .txt-caption { color: #8890a8 !important; }
+  [data-ogsc] .txt-related-title { color: #89b4ff !important; }
+  [data-ogsc] .txt-card-title    { color: #d8dce8 !important; }
+  [data-ogsc] .txt-card-desc     { color: #8890a8 !important; }
+
+  /* 모바일 아웃룩 대응: 데스크탑 아웃룩은 @media를 무시하므로 기존 레이아웃 유지 */
+  @media only screen and (max-width: 620px) {
+    table.main-container { width: 100% !important; }
+    img.fw-img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#d8dce8;">
+
+<!-- 외부 래퍼 -->
+<table class="wrap-outer" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#d8dce8" style="background-color:#d8dce8;">
+<tr><td align="center" style="padding:0;">
+
+<!-- 메인 컨테이너 600px -->
+<table class="main-container wrap-main" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="background-color:#ffffff; max-width:600px;">
+
+  <!-- ① 헤더 이미지 -->
+  <tr>
+    <td style="padding:0; line-height:0;">
+      <img class="fw-img" src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/header_0519.jpg"
+           width="100%" alt="셔클 레터" style="display:block; width:100%;">
+    </td>
+  </tr>
+
+  <!-- ② 메타바 -->
+  <tr>
+    <td class="sec-meta" bgcolor="#DDE9FD" style="background-color:#DDE9FD; padding:0; border-top:0.5px solid #1761FE; border-bottom:0.5px solid #1761FE;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:18px 0 17px 36px; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:25px; font-weight:600; color:#1761FE;">
+            셔클 레터
+          </td>
+          <td align="right" style="padding:18px 36px 17px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:16px; font-weight:600; color:#1761FE; white-space:nowrap;">
+            Issue. 001 &nbsp;|&nbsp; 2026.05.27.
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ③ 핵심 요약 박스 -->
+  <tr>
+    <td style="padding:62px 36px 62px 36px;">
+      <table class="sec-summary" width="100%" cellpadding="0" cellspacing="0" border="0"
+             bgcolor="#E0ECFF" style="background-color:#E0ECFF; border-radius:16px;">
+        <tr>
+          <td style="padding:20px 22px 20px 22px;">
+
+            <!-- 핵심 요약 타이틀 -->
+            <p class="txt-blue" style="margin:0 0 13px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:16px; font-weight:600; color:#1761FE;">
+              핵심 요약
+            </p>
+
+            <!-- 항목 1 -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+              <tr>
+                <td width="24" valign="middle" style="padding:0;">
+                  <table class="badge" width="20" height="20" cellpadding="0" cellspacing="0" border="0"
+                         bgcolor="#65A0FF" style="background-color:#65A0FF; border-radius:50%;">
+                    <tr><td align="center" valign="middle"
+                            style="font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; color:#ffffff; line-height:1; padding:5.5px 0 2.5px 0;">
+                      1
+                    </td></tr>
+                  </table>
+                </td>
+                <td class="txt-summary" valign="middle" style="padding-left:9px; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#2a2a3e; line-height:1.2; letter-spacing:-0.03em; word-break:keep-all;">
+                  지난 5월 13일, 공공과 민간이 협력하는 자율주행 국가대표팀이 출범했습니다.
+                </td>
+              </tr>
+            </table>
+
+            <!-- 항목 2 -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+              <tr>
+                <td width="24" valign="middle" style="padding:0;">
+                  <table class="badge" width="20" height="20" cellpadding="0" cellspacing="0" border="0"
+                         bgcolor="#65A0FF" style="background-color:#65A0FF; border-radius:50%;">
+                    <tr><td align="center" valign="middle"
+                            style="font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; color:#ffffff; line-height:1; padding:5.5px 0 2.5px 0;">
+                      2
+                    </td></tr>
+                  </table>
+                </td>
+                <td class="txt-summary" valign="middle" style="padding-left:9px; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#2a2a3e; line-height:1.2; letter-spacing:-0.03em; word-break:keep-all;">
+                  현대자동차그룹은 자율주행 기술과 차량, 플랫폼 세 가지 부문에서 선정되었습니다.
+                </td>
+              </tr>
+            </table>
+
+            <!-- 항목 3 -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="24" valign="middle" style="padding:0;">
+                  <table class="badge" width="20" height="20" cellpadding="0" cellspacing="0" border="0"
+                         bgcolor="#65A0FF" style="background-color:#65A0FF; border-radius:50%;">
+                    <tr><td align="center" valign="middle"
+                            style="font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; color:#ffffff; line-height:1; padding:5.5px 0 2.5px 0;">
+                      3
+                    </td></tr>
+                  </table>
+                </td>
+                <td class="txt-summary" valign="middle" style="padding-left:9px; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#2a2a3e; line-height:1.2; letter-spacing:-0.03em; word-break:keep-all;">
+                  셔클은 대규모 자율주행 차량을 유기적으로 움직일 특화 플랫폼으로 도약합니다.
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ④ 메인 히어로 이미지 -->
+  <tr>
+    <td style="padding:0 36px 0 36px; line-height:0;">
+      <img class="fw-img" src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/hero_0519.jpg"
+           width="100%" alt="대한민국 자율주행팀 업무협약식 현장"
+           style="display:block; width:100%; border-radius:16px;">
+    </td>
+  </tr>
+
+  <!-- ⑤ 히어로 캡션 -->
+  <tr>
+    <td class="txt-caption" style="padding:10px 36px 22px 36px; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:14px; font-weight:400; color:#808080; line-height:1.5;">
+      광주 김대중컨벤션센터에서 개최된 대한민국 자율주행팀 업무협약식 현장
+    </td>
+  </tr>
+
+  <!-- ⑥ 본문 -->
+  <tr>
+    <td style="padding:12px 36px 44px 36px;">
+
+      <!-- 제목 -->
+      <p class="txt-blue" style="margin:0 0 28px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:24px; font-weight:600; color:#1761FE; line-height:1.38;">
+        대한민국 자율주행, 셔클로 연결하다
+      </p>
+
+      <!-- 단락 1 -->
+      <p class="txt-body" style="margin:0 0 30px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
+        대한민국의 글로벌 TOP 3 자율주행 강국 도약을 위해, 공공기관과 민간 기업이<br>손을 잡고 '대한민국 자율주행 국가대표팀'을 출범했습니다. 이번 실증 사업은<br>광주 전역에 자율주행 차량 200대를 투입해 2027년까지 운전자의 개입이 필요 없는<br>'레벨 4' 완전 자율주행을 구현하는 것을 목표로 합니다. 특히 현대자동차그룹은<br>소프트웨어 중심 차량(SDV)과 End-to-End 기반 자율주행 기술을 선보이며<br>대규모 서비스 실증을 위한 고도화된 기술 기반을 공개했습니다.
+      </p>
+
+      <!-- 단락 2 -->
+      <p class="txt-body" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
+        프로젝트의 중심에서 셔클은 자율주행 운송 중개 및 관제 플랫폼으로서 중추적인<br>역할을 맡았습니다. 그동안 수요응답형 교통(DRT) 서비스를 운영하며 축적한<br>차량 시뮬레이션, 배차·경로 최적화, 운행 관리 노하우를 바탕으로 대규모 자율주행<br>서비스를 안정적으로 지원할 예정입니다. 셔클은 단순한 교통 전환을 넘어 차량과<br>기술, 관제를 하나로 연결하는 자율주행 특화 플랫폼으로 진화하여 시민들에게<br>더 안전하고 편리한 이동의 자유를 선사하겠다는 포부를 밝혔습니다.
+      </p>
+
+    </td>
+  </tr>
+
+  <!-- ⑦ 본문 이미지 (HMG Shucle) -->
+  <tr>
+    <td style="padding:0 36px 64px 36px; line-height:0;">
+      <img class="fw-img" src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/article_photo_0519.jpg"
+           width="100%" alt="HMG Shucle 부스 현장"
+           style="display:block; width:100%; border-radius:16px;">
+    </td>
+  </tr>
+
+  <!-- ⑧ 연관 콘텐츠 섹션 -->
+  <tr>
+    <td class="sec-related" bgcolor="#E7EEFD" style="background-color:#E7EEFD; padding:16px 36px 56px 36px;">
+
+      <!-- 섹션 제목 -->
+      <p class="txt-related-title" style="margin:0 0 18px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:23px; font-weight:600; color:#65A0FF;">
+        연관 콘텐츠
+      </p>
+
+      <!-- 카드 1 -->
+      <table class="card-bg" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#ffffff; border-radius:16px; margin-bottom:16px;">
+        <tr>
+          <td width="196" valign="bottom" style="padding:24px 0 24px 22px; line-height:0;">
+            <img src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/card1_0519.jpg"
+                 width="196" height="162" alt="NUMA 출범"
+                 style="display:block; border-radius:6px; object-fit:cover; object-position:center top;">
+          </td>
+          <td valign="top" style="padding:24px 14px 24px 46px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="height:162px;">
+              <tr valign="top"><td>
+                <p class="txt-card-title" style="margin:0 0 6px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:600; color:#1a1a2e; line-height:1.4;">
+                  현실이 될 혁신, NUMA의 시작
+                </p>
+                <p class="txt-card-desc" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#777777; line-height:1.55; word-break:keep-all;">
+                  자율주행 상용화 등 빠르게 변화하는<br>모빌리티 시장에 대응하기 위해,<br>차세대 교통 협의체 NUMA를<br>출범했습니다.
+                </p>
+              </td></tr>
+              <tr valign="bottom"><td style="padding-top:10px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#0A50FF" style="background-color:#0A50FF; border-radius:999px; padding:8px 46px;" align="center">
+                    <a href="https://www.shucle.com/story/-numa-" target="_blank"
+                       style="color:#ffffff; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap; display:block;">
+                      자세히 읽기
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 카드 2 -->
+      <table class="card-bg" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#ffffff; border-radius:16px; margin-bottom:16px;">
+        <tr>
+          <td width="196" valign="bottom" style="padding:24px 0 24px 22px; line-height:0;">
+            <img src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/card2_0519.jpg"
+                 width="196" height="162" alt="미래 모빌리티"
+                 style="display:block; border-radius:6px; object-fit:cover; object-position:center 8%;">
+          </td>
+          <td valign="top" style="padding:24px 14px 24px 46px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="height:162px;">
+              <tr valign="top"><td>
+                <p class="txt-card-title" style="margin:0 0 6px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:600; color:#1a1a2e; line-height:1.4;">
+                  미래 모빌리티가 가야 할 길
+                </p>
+                <p class="txt-card-desc" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#777777; line-height:1.55; word-break:keep-all;">
+                  다양한 도시·교통 전문가들이 모여,<br>자율주행 및 친환경 교통으로<br>대표되는 미래 모빌리티에<br>관해 이야기하는 시간을 가졌습니다.
+                </p>
+              </td></tr>
+              <tr valign="bottom"><td style="padding-top:10px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#0A50FF" style="background-color:#0A50FF; border-radius:999px; padding:8px 46px;" align="center">
+                    <a href="https://www.shucle.com/story/discussion02" target="_blank"
+                       style="color:#ffffff; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap; display:block;">
+                      자세히 읽기
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 카드 3 -->
+      <table class="card-bg" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#ffffff; border-radius:16px;">
+        <tr>
+          <td width="196" valign="bottom" style="padding:24px 0 24px 22px; line-height:0;">
+            <img src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/card3_0519.jpg"
+                 width="196" height="162" alt="Pleos"
+                 style="display:block; border-radius:6px; object-fit:cover; object-position:center center;">
+          </td>
+          <td valign="top" style="padding:24px 14px 24px 46px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="height:162px;">
+              <tr valign="top"><td>
+                <p class="txt-card-title" style="margin:0 0 6px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:600; color:#1a1a2e; line-height:1.4;">
+                  Pleos의 시작, 그 중심의 셔클
+                </p>
+                <p class="txt-card-desc" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:13.5px; font-weight:400; color:#777777; line-height:1.55; word-break:keep-all;">
+                  현대자동차그룹은 새로운 모빌리티<br>소프트웨어 브랜드이자 기술 플랫폼인<br>Pleos를 통해 미래 모빌리티의 서막을<br>알렸습니다.
+                </p>
+              </td></tr>
+              <tr valign="bottom"><td style="padding-top:10px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#0A50FF" style="background-color:#0A50FF; border-radius:999px; padding:8px 46px;" align="center">
+                    <a href="https://www.shucle.com/story/pleos-" target="_blank"
+                       style="color:#ffffff; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap; display:block;">
+                      자세히 읽기
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+  <!-- ⑨ 푸터 버튼 -->
+  <tr>
+    <td class="sec-related" bgcolor="#E7EEFD" style="background-color:#E7EEFD; padding:22px 20px 68px 20px;" align="center">
+      <a href="https://www.shucle.com/story" target="_blank" style="text-decoration:none;">
+        <table class="btn-primary" cellpadding="0" cellspacing="0" border="0" bgcolor="#0A50FF" style="background-color:#0A50FF; border-radius:999px; margin:0 auto;">
+          <tr>
+            <td align="center" valign="middle" style="padding:15px 90px;">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td valign="middle" style="padding-right:8px; line-height:0;">
+                    <img src="https://raw.githubusercontent.com/Hyojung-Kwon/public_for_sharing/main/img/shucle_logo_white.svg"
+                         height="15" alt="Shucle." style="display:block; height:15px;">
+                  </td>
+                  <td valign="middle"
+                      style="font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:18.5px; font-weight:400; color:#ffffff; white-space:nowrap;">
+                    블로그 바로가기
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </a>
+    </td>
+  </tr>
+
+</table>
+<!-- 메인 컨테이너 끝 -->
+
+</td></tr>
+</table>
+<!-- 외부 래퍼 끝 -->
+
+</body>
+</html>
