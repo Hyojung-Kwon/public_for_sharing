@@ -58,14 +58,9 @@
   [data-ogsc] .txt-related-title { color: #89b4ff !important; }
   [data-ogsc] .txt-card-title    { color: #d8dce8 !important; }
   [data-ogsc] .txt-card-desc     { color: #8890a8 !important; }
-  [data-ogsc] .desktop-only      { display: none !important; }
-  [data-ogsc] .mobile-only       { display: block !important; }
-
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 620px) {
     table.main-container { width: 100% !important; }
     img.fw-img { width: 100% !important; max-width: 100% !important; height: auto !important; }
-    .desktop-only { display: none !important; }
-    .mobile-only  { display: block !important; }
   }
 </style>
 </head>
@@ -204,21 +199,13 @@
   <tr>
     <td style="padding:20px 36px 64px 36px;">
 
-      <!-- 단락 1 (데스크탑: 디자인 br 유지) -->
-      <p class="txt-body desktop-only" style="margin:0 0 30px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
-        현대자동차 셔클과 서울대학교가 민·관·학 협력 모빌리티 얼라이언스 NUMA<br>(Next Urban Mobility Alliance)의 일환으로 국내 대학 최초의 교내 DRT 셔틀 실증을<br>진행했습니다. 이번 실증은 부지가 넓고 경사가 심해 이동이 불편했던 캠퍼스 내<br>교통 환경을 개선하고자 추진됐으며, 서울대학교가 연구 전반을, 현대자동차가 차량 및<br>플랫폼 지원을 담당했습니다. 실증 기간에는 연구 대상자들과 함께 동승 여부, 운영 시간,<br>차종 변경 등 다양한 운영 실험을 시도하여 캠퍼스 최적화 모델을 정교화했습니다.
-      </p>
-      <!-- 단락 1 (모바일: br 없이 자연 흐름) -->
-      <p class="txt-body mobile-only" style="display:none; margin:0 0 30px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
+      <!-- 문단 1 -->
+      <p class="txt-body" style="margin:0 0 30px 0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
         현대자동차 셔클과 서울대학교가 민·관·학 협력 모빌리티 얼라이언스 NUMA (Next Urban Mobility Alliance)의 일환으로 국내 대학 최초의 교내 DRT 셔틀 실증을 진행했습니다. 이번 실증은 부지가 넓고 경사가 심해 이동이 불편했던 캠퍼스 내 교통 환경을 개선하고자 추진됐으며, 서울대학교가 연구 전반을, 현대자동차가 차량 및 플랫폼 지원을 담당했습니다. 실증 기간에는 연구 대상자들과 함께 동승 여부, 운영 시간, 차종 변경 등 다양한 운영 실험을 시도하여 캠퍼스 최적화 모델을 정교화했습니다.
       </p>
 
-      <!-- 단락 2 (데스크탑: 디자인 br 유지) -->
-      <p class="txt-body desktop-only" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
-        이번 실증을 통해 DRT를 이용한 학생들은 좌석 확보로 인한 쾌적함, 목적지 직행 등을<br>경험하며 개선된 이동 편의와 학습권 보장 효과에 크게 만족했습니다. 서울대 연구진은<br>이번 실증이 지형적 한계가 유사한 다른 국·공립대학 DRT 도입 검토의 중요한 기준점이 될<br>것으로 보고 있으며, 향후 관련 연구를 지속적으로 고도화하여 접근성과 포용성을 두루 갖춘<br>미래 캠퍼스 모빌리티 구축에 이바지할 예정입니다. <a href="https://www.shucle.com/story/numa-snu" target="_blank" style="font-weight:400; text-decoration:underline; color:#1761FE;">자세히 보기</a>
-      </p>
-      <!-- 단락 2 (모바일: br 없이 자연 흐름) -->
-      <p class="txt-body mobile-only" style="display:none; margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
+      <!-- 문단 2 -->
+      <p class="txt-body" style="margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; font-size:15px; font-weight:400; color:#333333; line-height:1.92; word-break:keep-all;">
         이번 실증을 통해 DRT를 이용한 학생들은 좌석 확보로 인한 쾌적함, 목적지 직행 등을 경험하며 개선된 이동 편의와 학습권 보장 효과에 크게 만족했습니다. 서울대 연구진은 이번 실증이 지형적 한계가 유사한 다른 국·공립대학 DRT 도입 검토의 중요한 기준점이 될 것으로 보고 있으며, 향후 관련 연구를 지속적으로 고도화하여 접근성과 포용성을 두루 갖춘 미래 캠퍼스 모빌리티 구축에 이바지할 예정입니다. <a href="https://www.shucle.com/story/numa-snu" target="_blank" style="font-weight:400; text-decoration:underline; color:#1761FE;">자세히 보기</a>
       </p>
 
