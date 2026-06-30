@@ -24,6 +24,6 @@
 
 ---
 
-## Hyundai Motors DRT World Map (2026.06.30.)
+## Hyundai Motors DRT World Map (분기 별 업데이트)
 
 - **[DRT World Map](https://hyojung-kwon.github.io/public_for_sharing/DRT_World_Map.html)**
