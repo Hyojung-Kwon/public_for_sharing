@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyundai Motors DRT World Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #0a0e1a; color: #e0e6f0; height: 100vh; display: flex; flex-direction: column; }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #002157 0%, #003580 50%, #00254d 100%);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 2px solid #00a8ff44;
+      box-shadow: 0 2px 20px rgba(0,168,255,0.15);
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .logo span { color: #00a8ff; }
+    header h1 {
+      font-size: 15px;
+      font-weight: 400;
+      color: #a0b8d0;
+      letter-spacing: 1px;
+    }
+    .header-stats {
+      margin-left: auto;
+      display: flex;
+      gap: 24px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #00a8ff;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #6080a0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Layout */
+    .main { display: flex; flex: 1; overflow: hidden; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 300px;
+      background: #0d1526;
+      border-right: 1px solid #1a2a44;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar-title {
+      padding: 14px 16px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #4a6080;
+      border-bottom: 1px solid #1a2a44;
+    }
+
+    /* Filter */
+    .filter-section {
+      padding: 12px 16px;
+      border-bottom: 1px solid #1a2a44;
+    }
+    .filter-label {
+      font-size: 10px;
+      color: #4a6080;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid transparent;
+    }
+    .filter-btn:hover { background: #162030; }
+    .filter-btn.active { border-color: #1a3050; background: #162030; }
+    .filter-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .filter-btn span { font-size: 12px; color: #c0d0e0; }
+    .filter-btn .count {
+      margin-left: auto;
+      background: #1a2a44;
+      color: #6090b0;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    /* Service list */
+    .list-section {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    .list-section::-webkit-scrollbar { width: 4px; }
+    .list-section::-webkit-scrollbar-track { background: transparent; }
+    .list-section::-webkit-scrollbar-thumb { background: #1a3050; border-radius: 2px; }
+
+    .list-item {
+      padding: 10px 16px;
+      border-bottom: 1px solid #111e30;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .list-item:hover { background: #162030; }
+    .list-item.selected { background: #0d2040; border-left: 3px solid #00a8ff; }
+    .list-item-name { font-size: 12px; font-weight: 600; color: #d0e0f0; margin-bottom: 2px; }
+    .list-item-loc { font-size: 11px; color: #5070a0; }
+    .list-item-meta { font-size: 10px; color: #3a5070; margin-top: 3px; }
+    .svc-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 9px;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    /* Map */
+    #map { flex: 1; }
+
+    /* Popup */
+    .leaflet-popup-content-wrapper {
+      background: #0d1a2e;
+      border: 1px solid #1a3050;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      color: #c0d0e0;
+    }
+    .leaflet-popup-tip { background: #0d1a2e; }
+    .leaflet-popup-content { margin: 0; min-width: 240px; }
+    .popup-header {
+      padding: 12px 14px 8px;
+      border-bottom: 1px solid #1a3050;
+    }
+    .popup-svc {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .popup-location {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .popup-body { padding: 10px 14px 12px; }
+    .popup-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      font-size: 11px;
+      border-bottom: 1px solid #0f2030;
+    }
+    .popup-row:last-child { border-bottom: none; }
+    .popup-key { color: #4a6a8a; }
+    .popup-val { color: #c0d0e0; text-align: right; max-width: 160px; }
+    .popup-link {
+      display: block;
+      text-align: center;
+      padding: 6px;
+      margin-top: 8px;
+      background: #003580;
+      border-radius: 5px;
+      color: #60b0ff;
+      font-size: 11px;
+      text-decoration: none;
+    }
+    .popup-link:hover { background: #004aa0; color: #90d0ff; }
+
+    /* Legend */
+    .legend {
+      background: #0d1526cc;
+      border: 1px solid #1a2a44;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 11px;
+    }
+    .legend-title { font-weight: 700; color: #6090b0; margin-bottom: 6px; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+    .legend-item { display: flex; align-items: center; gap: 6px; margin: 4px 0; color: #a0b8d0; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">HYUNDAI <span>MOTORS</span></div>
+    <h1>DRT World Map — Internal Dashboard</h1>
+  </div>
+  <div class="header-stats">
+    <div class="stat-item">
+      <div class="stat-num" id="stat-services">—</div>
+      <div class="stat-label">Services</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="stat-units">—</div>
+      <div class="stat-label">Vehicles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="stat-countries">—</div>
+      <div class="stat-label">Countries</div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-title">Filters & Services</div>
+
+    <div class="filter-section">
+      <div class="filter-label">Service Brand</div>
+      <div class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">
+        <div class="filter-dot" style="background:#4a90d9"></div>
+        <span>All Services</span>
+        <span class="count" id="cnt-all">0</span>
+      </div>
+      <div class="filter-btn" data-filter="똑타(Dokta)" onclick="setFilter('똑타(Dokta)', this)">
+        <div class="filter-dot" style="background:#3b82f6"></div>
+        <span>똑타 (Dokta)</span>
+        <span class="count" id="cnt-dokta">0</span>
+      </div>
+      <div class="filter-btn" data-filter="셔클(Shucle)" onclick="setFilter('셔클(Shucle)', this)">
+        <div class="filter-dot" style="background:#10b981"></div>
+        <span>셔클 (Shucle)</span>
+        <span class="count" id="cnt-shucle">0</span>
+      </div>
+      <div class="filter-btn" data-filter="이응패스(e-eung pass)" onclick="setFilter('이응패스(e-eung pass)', this)">
+        <div class="filter-dot" style="background:#a855f7"></div>
+        <span>이응패스 (e-eung pass)</span>
+        <span class="count" id="cnt-eeung">0</span>
+      </div>
+    </div>
+
+    <div class="list-section" id="service-list"></div>
+  </div>
+
+  <div id="map"></div>
+</div>
+
+<script>
+const DATA = [
+  {
+    "id": "1",
+    "service": "이응패스(e-eung pass)",
+    "location": "1+2 living sphere, Sejong",
+    "lat": 36.50200847226842,
+    "lon": 127.2718772350159,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "22",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "21.04.13.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "2",
+    "service": "똑타(Dokta)",
+    "location": "Unjeong & Gyoha District, Paju",
+    "lat": 37.72490142168977,
+    "lon": 126.73727861438384,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "15",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "21.12.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "3",
+    "service": "똑타(Dokta)",
+    "location": "Daebudo, Ansan",
+    "lat": 37.23665613550815,
+    "lon": 126.5911015253687,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.03.14.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "3",
+    "service": "똑타(Dokta)",
+    "location": "Daebudo, Ansan",
+    "lat": 37.23665613550815,
+    "lon": 126.5911015253687,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(Accessible vehicle)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.03.14.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "4",
+    "service": "똑타(Dokta)",
+    "location": "Godeok International New Town, Pyeongtaek",
+    "lat": 37.04515676286887,
+    "lon": 127.033794677745,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "15",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.04.26.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "5",
+    "service": "똑타(Dokta)",
+    "location": "Gwanggyo 1 & 2 Dong, Suwon",
+    "lat": 37.292626275806505,
+    "lon": 127.05727537467237,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "10",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.05.30.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "6",
+    "service": "똑타(Dokta)",
+    "location": "Siksa-dong, Goyang",
+    "lat": 37.67060585267806,
+    "lon": 126.80718521117146,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "ELEC CITY TOWN(18-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.06.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "7",
+    "service": "똑타(Dokta)",
+    "location": "Gobong-dong, Goyang",
+    "lat": 37.712558,
+    "lon": 126.815725,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.06.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "8",
+    "service": "똑타(Dokta)",
+    "location": "Gochon & Pungmu, Gimpo",
+    "lat": 37.60162564861095,
+    "lon": 126.76187776683919,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "10",
+    "vehicle": "Solati(11-seater vans) x4 + MAN x6",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.06.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "9",
+    "service": "똑타(Dokta)",
+    "location": "Dongtan New Town, Hwaseong",
+    "lat": 37.20597333039524,
+    "lon": 127.07004166632747,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "20",
+    "vehicle": "Solati(11-seater vans) x15 + Staria(9-seater vans) x5",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.06.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "10",
+    "service": "똑타(Dokta)",
+    "location": "Hyangnam 1 & 2 New Town, Hwaseong",
+    "lat": 37.11387613850263,
+    "lon": 126.9120306043337,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.06.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "11",
+    "service": "셔클(Shucle)",
+    "location": "Chungbuk Innovation City",
+    "lat": 36.90784777911068,
+    "lon": 127.53960473126504,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.07.06.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "13",
+    "service": "똑타(Dokta)",
+    "location": "Okjeong & Samsong Region, Yangju",
+    "lat": 37.825421,
+    "lon": 127.089404,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "10",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.07.25.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "14",
+    "service": "똑타(Dokta)",
+    "location": "Gamil-dong, Hanam",
+    "lat": 37.507501751654296,
+    "lon": 127.15753974635284,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.08.30.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "15",
+    "service": "똑타(Dokta)",
+    "location": "Wirye-dong, Hanam",
+    "lat": 37.481414601114956,
+    "lon": 127.15263272076666,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.08.30.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "16",
+    "service": "똑타(Dokta)",
+    "location": "Yangseong & Wongok, Anseong",
+    "lat": 37.02198726533877,
+    "lon": 127.17192261715886,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.10.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "17",
+    "service": "똑타(Dokta)",
+    "location": "Iljuk, Juksan & Samjuk, Anseong",
+    "lat": 37.07457052496528,
+    "lon": 127.42391406972857,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.10.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "18",
+    "service": "똑타(Dokta)",
+    "location": "Icheon Downtown, Icheon",
+    "lat": 37.28295237001776,
+    "lon": 127.4440614320126,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "12",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "19",
+    "service": "똑타(Dokta)",
+    "location": "Tanhyeon-myeon, Paju",
+    "lat": 37.817191,
+    "lon": 126.716451,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "20",
+    "service": "똑타(Dokta)",
+    "location": "Unjeong 4-dong, Paju",
+    "lat": 37.725343,
+    "lon": 126.767495,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "21",
+    "service": "똑타(Dokta)",
+    "location": "Gwangtan-myeon, Paju",
+    "lat": 37.778547,
+    "lon": 126.881189,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "22",
+    "service": "똑타(Dokta)",
+    "location": "Janghowon-eup, Icheon",
+    "lat": 37.132533,
+    "lon": 127.600811,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "7",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "23",
+    "service": "똑타(Dokta)",
+    "location": "Yulmyeon, Icheon",
+    "lat": 37.073218,
+    "lon": 127.547242,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "24",
+    "service": "셔클(Shucle)",
+    "location": "Samho-eup, Yeongam-gun, Jeollanam-do",
+    "lat": 34.74380275,
+    "lon": 126.383411258,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "COUNTY(13-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.03.05.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "25",
+    "service": "똑타(Dokta)",
+    "location": "Autonomous Driving, Dongan District, Anyang",
+    "lat": 37.390514,
+    "lon": 126.951615,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "APOLLO 900(16-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.04.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "26",
+    "service": "똑타(Dokta)",
+    "location": "Okgil/Baembaek, Bucheon",
+    "lat": 37.468727,
+    "lon": 126.816692,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "COUNTY(13-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.12.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "27",
+    "service": "똑타(Dokta)",
+    "location": "Gogangbon-dong, Bucheon",
+    "lat": 37.53018,
+    "lon": 126.811276,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "23.04.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "28",
+    "service": "똑타(Dokta)",
+    "location": "Yangseong/Gosam/Bogae, Anseong",
+    "lat": 37.081676,
+    "lon": 127.262024,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.05.21.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "29",
+    "service": "똑타(Dokta)",
+    "location": "Miyang/Seowoon/Geumgwang, Anseong",
+    "lat": 36.972789,
+    "lon": 127.224214,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.05.21.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "30",
+    "service": "똑타(Dokta)",
+    "location": "Gonjiam, Gwangju",
+    "lat": 37.370464,
+    "lon": 127.382202,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.05.28.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "31",
+    "service": "똑타(Dokta)",
+    "location": "Dojeok, Gwangju",
+    "lat": 37.311042,
+    "lon": 127.315661,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.05.28.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "32",
+    "service": "똑타(Dokta)",
+    "location": "Sejongdaewangro/ohak, Yeoju",
+    "lat": 37.314129,
+    "lon": 127.65148,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "8",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.06.11.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "33",
+    "service": "똑타(Dokta)",
+    "location": "Booknae/Gangcheon, Yeoju",
+    "lat": 37.372286,
+    "lon": 127.689873,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.06.11.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "34",
+    "service": "똑타(Dokta)",
+    "location": "Toechon, Gwangju",
+    "lat": 37.457385,
+    "lon": 127.340154,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.06.25.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "35",
+    "service": "똑타(Dokta)",
+    "location": "Chowal, Gwangju",
+    "lat": 37.400103,
+    "lon": 127.311729,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.06.25.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "36",
+    "service": "이응패스(e-eung pass)",
+    "location": "3+4 living sphere",
+    "lat": 36.495579,
+    "lon": 127.311755,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "6",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.07.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "37",
+    "service": "이응패스(e-eung pass)",
+    "location": "6 living sphere",
+    "lat": 36.530481,
+    "lon": 127.287588,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.07.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "38",
+    "service": "똑타(Dokta)",
+    "location": "Smart Hub, Anyang",
+    "lat": 37.315427,
+    "lon": 126.778122,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "10",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.07.04.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "39",
+    "service": "똑타(Dokta)",
+    "location": "Anyang 9-dong, Anyang",
+    "lat": 37.383929,
+    "lon": 126.906905,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.08.22.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "40",
+    "service": "똑타(Dokta)",
+    "location": "Yeoncheon",
+    "lat": 38.034983,
+    "lon": 127.072867,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Staria(9-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.08.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "41",
+    "service": "똑타(Dokta)",
+    "location": "Namyang/Mado, Hwaseong",
+    "lat": 37.19488,
+    "lon": 126.762805,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.09.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "42",
+    "service": "똑타(Dokta)",
+    "location": "Bongdam, Hwaseong",
+    "lat": 37.207013,
+    "lon": 126.938075,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.09.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "43",
+    "service": "똑타(Dokta)",
+    "location": "Hyangdong, Goyang",
+    "lat": 37.600828,
+    "lon": 126.893199,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Higer(19-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.09.25.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "44",
+    "service": "똑타(Dokta)",
+    "location": "Gosaek/Omok, Suwon",
+    "lat": 37.251444,
+    "lon": 126.980522,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "10",
+    "vehicle": "Solati(11-seater vans) x5 + Staria(9-seater vans) x5",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.10.02.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "45",
+    "service": "똑타(Dokta)",
+    "location": "Dukeun, Goyang",
+    "lat": 37.584937,
+    "lon": 126.866347,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "APOLLO 900(16-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.11.07.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "46",
+    "service": "셔클(Shucle)",
+    "location": "Misan-myeon, Boryeong",
+    "lat": 36.248145,
+    "lon": 126.682381,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "24.11.26.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "47",
+    "service": "셔클(Shucle)",
+    "location": "Geomdan New City, Incheon",
+    "lat": 37.587546,
+    "lon": 126.705385,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "9",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "48",
+    "service": "셔클(Shucle)",
+    "location": "Haemi-myeon, Seosan",
+    "lat": 36.738117,
+    "lon": 126.490248,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "ELEC CITY TOWN(18-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.02.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "49",
+    "service": "셔클(Shucle)",
+    "location": "Daesan-eup, Seosan",
+    "lat": 36.971745,
+    "lon": 126.423956,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "ELEC CITY TOWN(18-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.02.18.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "50",
+    "service": "똑타(Dokta)",
+    "location": "Sincheon-dong, Siheung",
+    "lat": 37.43924,
+    "lon": 126.77995,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "51",
+    "service": "똑타(Dokta)",
+    "location": "Daeya-dong, Siheung",
+    "lat": 37.4554,
+    "lon": 126.7882,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "52",
+    "service": "똑타(Dokta)",
+    "location": "Eunhaeng-dong, Siheung",
+    "lat": 37.4388,
+    "lon": 126.7981,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "53",
+    "service": "똑타(Dokta)",
+    "location": "Anhyeon-dong, Siheung",
+    "lat": 37.416228,
+    "lon": 126.81364,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "54",
+    "service": "똑타(Dokta)",
+    "location": "Maehwa-dong, Siheung",
+    "lat": 37.397475,
+    "lon": 126.835251,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "55",
+    "service": "똑타(Dokta)",
+    "location": "Geumi-dong, Siheung",
+    "lat": 34.7425204,
+    "lon": 126.3772881,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.10.27.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "56",
+    "service": "셔클(Shucle)",
+    "location": "Dogo-myeon, Asan",
+    "lat": 36.7574,
+    "lon": 126.8896,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.05.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "57",
+    "service": "똑타(Dokta)",
+    "location": "Hyangnam-eup, Hwaseong",
+    "lat": 37.1294,
+    "lon": 126.9325,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "VBUS60",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.10.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "58",
+    "service": "똑타(Dokta)",
+    "location": "Paltan-myeon, Hwaseong",
+    "lat": 37.1505,
+    "lon": 126.8858,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "VBUS60",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.10.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "59",
+    "service": "똑타(Dokta)",
+    "location": "Bongdam-eup, Hwaseong",
+    "lat": 37.22,
+    "lon": 126.9494,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "VBUS60",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.10.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "60",
+    "service": "셔클(Shucle)",
+    "location": "Gödöllő, Hungary",
+    "lat": 47.59657,
+    "lon": 19.35515,
+    "country": "Hungary",
+    "operator": "MAV",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Volkswagen 폭스바겐 7HC",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.08.18.",
+    "end": "27.10.31.",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "61",
+    "service": "똑타(Dokta)",
+    "location": "Majang-myeon, Icheon",
+    "lat": 37.2497,
+    "lon": 127.3634,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "5",
+    "vehicle": "ST1 + Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.12.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "62",
+    "service": "똑타(Dokta)",
+    "location": "Sindun-myeon, Icheon",
+    "lat": 37.3105,
+    "lon": 127.4073,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "ST1 + Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.11.12.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "63",
+    "service": "셔클(Shucle)",
+    "location": "Cheongso-myeon, Boryeong",
+    "lat": 36.4501,
+    "lon": 126.6019,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Taxi type",
+    "usecase": "PT neighborhood bus",
+    "launch": "25.12.16.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "64",
+    "service": "셔클(Shucle)",
+    "location": "Yeongdeok-gun, Gyeongsangbuk-do",
+    "lat": 36.4107,
+    "lon": 129.37,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "Tourism DRT",
+    "launch": "25.12.22.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "65",
+    "service": "셔클(Shucle)",
+    "location": "Buyeo-gun, Chungcheongnam-do",
+    "lat": 36.2819,
+    "lon": 126.9125,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati(11-seater vans)",
+    "usecase": "Tourism DRT",
+    "launch": "25.12.17.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "66",
+    "service": "똑타(Dokta)",
+    "location": "Intercity-DRT(Sadang Station Exit 3→Siheung)",
+    "lat": 37.4753424,
+    "lon": 126.9820358,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Universe(41-seater bus) x1 + Green City(20-seater bus) x2",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "67",
+    "service": "똑타(Dokta)",
+    "location": "Intercity-DRT(Seocho-gu Office→Gwangju)",
+    "lat": 37.4835872,
+    "lon": 127.0326987,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "68",
+    "service": "똑타(Dokta)",
+    "location": "Intercity-DRT(Sadang Station Exit 3→Hwaseong)",
+    "lat": 37.4753424,
+    "lon": 126.9820358,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Universe(44-seater bus)",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "69",
+    "service": "똑타(Dokta)",
+    "location": "Intercity-DRT(Seocho-gu Office→Yongin)",
+    "lat": 37.4835872,
+    "lon": 127.0326987,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Universe(44-seater bus) x2 + New Granbird(44-seater bus) x2",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "71",
+    "service": "똑타(Dokta)",
+    "location": "Intercity-DRT(Sadang Station Exit 3→Suwon)",
+    "lat": 37.4753424,
+    "lon": 126.9820358,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "Universe(44-seater bus)",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.01.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "72",
+    "service": "똑타(Dokta)",
+    "location": "Gwonseon-dong, Suwon",
+    "lat": 37.2576747662825,
+    "lon": 127.024596888703,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "3",
+    "vehicle": "CV1 x1 + Staria x2",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.02.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "73",
+    "service": "똑타(Dokta)",
+    "location": "Mohyeon-eup, Yongin",
+    "lat": 37.3296454910844,
+    "lon": 127.242348722596,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "4",
+    "vehicle": "CV1 x2 + Solati x2",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "74",
+    "service": "셔클(Shucle)",
+    "location": "Dong-myeon, Yanggu-gun",
+    "lat": 38.2023166396046,
+    "lon": 128.04349997028,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "CV1",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.11.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "75",
+    "service": "셔클(Shucle)",
+    "location": "Haean-myeon, Yanggu-gun",
+    "lat": 38.2851684890133,
+    "lon": 128.137124728997,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "CV1",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.11.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "76",
+    "service": "똑타(Dokta)",
+    "location": "Geumsa-myeon, Yeoju",
+    "lat": 37.39640037287048,
+    "lon": 127.50353612300827,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Staria Hybrid",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "77",
+    "service": "똑타(Dokta)",
+    "location": "Sanbuk-myeon, Yeoju",
+    "lat": 37.40139298223274,
+    "lon": 127.44066462993445,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Staria Hybrid",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "78",
+    "service": "똑타(Dokta)",
+    "location": "Heungcheon-myeon, Yeoju",
+    "lat": 37.34291235483937,
+    "lon": 127.52965111286778,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "Staria Hybrid",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.23.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "79",
+    "service": "똑타(Dokta)",
+    "location": "Gwanggyo 1 & 2 Dong, Suwon",
+    "lat": 37.292626275806505,
+    "lon": 127.05727537467237,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "CV1",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.03.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "80",
+    "service": "셔클(Shucle)",
+    "location": "Gongju KTX Station",
+    "lat": 36.332486503192,
+    "lon": 127.096832710763,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.04.08.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "81",
+    "service": "셔클(Shucle)",
+    "location": "Gangneung (Autonomous Driving)",
+    "lat": 37.7563022,
+    "lon": 128.8990843,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "CV1",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.04.20.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "82",
+    "service": "셔클(Shucle)",
+    "location": "Bongyang-eup, Jecheon",
+    "lat": 37.1484976,
+    "lon": 128.1153723,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.05.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "83",
+    "service": "셔클(Shucle)",
+    "location": "Baegun-myeon, Jecheon",
+    "lat": 37.1377198692023,
+    "lon": 128.025820670759,
+    "country": "Republic of Korea",
+    "operator": "Hyundai Motors",
+    "tech": "Hyundai Motors",
+    "units": "1",
+    "vehicle": "Solati",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.05.01.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "84",
+    "service": "똑타(Dokta)",
+    "location": "Hagon-dong, Gwangmyeong",
+    "lat": 37.4154445224117,
+    "lon": 126.851355125029,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "BYD eBus-7",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.06.22.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  },
+  {
+    "id": "85",
+    "service": "똑타(Dokta)",
+    "location": "Soha 2-dong, Gwangmyeong",
+    "lat": 37.4321172678102,
+    "lon": 126.880210763843,
+    "country": "Republic of Korea",
+    "operator": "Gtrans",
+    "tech": "Hyundai Motors",
+    "units": "2",
+    "vehicle": "CV1 + BYD eBus-7",
+    "usecase": "PT neighborhood bus",
+    "launch": "26.06.22.",
+    "end": "Running",
+    "url": "https://www.shucle.com/en/app"
+  }
+];
+
+const SERVICE_COLORS = {
+  '똑타(Dokta)':           { color: '#3b82f6', bg: '#1e3a8a', label: 'Dokta' },
+  '셔클(Shucle)':          { color: '#10b981', bg: '#064e3b', label: 'Shucle' },
+  '이응패스(e-eung pass)': { color: '#a855f7', bg: '#4c1d95', label: 'e-eung' },
+};
+
+function getColor(svc) {
+  return (SERVICE_COLORS[svc] || { color: '#a855f7', bg: '#3b0764', label: svc }).color;
+}
+function getBg(svc) {
+  return (SERVICE_COLORS[svc] || { color: '#a855f7', bg: '#3b0764' }).bg;
+}
+
+// Map init
+const map = L.map('map', {
+  center: [36.5, 127.8],
+  zoom: 7,
+  zoomControl: true,
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors © CARTO',
+  subdomains: 'abcd',
+  maxZoom: 19,
+}).addTo(map);
+
+// Custom marker icon — Hyundai logo + label
+function makeIcon(color, label) {
+  const short = label ? (label.length > 22 ? label.slice(0, 20) + '…' : label) : '';
+  const logoUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwMC41MDIwMSIgb3ZlcmZsb3c9InZpc2libGUiIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlIiB2aWV3Qm94PSIwIDAgOTk5Ljk5OTk3IDYwMC41MDIwNCI+PGcgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7ZmlsbDojMDAyZTZiIj48cGF0aCBkPSJNMjYuNjg1IDEyNi4wMTRIMTQuMjY5djEwLjQ5NEg4LjUwNHYtMjUuNDIyaDUuNzY1djEwLjA1MWgxMi40MTZ2LTEwLjA1MWg1LjYxN3YyNS40MjJoLTUuNjE3ek0xNzguNjM1IDExMS4wODZ2MjUuNDIyaDUuNjE3di0yNS40MjJ6IiBzdHlsZT0iY2xpcC1ydWxlOmV2ZW5vZGQ7ZmlsbDojMDAyZTZiO2ZpbGwtcnVsZTpldmVub2RkIiB0cmFuc2Zvcm09Im1hdHJpeCg1LjY4OTk2IDAgMCA1LjY4OTk2IC00OC4zODcgLTE3Ni4yMjQpIi8+PHBhdGggZD0iTTcwLjI4OCAxMzUuODAxYzAgMi45NjgtLjUzOSAzLjc3Ny0zLjI0IDMuNzc3SDQ4LjQydi0zNy41MjRIMzguMTYxdjQ2LjQzMmgzMy43NDdzOC42MzktLjUzOSA4LjYzOS0xMC4yNTZ2LTM2LjE3NmgtMTAuMjZ2MzMuNzQ3ek0xMjIuMTIyIDE0OC40ODZoMTAuNTNWMTEyLjMxYzAtOS43MTctOC45MS0xMC4yNTYtOC45MS0xMC4yNTZIODkuOTk1djQ2LjQzMmgxMC41M3YtMzcuNTI0aDE4LjM1OWMyLjcgMCAzLjIzOC44MDkgMy4yMzggMy43OHYzMy43NDR6IiBzdHlsZT0iY2xpcC1ydWxlOmV2ZW5vZGQ7ZmlsbDojMDAyZTZiO2ZpbGwtcnVsZTpldmVub2RkIiB0cmFuc2Zvcm09Im1hdHJpeCgzLjExNTM1IDAgMCAzLjExNTM1IDE5OS44NjcgMTM3LjkxNykiLz48cGF0aCBkPSJNNDUuNzUyIDEzNi41MDhoNS42MTh2LTkuMTY0bDEwLjkzOC0xNi4yNThoLTcuMDk2bC02Ljc5OSAxMC43ODktNi43OTktMTAuNzg5aC02Ljk0N2wxMS4wODUgMTYuNDA2eiIgc3R5bGU9ImNsaXAtcnVsZTpldmVub2RkO2ZpbGw6IzAwMmU2YjtmaWxsLXJ1bGU6ZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoNS42ODk5NiAwIDAgNS42ODk5NiAtNDguMzg3IC0xNzYuMjI0KSIvPjxwYXRoIGQ9Ik0xNDEuODMgMTQ4LjQ4NmgzMy4yMDZjOC45MDkgMCA5LjcxOC05LjE3OCA5LjcxOC05LjE3OHYtMjguMDc0cy0uODEtOS4xNzgtOS43MTgtOS4xNzhoLTMzLjIwN3ptMzIuMzk1LTEyLjY4NXMwIDMuNzc3LTMuMjM5IDMuNzc3aC0xOC44OTh2LTI4LjYxNmgxOC44OThjMy4yMzkgMCAzLjIzOSAzLjc4IDMuMjM5IDMuNzh6TTIzNy42NyAxMDIuMDU0djQ2LjQzMmgtMTAuNTN2LTEzLjVoLTIzLjIxOHYxMy41aC0xMC4yNTl2LTM0LjU1M2MwLTEyLjQyMSAxMS4zMzktMTEuODc5IDExLjMzOS0xMS44Nzl6bS0xMC41MyAyNC4yOTd2LTE1LjM5aC0xOS43MXMtMy41MDggMC0zLjUwOCA0LjMydjExLjA3ek0yMTUuNTMxIDE1LjkzM2MwIDMyLjkzNi01My40NTQgNTkuOTMyLTExOS4wNTYgNTkuOTMyLTY1Ljg3MiAwLTExOS4wNTYtMjYuOTk2LTExOS4wNTYtNTkuOTMyIDAtMzMuMjA3IDUzLjE4NC02MC4yMDMgMTE5LjA1Ni02MC4yMDMgNjUuNjAyIDAgMTE5LjA1NiAyNi45OTYgMTE5LjA1NiA2MC4yMDN6TTkwLjgwNiA3LjU2M2MxMC4yNi0xLjg5IDIwLjI0OC01LjM5OCAyOC4wNzgtOC4zNjggMjUuMzc2LTguOTEgMzcuMjUzLTE4LjA4NyAzOS42ODQtMjAuMjQ4IDMuMjQtMi45Ny44MTEtNC4wNDktMi4xNTgtNS4xMy0xNy4yOC01LjEzLTQzLjQ2Ni04LjkxLTYwLjIwMy04LjA5OS0xMi4xNS4yNjktMTguODk4IDEzLjUtMjEuNTk4IDE5LjE2OUM2MS45MiAxMS42MTMgODQuNTk2IDguOTE0IDkwLjgwNiA3LjU2NFpNMTMuMDU1IDQ1LjM1OWMuNTM5LTEuMDggMjAuNTE2LTQ3Ljc4NSA0NC4wMDQtNzMuMTYxIDIuOTY4LTIuNy0uMjctMy4yNC00LjA1LTIuNDMxLTM4Ljg3MyA3LjU2MS02NS44NzEgMjUuMzgtNjUuODcxIDQ1Ljg5OCAwIDExLjMzOSA4LjA5OCAyMS44NjggMjEuNTk3IDMwLjIzNyAxLjg5IDEuMDc5IDMuNzguMjY4IDQuMzItLjU0M3ptODguODItMjEuMzI1Yy0xMC4yNiAxLjg5LTIwLjI0OSA1LjM5OS0yOC4wNzkgOC4zNjhDNDguNDIgNDEuMzExIDM2LjU0MSA1MC43NiAzNC4xMTIgNTIuOTJjLTMuMjQgMi43LS44MTEgNC4wNDkgMi4xNTkgNC44NiAxNy4yNzggNS4xMjggNDMuNDY1IDguOTA3IDYwLjIwMiA4LjM2OCAxMi4xNDgtLjUzOCAxOC44OTktMTMuNzY5IDIxLjg2OC0xOS40MzggMTIuNDItMjYuNzI4LTEwLjI1Ny0yMy43NTgtMTYuNDY3LTIyLjY3N1ptMTAzLjY2Ny04LjFjMC0xMS4zMzktNy44My0yMS41OTgtMjEuNTk3LTI5Ljk2Ny0xLjg4OS0xLjM1LTMuNTA5LS41NC00LjMyLjU0LS41MzguODA4LTIwLjUxNiA0Ny41MTQtNDQuMDA0IDcyLjg5LTIuNzAxIDIuOTcuMjY5IDMuNTA5IDQuMDUgMi43IDM4Ljg3NS03LjgyOSA2NS44NzEtMjUuNjQ1IDY1Ljg3MS00Ni4xNjN6IiBzdHlsZT0iY2xpcC1ydWxlOmV2ZW5vZGQ7ZmlsbDojMDAyZTZiO2ZpbGwtcnVsZTpldmVub2RkIiB0cmFuc2Zvcm09Im1hdHJpeCgzLjExNTM1IDAgMCAzLjExNTM1IDE5OS44NjcgMTM3LjkxNykiLz48L2c+PC9zdmc+';
+
+  // Badge: rounded rect with Hyundai logo (white), pin triangle, label below
+  const badge = `
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="
+        background:${color};
+        border-radius:6px;
+        padding:4px 7px 3px;
+        box-shadow:0 2px 8px rgba(0,0,0,0.45);
+        border:1.5px solid rgba(255,255,255,0.25);
+        display:flex;align-items:center;justify-content:center;
+      ">
+        <img src="${logoUrl}"
+          style="width:44px;height:26px;object-fit:contain;
+                 filter:brightness(0) invert(1);"
+          draggable="false"/>
+      </div>
+      <div style="
+        width:0;height:0;
+        border-left:6px solid transparent;
+        border-right:6px solid transparent;
+        border-top:8px solid ${color};
+        margin-top:-1px;
+      "></div>
+      <div style="
+        margin-top:2px;
+        background:rgba(10,18,36,0.88);
+        color:#e8f0ff;
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:3px;
+        padding:2px 5px;
+        font-size:9px;
+        font-family:Arial,sans-serif;
+        white-space:nowrap;
+        max-width:130px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-align:center;
+        box-shadow:0 1px 4px rgba(0,0,0,0.4);
+      ">${short}</div>
+    </div>`;
+
+  return L.divIcon({
+    html: badge,
+    iconSize: [60, 70],
+    iconAnchor: [30, 44],
+    popupAnchor: [0, -48],
+    className: '',
+  });
+}
+
+let currentFilter = 'all';
+let markers = [];
+let selectedIdx = null;
+
+function makePopup(d) {
+  const color = getColor(d.service);
+  const badge = (SERVICE_COLORS[d.service] || { label: d.service }).label;
+  const endStr = d.end === 'Running' ? '<span style="color:#10b981">● Running</span>' : d.end;
+  const linkHtml = d.url ? `<a class="popup-link" href="${d.url}" target="_blank">App Link →</a>` : '';
+  return `
+    <div class="popup-header">
+      <div class="popup-svc" style="color:${color}">${d.service}</div>
+      <div class="popup-location">${d.location}</div>
+    </div>
+    <div class="popup-body">
+      <div class="popup-row"><span class="popup-key">Country</span><span class="popup-val">${d.country}</span></div>
+      <div class="popup-row"><span class="popup-key">Operator</span><span class="popup-val">${d.operator}</span></div>
+      <div class="popup-row"><span class="popup-key">Vehicle</span><span class="popup-val">${d.vehicle}</span></div>
+      <div class="popup-row"><span class="popup-key">Units</span><span class="popup-val">${d.units}</span></div>
+      <div class="popup-row"><span class="popup-key">Use Case</span><span class="popup-val">${d.usecase}</span></div>
+      <div class="popup-row"><span class="popup-key">Launch</span><span class="popup-val">${d.launch}</span></div>
+      <div class="popup-row"><span class="popup-key">Status</span><span class="popup-val">${endStr}</span></div>
+      ${linkHtml}
+    </div>`;
+}
+
+function buildList(filter) {
+  const list = document.getElementById('service-list');
+  list.innerHTML = '';
+  const filtered = filter === 'all' ? DATA : DATA.filter(d => d.service === filter);
+  filtered.forEach((d, i) => {
+    const globalIdx = DATA.indexOf(d);
+    const color = getColor(d.service);
+    const div = document.createElement('div');
+    div.className = 'list-item';
+    div.id = 'list-item-' + globalIdx;
+    div.innerHTML = `
+      <div class="list-item-name">
+        <span class="svc-badge" style="background:${getBg(d.service)};color:${color}">${(SERVICE_COLORS[d.service]||{label:d.service}).label}</span>
+        ${d.location.split(',')[0]}
+      </div>
+      <div class="list-item-loc">${d.location}</div>
+      <div class="list-item-meta">🚌 ${d.units} units · ${d.launch}</div>`;
+    div.onclick = () => selectMarker(globalIdx);
+    list.appendChild(div);
+  });
+}
+
+function selectMarker(idx) {
+  // Deselect previous
+  if (selectedIdx !== null) {
+    const prevEl = document.getElementById('list-item-' + selectedIdx);
+    if (prevEl) prevEl.classList.remove('selected');
+  }
+  selectedIdx = idx;
+  const el = document.getElementById('list-item-' + idx);
+  if (el) { el.classList.add('selected'); el.scrollIntoView({ block: 'nearest' }); }
+
+  const d = DATA[idx];
+  const m = markers[idx];
+  if (m) {
+    map.setView([d.lat, d.lon], 13);
+    m.openPopup();
+  }
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  markers.forEach((m, i) => {
+    const d = DATA[i];
+    const show = filter === 'all' || d.service === filter;
+    if (show) m.addTo(map); else map.removeLayer(m);
+  });
+  buildList(filter);
+  updateStats(filter);
+  if (filter === 'all') {
+    map.setView([36.5, 127.8], 7);
+  }
+}
+
+function updateStats(filter) {
+  const filtered = filter === 'all' ? DATA : DATA.filter(d => d.service === filter);
+  const units = filtered.reduce((s, d) => s + (parseInt(d.units) || 0), 0);
+  const countries = new Set(filtered.map(d => d.country)).size;
+  document.getElementById('stat-services').textContent = filtered.length;
+  document.getElementById('stat-units').textContent = units;
+  document.getElementById('stat-countries').textContent = countries;
+}
+
+// Count badges
+document.getElementById('cnt-all').textContent = DATA.length;
+document.getElementById('cnt-dokta').textContent = DATA.filter(d => d.service === '똑타(Dokta)').length;
+document.getElementById('cnt-shucle').textContent = DATA.filter(d => d.service === '셔클(Shucle)').length;
+document.getElementById('cnt-eeung').textContent = DATA.filter(d => d.service === '이응패스(e-eung pass)').length;
+
+// Init markers
+DATA.forEach((d, i) => {
+  const shortLoc = d.location.split(',')[0].trim();
+  const m = L.marker([d.lat, d.lon], { icon: makeIcon(getColor(d.service), shortLoc) })
+    .bindPopup(makePopup(d), { maxWidth: 280 })
+    .addTo(map);
+  m.on('click', () => selectMarker(i));
+  markers.push(m);
+});
+
+// Legend
+const legend = L.control({ position: 'bottomright' });
+legend.onAdd = () => {
+  const div = L.DomUtil.create('div', 'legend');
+  div.innerHTML = `
+    <div class="legend-title">Service Brand</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> 똑타 (Dokta)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> 셔클 (Shucle)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div> 이응패스 (e-eung pass)</div>`;
+  return div;
+};
+legend.addTo(map);
+
+// Init
+buildList('all');
+updateStats('all');
+</script>
+</body>
+</html>
