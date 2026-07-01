@@ -27,3 +27,9 @@
 ## Hyundai Motors DRT World Map (분기 별 업데이트)
 
 - **[DRT World Map](https://hyojung-kwon.github.io/public_for_sharing/DRT_World_Map.html)**
+
+---
+
+## 글로벌 자율주행 플레이어 동향 및 사업 전략 리서치
+
+- **[글로벌 자율주행 리서치](https://hyojung-kwon.github.io/public_for_sharing/글로벌_자율주행_리서치.html)**
