@@ -17,10 +17,17 @@
 
 ---
 
-## 셔클 레터 Issue. 002 (2026.06.30.)
+## 셔클 레터 Issue. 002 (2026.07.01.)
 
 - **[셔클레터_Issue.002](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002.html)**
 - **[셔클레터_Issue.002 (Cuttly버전)](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002_cuttly.html)**
+
+---
+
+## 셔클 레터 Issue. 003 (2026.__.__)
+
+- **[셔클레터_Issue.003](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.003.html)**
+- **[셔클레터_Issue.003 (Cuttly버전)](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.003_cuttly.html)**
 
 ---
 
