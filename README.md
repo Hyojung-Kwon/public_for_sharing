@@ -47,5 +47,4 @@
 
 ## IAA TRANSPORTATION 2026 세션 일정
 
-- **[IAA 2026 일정 — 날짜별 탭](https://hyojung-kwon.github.io/public_for_sharing/iaa2026_schedule.html)**
-- **[IAA 2026 일정 — 전체 보기](https://hyojung-kwon.github.io/public_for_sharing/iaa2026_full.html)**
+- **[IAA 2026 일정](https://hyojung-kwon.github.io/public_for_sharing/iaa2026_full.html)**
