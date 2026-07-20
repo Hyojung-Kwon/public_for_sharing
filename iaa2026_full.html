@@ -14,62 +14,51 @@ body{font-family:-apple-system,'Helvetica Neue','Apple SD Gothic Neo',Arial,sans
 .lang-sw{display:flex;background:rgba(0,0,0,.25);border-radius:8px;padding:3px;gap:3px;}
 .lang-sw button{border:none;padding:7px 20px;border-radius:6px;font-size:12.5px;font-weight:700;cursor:pointer;background:none;color:#93C5FD;}
 .lang-sw button.on{background:#fff;color:#1E3A8A;}
-
 .tabs{display:flex;gap:4px;}
 .tab{padding:10px 24px 9px;border-radius:8px 8px 0 0;border:none;cursor:pointer;font-size:13px;font-weight:600;background:rgba(0,0,0,.2);color:#93C5FD;border-bottom:2px solid transparent;}
 .tab.on{background:#F0F4FF;color:#1E3A8A;font-weight:800;}
 
-.wrap{max-width:1500px;margin:0 auto;padding:24px 32px 48px;}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 44px 48px;}
 
-/* DAY HEADER */
-.tl-day-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;}
-.tl-day-name{font-size:20px;font-weight:800;color:#111827;}
-.tl-day-link{font-size:12px;color:#2563EB;text-decoration:none;font-weight:500;margin-left:auto;}
-.tl-day-link:hover{text-decoration:underline;}
-.tl-day-link::after{content:'↗';font-size:10px;margin-left:3px;}
+.day-sec-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;}
+.day-sec-name{font-size:20px;font-weight:800;color:#111827;}
+.day-sec-link{font-size:12px;color:#2563EB;text-decoration:none;font-weight:500;margin-left:auto;}
+.day-sec-link:hover{text-decoration:underline;}
+.day-sec-link::after{content:'↗';font-size:10px;margin-left:3px;}
 
-/* LEGEND */
-.tl-legend{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap;}
-.tl-leg{display:flex;align-items:center;gap:6px;font-size:11px;color:#6B7280;}
-.tl-leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.sched{display:flex;flex-direction:column;}
+.time-group{display:flex;border-top:1px solid #E5E7EB;padding:12px 0;}
+.time-group:last-child{border-bottom:1px solid #E5E7EB;}
 
-/* TIMELINE CONTAINER */
-.tl-outer{border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#fff;}
-.tl-scroll{overflow-x:auto;}
-.tl-inner{display:inline-block;min-width:100%;padding-bottom:10px;}
+.time-col{width:80px;flex-shrink:0;padding-top:2px;padding-right:16px;text-align:right;}
+.t-start{font-size:20px;font-weight:900;color:#1F2937;line-height:1;letter-spacing:-.5px;}
+.t-end{font-size:11px;color:#9CA3AF;margin-top:3px;}
 
-/* TIME HEADER */
-.tl-head{display:flex;background:#F9FAFB;border-bottom:2px solid #E5E7EB;}
-.tl-lbl-hdr{width:150px;flex-shrink:0;}
-.tl-axis{position:relative;height:34px;}
-.tl-tm{position:absolute;font-size:10.5px;font-weight:700;color:#6B7280;transform:translateX(-50%);top:10px;white-space:nowrap;user-select:none;}
-.tl-tm::before{content:'';position:absolute;left:50%;top:-8px;height:6px;width:1px;background:#D1D5DB;}
+.cards-row{flex:1;display:flex;gap:8px;flex-wrap:wrap;}
+.cards-row .card{flex:1;min-width:220px;}
 
-/* TRACK ROWS */
-.tl-track{display:flex;border-bottom:1px solid #F3F4F6;}
-.tl-track:last-child{border-bottom:none;}
-.tl-lbl{width:150px;flex-shrink:0;padding:10px 10px 10px 14px;border-right:2px solid #E5E7EB;display:flex;flex-direction:column;justify-content:center;background:#FAFAFA;}
-.tl-lbl-name{font-size:11px;font-weight:700;color:#374151;line-height:1.35;}
-.tl-lbl-hall{font-size:9.5px;color:#9CA3AF;margin-top:2px;}
-.tl-area{position:relative;height:96px;}
+.card{background:#fff;border-radius:8px;padding:11px 14px;border:1px solid #E5E7EB;border-left:4px solid #E5E7EB;}
+.card:hover{box-shadow:0 2px 12px rgba(0,0,0,.08);}
+.card.main{border-left-color:#2563EB;}
+.card.ind {border-left-color:#059669;}
+.card.proto{border-left-color:#7C3AED;}
+.card.priv{border-left-color:#DC2626;background:#FFF5F5;}
 
-/* GRIDLINES */
-.tl-gl{position:absolute;top:0;bottom:0;width:1px;pointer-events:none;}
-.tl-gl-h{background:#E5E7EB;}
-.tl-gl-q{background:#F3F4F6;}
+.card-meta{display:flex;align-items:center;gap:5px;margin-bottom:7px;flex-wrap:wrap;}
+.badge{font-size:8.5px;font-weight:800;letter-spacing:.4px;border-radius:4px;padding:2px 7px;text-transform:uppercase;white-space:nowrap;}
+.b-main {background:#DBEAFE;color:#1D4ED8;}
+.b-ind  {background:#D1FAE5;color:#065F46;}
+.b-proto{background:#EDE9FE;color:#5B21B6;}
+.b-priv {background:#FEE2E2;color:#991B1B;}
+.b-note {background:#FEE2E2;color:#991B1B;}
+.b-time{font-size:12px;font-weight:700;color:#374151;}
 
-/* SESSION BLOCKS */
-.tl-block{position:absolute;top:6px;bottom:6px;border-radius:6px;padding:5px 7px;overflow:hidden;text-decoration:none;display:block;transition:opacity .12s,box-shadow .12s;}
-.tl-block:hover{opacity:.9;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:20;}
-.tl-block-time{font-size:8px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:2px;white-space:nowrap;letter-spacing:.3px;}
-.tl-block-title{font-size:10px;font-weight:700;color:#fff;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;word-break:keep-all;overflow-wrap:break-word;}
-.tl-block-sp{font-size:8.5px;color:rgba(255,255,255,.72);margin-top:3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-
-/* STAGE COLORS */
-.tl-main {background:#2563EB;border-left:3px solid #1D4ED8;}
-.tl-ind  {background:#059669;border-left:3px solid #047857;}
-.tl-proto{background:#7C3AED;border-left:3px solid #6D28D9;}
-.tl-priv {background:#DC2626;border-left:3px solid #B91C1C;}
+.card-title{font-size:13.5px;font-weight:700;line-height:1.4;color:#111827;margin-bottom:5px;}
+.card-title a{color:#111827;text-decoration:none;}
+.card-title a:hover{color:#1D4ED8;text-decoration:underline;}
+.card-speakers{font-size:11.5px;color:#6B7280;margin-top:3px;}
+.sp-line{padding:2px 0;line-height:1.4;border-bottom:1px solid #F3F4F6;}
+.sp-line:last-child{border-bottom:none;}
 </style>
 </head>
 <body>
@@ -186,82 +175,56 @@ const L={
   en:{tag:'Event Schedule',sub:'Hannover, Germany · September 15–18, 2026',priv:'Private Event',note_ev:'Evening Event',iaa_link:'View on IAA website',cnt_sfx:' sessions'},
 };
 
-let lang='en',curDay='d15';
 
-function fmtT(min){const h=Math.floor(min/60),m=min%60;return`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function firstSp(sp){if(!sp)return'';return sp.split('·')[0].trim().replace(/\s*\([^)]+\)$/,'').trim();}
+let lang='en', curDay='d15';
 
-const SCALE=2.5;
-
-function dayBounds(day){
-  const s=day.sessions.map(x=>tm(x.s)),e=day.sessions.map(x=>tm(x.e));
-  return{start:Math.floor(Math.min(...s)/30)*30, end:Math.ceil(Math.max(...e)/30)*30};
+function groupByTime(sessions){
+  const map={};
+  sessions.forEach(s=>{if(!map[s.s])map[s.s]=[];map[s.s].push(s);});
+  return Object.entries(map).sort((a,b)=>tm(a[0])-tm(b[0]));
 }
 
-function renderTimeline(day){
+function card(ses){
+  const Ll=L[lang];
+  const cfg=STCFG[ses.g];
+  const title=lang==='ko'?ses.tk:ses.t;
+  const cls=ses.priv?'priv':cfg.cls;
+  const privBadge=ses.priv?`<span class="badge b-priv">${Ll.priv}</span>`:'';
+  const noteBadge=ses.note?`<span class="badge b-note">${lang==='ko'?Ll.note_ev:ses.note}</span>`:'';
+  const spHtml=ses.sp
+    ?`<div class="card-speakers">${ses.sp.split('·').map(s=>`<div class="sp-line">${s.trim()}</div>`).join('')}</div>`
+    :'';
+  return `<div class="card ${cls}">
+    <div class="card-meta">
+      <span class="badge ${cfg.bc}">${cfg.name} · ${cfg.hall}</span>
+      ${privBadge}${noteBadge}
+      <span class="b-time">→ ${ses.e}</span>
+    </div>
+    <div class="card-title"><a href="${ses.url}" target="_blank">${title}</a></div>
+    ${spHtml}
+  </div>`;
+}
+
+function renderDay(day){
   const Ll=L[lang];
   const url=DAY_URLS[day.id];
-  const{start,end}=dayBounds(day);
-  const W=Math.round((end-start)*SCALE);
-
-  // Gridlines + time labels
-  let grids='',marks='';
-  for(let t=start;t<=end;t+=15){
-    const x=Math.round((t-start)*SCALE);
-    const isH=t%60===0;
-    grids+=`<div class="tl-gl ${isH?'tl-gl-h':'tl-gl-q'}" style="left:${x}px"></div>`;
-    if(isH) marks+=`<div class="tl-tm" style="left:${x}px">${fmtT(t)}</div>`;
-  }
-
-  // Build track rows
-  const stages=['main','ind','proto'];
-  let tracks='';
-  stages.forEach(st=>{
-    const sesList=day.sessions.filter(s=>s.g===st);
-    if(!sesList.length) return;
-    const cfg=STCFG[st];
-    let blocks='';
-    sesList.forEach(ses=>{
-      const sm=tm(ses.s), em=tm(ses.e);
-      const left=Math.round((sm-start)*SCALE);
-      const w=Math.max(Math.round((em-sm)*SCALE)-2, 4);
-      const cls=ses.priv?'tl-priv':`tl-${st}`;
-      const title=lang==='ko'?ses.tk:ses.t;
-      const sp=firstSp(ses.sp);
-      const tip=[ses.s+'–'+ses.e, title, ses.sp].filter(Boolean).join(' | ').replace(/"/g,"'");
-      blocks+=
-        `<a href="${ses.url}" target="_blank" class="tl-block ${cls}" `+
-        `style="left:${left}px;width:${w}px" title="${tip}">`+
-        `<div class="tl-block-time">${ses.s}–${ses.e}</div>`+
-        `<div class="tl-block-title">${esc(title)}</div>`+
-        (sp&&w>55?`<div class="tl-block-sp">${esc(sp)}</div>`:'')+
-        `</a>`;
-    });
-    tracks+=
-      `<div class="tl-track">`+
-      `<div class="tl-lbl"><div class="tl-lbl-name">${cfg.name}</div><div class="tl-lbl-hall">${cfg.hall}</div></div>`+
-      `<div class="tl-area" style="width:${W}px">${grids}${blocks}</div>`+
-      `</div>`;
-  });
-
   const dname=lang==='ko'?day.ko:day.en;
-  const hasPriv=day.sessions.some(s=>s.priv);
-
-  return (
-    `<div class="tl-day-hdr"><span class="tl-day-name">${dname}</span>`+
-    `<a class="tl-day-link" href="${url}" target="_blank">${Ll.iaa_link}</a></div>`+
-    `<div class="tl-legend">`+
-    `<div class="tl-leg"><div class="tl-leg-dot" style="background:#2563EB"></div>Main Stage · Hall 18</div>`+
-    `<div class="tl-leg"><div class="tl-leg-dot" style="background:#059669"></div>Industry Stage · Hall 13</div>`+
-    `<div class="tl-leg"><div class="tl-leg-dot" style="background:#7C3AED"></div>prototype.club Stage · Hall 12</div>`+
-    (hasPriv?`<div class="tl-leg"><div class="tl-leg-dot" style="background:#DC2626"></div>${lang==='ko'?'비공개 행사':'Private Event'}</div>`:'')+
-    `</div>`+
-    `<div class="tl-outer"><div class="tl-scroll"><div class="tl-inner">`+
-    `<div class="tl-head"><div class="tl-lbl-hdr"></div><div class="tl-axis" style="width:${W}px">${marks}</div></div>`+
-    tracks+
-    `</div></div></div>`
-  );
+  const groups=groupByTime(day.sessions);
+  const rows=groups.map(([time,sessions])=>{
+    const latestEnd=sessions.map(s=>s.e).reduce((a,b)=>tm(a)>tm(b)?a:b);
+    return `<div class="time-group">
+      <div class="time-col">
+        <div class="t-start">${time}</div>
+        <div class="t-end">– ${latestEnd}</div>
+      </div>
+      <div class="cards-row">${sessions.map(card).join('')}</div>
+    </div>`;
+  }).join('');
+  return `<div class="day-sec-hdr">
+    <div class="day-sec-name">${dname}</div>
+    <a class="day-sec-link" href="${url}" target="_blank">${Ll.iaa_link}</a>
+  </div>
+  <div class="sched">${rows}</div>`;
 }
 
 const TAB_LABELS={
@@ -278,7 +241,7 @@ function render(){
     `<button class="tab ${d.id===curDay?'on':''}" onclick="setDay('${d.id}')">${TAB_LABELS[d.id][lang]}</button>`
   ).join('');
   const day=days.find(d=>d.id===curDay);
-  document.getElementById('root').innerHTML=renderTimeline(day);
+  document.getElementById('root').innerHTML=renderDay(day);
 }
 
 function setLang(l){
