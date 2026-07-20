@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IAA TRANSPORTATION 2026 Schedule</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,'Helvetica Neue','Apple SD Gothic Neo',Arial,sans-serif;background:#F0F4FF;color:#111827;}
+
+.hdr{background:#1E3A8A;color:#fff;padding:24px 44px 0;}
+.hdr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.ev-tag{font-size:9.5px;letter-spacing:3px;color:#93C5FD;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
+.ev-title{font-size:28px;font-weight:900;letter-spacing:0.2px;}
+.ev-sub{font-size:12.5px;color:#BAD0FF;margin-top:4px;}
+.lang-sw{display:flex;background:rgba(0,0,0,.25);border-radius:8px;padding:3px;gap:3px;}
+.lang-sw button{border:none;padding:7px 20px;border-radius:6px;font-size:12.5px;font-weight:700;cursor:pointer;background:none;color:#93C5FD;}
+.lang-sw button.on{background:#fff;color:#1E3A8A;}
+
+.tabs{display:flex;gap:4px;}
+.tab{padding:10px 28px 9px;border-radius:8px 8px 0 0;border:none;cursor:pointer;font-size:13px;font-weight:600;background:rgba(0,0,0,.2);color:#93C5FD;border-bottom:2px solid transparent;}
+.tab.on{background:#F0F4FF;color:#1E3A8A;font-weight:800;}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 44px 48px;}
+.panel{display:none;}.panel.on{display:block;}
+
+.day-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;}
+.day-name{font-size:22px;font-weight:800;color:#111827;}
+.day-link{font-size:12px;color:#2563EB;text-decoration:none;font-weight:500;margin-left:auto;}
+.day-link:hover{text-decoration:underline;}
+.day-link::after{content:'↗';font-size:10px;margin-left:3px;}
+
+/* SCHEDULE */
+.sched{display:flex;flex-direction:column;}
+
+.time-group{display:flex;gap:0;border-top:1px solid #E5E7EB;padding:12px 0;}
+.time-group:last-child{border-bottom:1.5px solid #E5E7EB;}
+
+/* Time column — bigger */
+.time-col{width:80px;flex-shrink:0;padding-top:2px;padding-right:16px;text-align:right;}
+.t-start{font-size:20px;font-weight:900;color:#1F2937;line-height:1;letter-spacing:-0.5px;}
+.t-end{font-size:11px;color:#9CA3AF;margin-top:3px;font-weight:500;}
+
+/* Cards — horizontal for parallel sessions */
+.cards-row{flex:1;display:flex;flex-direction:row;gap:8px;flex-wrap:wrap;}
+.cards-row .card{flex:1;min-width:220px;}
+
+.card{background:#fff;border-radius:8px;padding:10px 13px;border:1px solid #E5E7EB;border-left:4px solid #E5E7EB;transition:box-shadow .15s;}
+.card:hover{box-shadow:0 3px 14px rgba(0,0,0,.1);}
+.card.main{border-left-color:#2563EB;}
+.card.ind{border-left-color:#059669;}
+.card.proto{border-left-color:#7C3AED;}
+.card.priv{border-left-color:#DC2626;background:#FFF5F5;}
+
+.card-meta{display:flex;align-items:center;gap:5px;margin-bottom:6px;flex-wrap:wrap;}
+.badge{font-size:9px;font-weight:800;letter-spacing:.4px;border-radius:4px;padding:2px 8px;text-transform:uppercase;white-space:nowrap;}
+.b-main{background:#DBEAFE;color:#1D4ED8;}
+.b-ind{background:#D1FAE5;color:#065F46;}
+.b-proto{background:#EDE9FE;color:#5B21B6;}
+.b-priv{background:#FEE2E2;color:#991B1B;}
+.b-note{background:#FEE2E2;color:#991B1B;}
+.b-time{font-size:12px;font-weight:700;color:#374151;}
+
+.card-title{font-size:13.5px;font-weight:700;line-height:1.4;color:#111827;margin-bottom:5px;}
+.card-title a{color:#111827;text-decoration:none;}
+.card-title a:hover{color:#1D4ED8;text-decoration:underline;}
+.card-speakers{font-size:11.5px;color:#6B7280;margin-top:2px;}.sp-line{padding:1.5px 0;line-height:1.35;border-bottom:1px solid #F3F4F6;}.sp-line:last-child{border-bottom:none;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="ev-title">IAA TRANSPORTATION 2026</div>
+      <div class="ev-sub" id="ev-sub">Hannover, Germany · September 15–18, 2026</div>
+    </div>
+    <div class="lang-sw">
+      <button onclick="setLang('ko')" id="btn-ko">한국어</button>
+      <button class="on" onclick="setLang('en')" id="btn-en">English</button>
+    </div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+</div>
+<div class="wrap"><div id="panels"></div></div>
+
+<script>
+
+
+function tm(t){const[h,m]=t.split(':').map(Number);return h*60+m;}
+
+const BASE='https://exhibitors.iaa-transportation.com/eventdate/';
+const DAY_URLS={
+  d15:'https://exhibitors.iaa-transportation.com/program/schedule?day=2026-09-15',
+  d16:'https://exhibitors.iaa-transportation.com/program/schedule?day=2026-09-16',
+  d17:'https://exhibitors.iaa-transportation.com/program/schedule?day=2026-09-17',
+  d18:'https://exhibitors.iaa-transportation.com/program/schedule?day=2026-09-18',
+};
+
+const days=[
+  {id:'d15',cnt:26,en:'Tuesday, September 15',ko:'9월 15일 화요일',sh_en:'9/15 (TUE)',sh_ko:'9/15 (화)',sessions:[
+    {g:'main',s:'10:00',e:'11:00',priv:true,t:'IAA TRANSPORTATION Opening',tk:'IAA TRANSPORTATION 2026 개막식',sp:'Hildegard Müller (VDA President) · Patrick Schnieder (Federal Minister for Transport) · Olaf Lies (Minister-President of Lower Saxony) · Belit Onay (Lord Mayor of Hanover)',url:BASE+'IAA-TRANSPORTATION-Opening--943ce38c-eeac-44c2-b196-eb5b5fe4b37f'},
+    {g:'ind',s:'10:00',e:'10:45',t:"Europe's Truck Market: New Evidence on Loyalty, Electrification, and the Chinese Threat",tk:'유럽 트럭 시장: 브랜드 충성도·전동화·중국 위협에 관한 새로운 증거',sp:'Karl Strempel · Phillip Roberts (Bain & Company)',url:BASE+'Europe-s-Truck-Market-New-Evidence-on-Loyalty-Electrification-and-the-Chinese-Threat--9aa9f1ef-e727-4cec-b856-ba85c8a569df'},
+    {g:'proto',s:'10:00',e:'10:45',t:'Brigade Electronics Group Plc.',tk:'Brigade Electronics Group Plc.',sp:'Brigade Electronics',url:BASE+'Brigade-Electronics-Group-Plc--a558a230-918b-47e0-8b45-2b8e829c8ab8'},
+    {g:'ind',s:'11:00',e:'11:45',t:'Conference Session by MicroVision',tk:'MicroVision 콘퍼런스 세션',sp:'MicroVision',url:BASE+'Conference-Session-by-MicroVision--4ffdd8e8-c52a-49cd-abbc-18af06f765dc'},
+    {g:'proto',s:'11:00',e:'11:45',t:'Diconium Group GmbH',tk:'Diconium Group GmbH',sp:'Diconium Group',url:BASE+'Diconium-Group-GmbH--ada5f416-753c-41b9-b11d-1140046444ca'},
+    {g:'main',s:'11:30',e:'11:45',t:'C-Level Keynote',tk:'C-레벨 기조연설',sp:'(Speaker TBA)',url:BASE+'C-Level-Keynote--c73b2177-81a4-4555-a6b2-d944e8324a8a'},
+    {g:'main',s:'11:45',e:'12:15',t:"Winning the Transition: Competitiveness in Europe's Truck Industry",tk:'전환기에서의 승리: 유럽 트럭 산업의 경쟁력',sp:'Matthias Kässer (McKinsey & Company)',url:BASE+'Winning-the-Transition-Competitiveness-in-Europe-s-Truck-Industry--7edaf97b-f963-4f15-9dc6-bf6beaaab5f9'},
+    {g:'ind',s:'12:00',e:'12:45',t:'Rethinking the TCO of the Future — Driver Shortage and BEV Transformation',tk:'미래 TCO 재검토: 운전기사 수급난과 BEV 전환',sp:'Julian Zaßenhaus · Sascha Mauries (Deloitte)',url:BASE+'Rethinking-the-TCO-of-the-future-How-to-deal-with-driver-shortage-and-the-BEV-transformation--c192affa-7698-476c-be13-63fa7a282b1b'},
+    {g:'main',s:'12:30',e:'13:00',t:'Charging the Electric Commercial Vehicles Transformation in Europe',tk:'유럽 전기 상용차 전환의 가속화',sp:'Julien Bert (BCG) · Dennis Affeld (MAN Truck & Bus) · Jörg Friedrichs (DHL Group) · Dr. Petra Sundström (TRATON) · Dr. Peter Wiedenhoff (BCG)',url:BASE+'Charging-the-Electric-Commercial-Vehicles-Transformation-in-Europe--efe6212e-d3fd-423b-8aa8-00c6662b92ff'},
+    {g:'main',s:'13:00',e:'13:15',t:'Wolfgang Ademmer',tk:'Wolfgang Ademmer',sp:'Wolfgang Ademmer (Alpitronic)',url:BASE+'Wolfgang-Ademmer-Alpitronic--5c1eaf9c-3b6d-4d56-9f0f-ae444d7f5375'},
+    {g:'proto',s:'13:00',e:'13:45',t:'Phillips Europe Sp. z o.o.',tk:'Phillips Europe Sp. z o.o.',sp:'Phillips Europe',url:BASE+'Phillips-Europe-Sp-z-o-o--e1415f48-bb9b-4b91-a27f-758e4f3d1077'},
+    {g:'main',s:'13:30',e:'14:00',t:'Call for Day-Sponsor',tk:'데이 스폰서 모집',sp:'',url:BASE+'SUBMIT-NOW-Call-for-Day-Sponsor--e2d12b0f-6d10-46f7-8112-e71c42e13169'},
+    {g:'main',s:'14:00',e:'14:15',t:'Markus Heyn',tk:'Markus Heyn',sp:'Markus Heyn (Bosch)',url:BASE+'Markus-Heyn-Bosch--c96966fa-9012-426f-ad0e-303ded6d6b21'},
+    {g:'ind',s:'14:00',e:'14:45',t:'SDT Operations Center: The Revolution for the Commercial Fleet',tk:'SDT 운영센터: 상용차 플릿의 혁명',sp:'',url:BASE+'SDT-Operations-Center-The-revolution-for-the-commercial-fleet--5342e9e6-0098-4aed-8f02-8f86361eb64a'},
+    {g:'proto',s:'14:00',e:'14:45',t:'Turntide Drives',tk:'Turntide Drives',sp:'Turntide Drives',url:BASE+'Turntide-Drives--a1f1bde9-7c31-467c-88df-54e0b7020fef'},
+    {g:'main',s:'14:15',e:'14:30',t:'Leading the Next Era of Transport: Technology, Scale and Competitiveness',tk:'차세대 운송 시대 선도: 기술·규모·경쟁력',sp:'Jens Holtinger (Volvo Group)',url:BASE+'Leading-the-next-era-of-transport-Technology-Scale-and-Competitiveness--b4798378-415e-4c70-9eb6-47863f763240'},
+    {g:'main',s:'14:30',e:'14:45',t:'Martin Fischer',tk:'Martin Fischer',sp:'Martin Fischer (Forvia)',url:BASE+'Martin-Fischer-Forvia--d20f49b0-d75e-4fd6-9ad7-a9b2034ecfe8'},
+    {g:'main',s:'14:45',e:'15:00',t:'Charging Beyond Hardware',tk:'하드웨어를 넘어선 충전',sp:'Markus Mildner (Siemens)',url:BASE+'Markus-Mildner-Siemens-Charging-beyond-hardware--ebabb262-4f91-496c-9303-697d89d9d612'},
+    {g:'main',s:'15:00',e:'15:30',t:'Discussion with Mathias Miedreich',tk:'Mathias Miedreich와의 대담',sp:'Mathias Miedreich (ZF Friedrichshafen AG)',url:BASE+'Discussion-with-Mathias-Miedreich-ZF-Friedrichshafen-AG--9cce57bd-f6d6-4d93-90bf-eea3e3fb5723'},
+    {g:'ind',s:'15:00',e:'15:45',t:'Conference Session by Bosch',tk:'Bosch 콘퍼런스 세션',sp:'Bosch',url:BASE+'Conference-Session-by-Bosch--d6d868fe-5f32-4014-b80b-430fbdee4ce8'},
+    {g:'main',s:'15:30',e:'15:45',t:'Anja van Niersen',tk:'Anja van Niersen',sp:'Anja van Niersen (Milence)',url:BASE+'Anja-van-Niersen-Milence--c6f91f85-1f7d-4808-bd0e-d0e7d2cbcd32'},
+    {g:'main',s:'15:45',e:'16:00',t:'Electrified. Efficient. Economical. — Future Trucking with MAHLE',tk:'전동화·효율·경제성 — MAHLE와 함께하는 미래 트럭 운송',sp:'Arnd Franz (MAHLE GmbH)',url:BASE+'Electrified-Efficient-Economical-Future-Trucking-with-MAHLE--c0710cae-3a90-431a-a8bd-d03d4633a3fb'},
+    {g:'ind',s:'16:00',e:'16:45',t:'Conference Session by Here Technologies',tk:'Here Technologies 콘퍼런스 세션',sp:'Here Technologies',url:BASE+'Conference-Session-by-Here-Technologies--a4d4e009-c35b-4fc1-b918-fc33a067113a'},
+    {g:'main',s:'16:00',e:'16:15',t:'When the Truck Manufacturer Becomes Its Own Customer',tk:'트럭 제조사가 자신의 고객이 될 때',sp:'Renault Trucks',url:BASE+'When-the-truck-manufacturer-becomes-its-own-customer--b6c6cd91-62cb-4e27-9634-1817fd0d2f59'},
+    {g:'main',s:'16:30',e:'17:00',t:'Autonomous Transport Is Here Today',tk:'자율 운송, 이미 현실이 되다',sp:'Andreas Girisch (BCG) · Michael Wiesinger (Kodiak AI) · Andrea Luebke (MAN Truck & Bus) · Nils Jaeger (Volvo Autonomous Solutions)',url:BASE+'Autonomous-transport-is-here-today--2dfb3352-78a7-4fec-8c9a-8479f4f174b6'},
+    {g:'ind',s:'17:00',e:'17:45',t:'Green Logistics — Unlocking Zero-Emission Road Freight Transportation',tk:'그린 물류: 무배출 도로 화물 운송 실현의 장벽 극복과 확산 가속화',sp:'Rolf Degenkolb · Eike Gernant (Porsche Consulting)',url:BASE+'Green-Logistics-Unlocking-zero-emission-road-freight-transportation-Overcoming-barriers-and-accelerating-scalable-green-logistics--4b2b3c48-525c-4267-b5f8-905657bca6d0'},
+  ]},
+  {id:'d16',cnt:27,en:'Wednesday, September 16',ko:'9월 16일 수요일',sh_en:'9/16 (WED)',sh_ko:'9/16 (수)',sessions:[
+    {g:'ind',s:'09:30',e:'09:50',t:'Conference Session by McKinsey & Company',tk:'McKinsey & Company 콘퍼런스 세션',sp:'McKinsey & Company',url:BASE+'Conference-Session-by-McKinsey-Company--1277c86d-f6ef-498a-ab8d-ee7e76aabe92'},
+    {g:'ind',s:'10:00',e:'10:45',t:'Conference Session by Milence',tk:'Milence 콘퍼런스 세션',sp:'Milence',url:BASE+'Conference-Session-by-Milence--cae01980-e3aa-4db3-a4d7-7c39762b0430'},
+    {g:'main',s:'10:00',e:'10:30',t:'C-Level Panel',tk:'C-레벨 패널',sp:'(Speakers TBA)',url:BASE+'C-Level-Panel-tba--b8fb5479-ddc9-4350-b9de-2b5ed6b45e8d'},
+    {g:'main',s:'10:30',e:'11:00',t:'Call for Day-Sponsor',tk:'데이 스폰서 모집',sp:'',url:BASE+'SUBMIT-NOW-Call-for-Day-Sponsor--cf65d555-0146-448d-b6cd-7ce4c439aad1'},
+    {g:'ind',s:'11:00',e:'11:45',t:'Sustainable Charging Infrastructure Planning for a Successful Future for Logistics Companies',tk:'물류 기업의 미래를 위한 지속가능한 충전 인프라 계획',sp:'',url:BASE+'Sustainable-Charging-Infrastructure-Planning-for-a-Successful-Future-for-Logistics-Companies--b44a3c0a-7b41-41d0-a936-280ae8deacfb'},
+    {g:'main',s:'11:15',e:'11:30',t:'Jan-Oliver Röhrl',tk:'Jan-Oliver Röhrl',sp:'Jan-Oliver Röhrl (Bosch)',url:BASE+'Jan-Oliver-Rohrl-Bosch--b95f887e-a41b-4b7f-9e47-95bbf8cf5d36'},
+    {g:'main',s:'11:30',e:'12:00',t:'Industrial Revolution or Gimmick? What Does AI Really Bring to the Industry?',tk:'산업혁명인가, 허상인가? AI가 산업에 실질적으로 가져다주는 것',sp:'Christian Steffen (IG Metall Baden-Württemberg)',url:BASE+'Industrial-revolution-or-gimmick-What-does-AI-really-bring-to-the-industry--24cd4887-8b0b-45c5-b47b-a2a3419bf04c'},
+    {g:'ind',s:'12:00',e:'12:45',t:'Trade Show Meets Regulation: Industrial Accelerator Act — Are We Ready for the Unknown?',tk:'전시회와 규제의 교차점: 산업가속화법(IAA) — 우리는 준비됐는가?',sp:'',url:BASE+'IAA-Trade-Show-Meets-the-Regulation-Industrial-Accelerator-Act-Are-We-Ready-for-the-Unknown--e49fe161-b22c-4429-a676-41870713a7cc'},
+    {g:'main',s:'12:00',e:'12:15',t:'Jan-Maarten de Vries',tk:'Jan-Maarten de Vries',sp:'Jan-Maarten de Vries (Webfleet)',url:BASE+'Jan-Maarten-de-Vries-Webfleet--59205cf4-8805-4d6a-9354-ca691d2b066f'},
+    {g:'proto',s:'12:00',e:'12:45',t:'Startup Pitches',tk:'스타트업 피칭',sp:'',url:BASE+'Startup-Pitches--a43d298d-d6bd-4113-ba57-f80e1549eca5'},
+    {g:'main',s:'13:00',e:'13:15',t:'Andreas Schmitz',tk:'Andreas Schmitz',sp:'Andreas Schmitz (Schmitz Cargobull)',url:BASE+'Andreas-Schmitz-Schmitz-Cargobull--b7afca6f-1de6-4272-85e1-8ca09508625f'},
+    {g:'proto',s:'13:00',e:'13:45',t:'Electreon Germany GmbH',tk:'Electreon Germany GmbH',sp:'Electreon',url:BASE+'Electreon-Germany-Gmbh--4b4f6d46-8962-43f7-9a16-aa2be0054bbf'},
+    {g:'main',s:'13:15',e:'13:45',t:'Study: The Future of Commercial Vehicle',tk:'연구: 상용차의 미래',sp:'Jan Bakker · Julian Zaßenhaus (Deloitte)',url:BASE+'Study-The-Future-of-Commercial-Vehicle--21d52429-432f-4499-9b68-16edc4413786'},
+    {g:'ind',s:'14:00',e:'14:45',t:'Conference Session by MicroVision',tk:'MicroVision 콘퍼런스 세션',sp:'MicroVision',url:BASE+'Conference-Session-by-MicroVision--2142e94f-3ca7-450a-955c-4dc3aef54902'},
+    {g:'main',s:'14:00',e:'14:15',t:'Johannes Pallasch',tk:'Johannes Pallasch',sp:'Johannes Pallasch (National Charging Infrastructure Coordination Center)',url:BASE+'Johannes-Pallasch-National-Charging-Infrastructure-Coordination-Center--8056f19a-8585-43d6-9b69-a0e4911266a8'},
+    {g:'proto',s:'14:00',e:'14:45',t:'Toll Collect GmbH',tk:'Toll Collect GmbH',sp:'Toll Collect',url:BASE+'Toll-Collect-GmbH--abd2e31c-6552-45a1-af96-494f2696e6ba'},
+    {g:'main',s:'14:15',e:'14:45',t:"From Freight to Frontline: Connected Mobility & Europe's Defense Readiness",tk:'물류에서 안보 최전선으로: 커넥티드 모빌리티와 유럽 방위 준비태세',sp:'Sebastian Schrapp (BCG)',url:BASE+'From-freight-to-frontline-How-connected-mobility-can-strengthen-Europe-s-Defense-Readiness--ffe76063-0449-4518-b1ec-8113b0bf81ce'},
+    {g:'ind',s:'15:00',e:'15:45',t:'ZF Truck-Trailer Link: High Speed Ethernet Gateway Powering the Software Defined Truck Trailer',tk:'ZF 트럭-트레일러 링크: 소프트웨어 정의 트럭 트레일러용 고속 이더넷 게이트웨이',sp:'Philip Meyer-Rößler (ZF Group)',url:BASE+'ZF-Truck-Trailer-Link-The-High-Speed-Ethernet-Gateway-Powering-the-Software-Defined-Truck-Trailer--a89e1123-7aed-4cdd-86f4-a45f59f4099c'},
+    {g:'main',s:'15:00',e:'15:30',t:"Shippers in the Driver's Seat: Catalyst or Bottleneck for Zero-Emission Trucks?",tk:'화주가 주도권을 쥐다: 무배출 트럭 전환의 촉진자인가, 걸림돌인가?',sp:'',url:BASE+'Shippers-in-the-Driver-s-Seat-Catalyst-or-Bottleneck-for-Zero-Emission-Trucks--dd8a0c36-cad3-45ea-b015-5c04fb881fec'},
+    {g:'main',s:'15:30',e:'16:00',t:'NABU Discusses: How Is Truck Production Developing in Germany?',tk:'NABU 토론: 독일 트럭 생산의 발전 방향',sp:'NABU',url:BASE+'NABU-discusses-How-is-truck-production-developing-in-Germany--900e6b39-4f49-4705-9a6c-077b5c4926a5'},
+    {g:'ind',s:'16:00',e:'16:45',t:'Conference Session by McKinsey & Company',tk:'McKinsey & Company 콘퍼런스 세션',sp:'McKinsey & Company',url:BASE+'Conference-Session-by-McKinsey-Company--5730e098-6b6f-4ddf-8515-697721249fa0'},
+    {g:'main',s:'16:00',e:'16:30',t:'Drivetrain Portfolio 2035 — Volatile Energy Prices & Powertrain Strategy Shift',tk:'파워트레인 포트폴리오 2035 — 에너지 가격 변동성과 전략 전환',sp:'Knut Krümmel (Porsche Consulting)',url:BASE+'Drivetrain-Portfolio-2035-How-volatile-energy-prices-reshape-powertrain-strategies-TCO-and-the-global-shift-to-zero-emission-transportation--bcfcdb82-bb86-4815-9c82-6a30cfe0ada2'},
+    {g:'proto',s:'16:00',e:'17:00',t:'Startup Award',tk:'스타트업 어워드',sp:'',url:BASE+'Startup-Award--d80553a5-2718-474e-9199-7c20d78eeb78'},
+    {g:'main',s:'16:30',e:'17:00',t:'Hydrogen: Future or Transition?',tk:'수소: 미래인가, 과도기적 솔루션인가?',sp:'',url:BASE+'Hydrogen-Future-or-Transition--636559e0-73fd-426a-9e84-b97a292b449e'},
+    {g:'main',s:'17:00',e:'17:30',t:"Let's Talk About Alternative Fuels",tk:'대체 연료를 논하다',sp:'',url:BASE+"Let-s-talk-about-alternative-fuels--8f13d42b-6e7e-406a-80be-c78b36586331"},
+    {g:'proto',s:'17:00',e:'18:00',t:'Panel: Rethink Ventures',tk:'패널: Rethink Ventures',sp:'Rethink Ventures',url:BASE+'Panel-Rethink-Ventures--350f2e4f-9935-4d3b-968a-5eede31b1197'},
+    {g:'proto',s:'18:00',e:'20:30',note:'Evening Event',t:'Startup Party with Rethink Ventures',tk:'Rethink Ventures 스타트업 파티',sp:'Rethink Ventures',url:BASE+'Startup-Party-with-Rethink-Ventures--48d04634-8fba-4e51-846b-383ab4922d70'},
+  ]},
+  {id:'d17',cnt:10,en:'Thursday, September 17',ko:'9월 17일 목요일',sh_en:'9/17 (THU)',sh_ko:'9/17 (목)',sessions:[
+    {g:'ind',s:'09:30',e:'09:50',t:'Conference Session by McKinsey & Company',tk:'McKinsey & Company 콘퍼런스 세션',sp:'McKinsey & Company',url:BASE+'Conference-Session-by-McKinsey-Company--25e08985-843a-4bf9-8a27-8b4c9ce91001'},
+    {g:'ind',s:'10:00',e:'10:45',t:'AI as an Assistant in Freight Procurement: Less Effort, Full Control',tk:'화물 조달의 AI 어시스턴트: 더 적은 노력, 완전한 통제',sp:'David Moog · Ramon Rüscher (TIMOCOM GmbH)',url:BASE+'AI-as-an-Assistant-in-Freight-Procurement-Less-Effort-Full-Control--25b6e761-e0be-4164-b8bf-c638b3fb534b'},
+    {g:'proto',s:'10:00',e:'11:00',t:'Opening Hackathon — Introduction of Partners and Use Cases',tk:'해커톤 개막 — 파트너 및 활용 사례 소개',sp:'',url:BASE+'Opening-Hackathon--e82c5fc0-a024-4375-ad4e-7f17ab874bb1'},
+    {g:'ind',s:'11:00',e:'11:45',t:'Conference Session by Bönders Publishing',tk:'Bönders Publishing 콘퍼런스 세션',sp:'Bönders Publishing',url:BASE+'Conference-Session-by-Bonders-Publishing--80efcb9f-4f85-4c69-8c8b-a75a969326b4'},
+    {g:'proto',s:'11:00',e:'17:00',t:'Hackathon (All-Day)',tk:'해커톤 (종일)',sp:'',url:BASE+'Hackathon--07ce4b9b-6cd0-435e-83e1-d62c57a9804d'},
+    {g:'ind',s:'12:00',e:'13:00',t:'Transport Forum: What Specific Benefits Does AI Offer the Transportation Industry?',tk:'운송 포럼: AI가 운송 산업에 제공하는 구체적 혜택은?',sp:'Ralf Urlings (Geotab)',url:BASE+'Transport-Forum-Everyone-is-talking-about-AI-but-what-specific-benefits-does-it-offer-the-transportation-industry--86287a81-c660-4469-9870-32a91abf64c0'},
+    {g:'ind',s:'14:00',e:'14:45',t:'The Next Phase of Truck Charging: Insights from Real-World Operations',tk:'트럭 충전의 다음 단계: 실제 운영 현장의 인사이트',sp:'Antti Vuola · Michele Totta (Kempower)',url:BASE+'The-Next-Phase-of-Truck-Charging-Insights-from-Real-World-Operations--c9d73bd4-48fc-486f-9bc7-fadcddd766f9'},
+    {g:'ind',s:'15:00',e:'15:45',t:"iEBS, ZF's Next Generation in Trailer Braking: Integrated Safety. Connected Intelligence. Smart Operations",tk:'iEBS: ZF의 차세대 트레일러 제동 — 통합 안전, 커넥티드 지능, 스마트 운영',sp:'André Höfer (ZF Friedrichshafen AG)',url:BASE+'iEBS-ZF-s-Next-Generation-in-Trailer-Braking-Integrated-Safety-Connected-Intelligence-Smart-Operations--71bacbc3-7e32-482b-a032-2467777a5f79'},
+    {g:'ind',s:'16:00',e:'16:45',t:'Solar on Commercial Vehicles: Industry Experience and the Business Case',tk:'상용차의 태양광 활용: 산업 경험과 비즈니스 사례',sp:'',url:BASE+'Solar-on-Commercial-Vehicles-Industry-Experience-and-the-Business-Case--425c3cda-da60-4b33-a0b5-71ab3798922d'},
+    {g:'proto',s:'17:15',e:'17:45',t:'Award Ceremony: Hackathon Finals & Closing',tk:'시상식: 해커톤 결선 및 클로징',sp:'Best Pitch / Topic Awards',url:BASE+'Award-ceremony-Hackathon--4a644a64-c0c3-48f5-8e16-38ba527d0b4c'},
+  ]},
+  {id:'d18',cnt:5,en:'Friday, September 18',ko:'9월 18일 금요일',sh_en:'9/18 (FRI)',sh_ko:'9/18 (금)',sessions:[
+    {g:'ind',s:'09:30',e:'09:50',t:'Conference Session by McKinsey & Company',tk:'McKinsey & Company 콘퍼런스 세션',sp:'McKinsey & Company',url:BASE+'Conference-Session-by-McKinsey-Company--e2ad1931-d4b1-46e3-9d6f-e395bf6b24c4'},
+    {g:'ind',s:'10:00',e:'10:45',t:'Conference Session by VDA',tk:'VDA 콘퍼런스 세션',sp:'VDA',url:BASE+'Conference-Session-by-VDA--e27661e6-29af-41ef-9d9b-46d672fa4bba'},
+    {g:'proto',s:'10:00',e:'15:00',t:'Startup Pitches',tk:'스타트업 피칭',sp:'',url:BASE+'Startup-Pitches--dfdf20fe-83c7-4d7f-90fd-3fc8198da42b'},
+    {g:'ind',s:'11:00',e:'11:45',t:'Conference Session by VDA',tk:'VDA 콘퍼런스 세션',sp:'VDA',url:BASE+'Conference-Session-by-VDA--639deaea-6fbe-4f2d-9611-13ddb7cc5672'},
+    {g:'ind',s:'12:00',e:'12:45',t:'National Bicycle Logistics Conference',tk:'국가 자전거 물류 콘퍼런스',sp:'',url:BASE+'National-Bicycle-Logistics-Conference--67602555-5686-4815-8002-1b3f7ecb1426'},
+  ]},
+];
+
+const STCFG={
+  main:{name:'Main Stage',hall:'Hall 18',cls:'main',bc:'b-main'},
+  ind: {name:'Industry Stage',hall:'Hall 13',cls:'ind',bc:'b-ind'},
+  proto:{name:'prototype.club Stage',hall:'Hall 12',cls:'proto',bc:'b-proto'},
+};
+const L={
+  ko:{tag:'행사 일정',sub:'독일 하노버 · 2026년 9월 15–18일',priv:'비공개 행사',note_ev:'이브닝 행사',iaa_link:'IAA 일정 바로가기',cnt_sfx:'개 세션'},
+  en:{tag:'Event Schedule',sub:'Hannover, Germany · September 15–18, 2026',priv:'Private Event',note_ev:'Evening Event',iaa_link:'View on IAA website',cnt_sfx:' sessions'},
+};
+let lang='en',curDay='d15';
+
+function groupByTime(sessions){
+  const map={};sessions.forEach(s=>{if(!map[s.s])map[s.s]=[];map[s.s].push(s);});
+  return Object.entries(map).sort((a,b)=>tm(a[0])-tm(b[0]));
+}
+
+function card(ses){
+  const Ll=L[lang];const cfg=STCFG[ses.g];
+  const title=lang==='ko'?ses.tk:ses.t;
+  const cls=ses.priv?'priv':cfg.cls;
+  const privBadge=ses.priv?`<span class="badge b-priv">${Ll.priv}</span>`:'';
+  const noteBadge=ses.note?`<span class="badge b-note">${lang==='ko'?Ll.note_ev:ses.note}</span>`:'';
+  const spHtml=ses.sp?`<div class="card-speakers">${ses.sp.split('·').map(s=>`<div class="sp-line">${s.trim()}</div>`).join('')}</div>`:'';
+  return `<div class="card ${cls}">
+    <div class="card-meta"><span class="badge ${cfg.bc}">${cfg.name} · ${cfg.hall}</span>${privBadge}${noteBadge}<span class="b-time">→ ${ses.e}</span></div>
+    <div class="card-title"><a href="${ses.url}" target="_blank">${title}</a></div>${spHtml}
+  </div>`;
+}
+
+function renderPanel(day){
+  const Ll=L[lang];
+  const url=DAY_URLS[day.id];
+  const dname=lang==='ko'?day.ko:day.en;
+  const cnt=lang==='ko'?`${day.cnt}${Ll.cnt_sfx}`:`${day.cnt}${Ll.cnt_sfx}`;
+  const groups=groupByTime(day.sessions);
+  const rows=groups.map(([time,sessions])=>{
+    const latestEnd=sessions.map(s=>s.e).reduce((a,b)=>tm(a)>tm(b)?a:b);
+    return `<div class="time-group">
+      <div class="time-col"><div class="t-start">${time}</div><div class="t-end">– ${latestEnd}</div></div>
+      <div class="cards-row">${sessions.map(card).join('')}</div>
+    </div>`;
+  }).join('');
+  return `<div class="day-hdr">
+    <div class="day-name">${dname}</div>
+    <a class="day-link" href="${url}" target="_blank">${Ll.iaa_link}</a>
+  </div>
+  Main Stage · Hall 18</div>
+    <div class="leg"><div class="leg-dot" style="background:#059669"></div>Industry Stage · Hall 13</div>
+    <div class="leg"><div class="leg-dot" style="background:#7C3AED"></div>prototype.club Stage · Hall 12</div>
+  </div>
+  <div class="sched">${rows}</div>`;
+}
+
+function render(){
+  const Ll=L[lang];
+  document.getElementById('ev-sub').textContent=Ll.sub;
+  document.getElementById('tabs').innerHTML=days.map(d=>`
+    <button class="tab ${d.id===curDay?'on':''}" onclick="setDay('${d.id}')">
+      ${lang==='ko'?d.sh_ko:d.sh_en}
+    </button>`).join('');
+  document.getElementById('panels').innerHTML=days.map(d=>`
+    <div class="panel ${d.id===curDay?'on':''}" id="p-${d.id}">${renderPanel(d)}</div>`).join('');
+}
+function setLang(l){lang=l;document.getElementById('btn-ko').classList.toggle('on',l==='ko');document.getElementById('btn-en').classList.toggle('on',l==='en');render();}
+function setDay(id){curDay=id;render();}
+setLang('en');
+</script>
+</body>
+</html>
