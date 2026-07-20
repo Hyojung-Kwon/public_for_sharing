@@ -42,3 +42,10 @@
 ## 글로벌 자율주행 플레이어 동향 및 사업 전략 리서치
 
 - **[글로벌 자율주행 리서치](https://hyojung-kwon.github.io/public_for_sharing/글로벌_자율주행_리서치.html)**
+
+---
+
+## IAA TRANSPORTATION 2026 세션 일정
+
+- **[IAA 2026 일정 — 날짜별 탭](https://hyojung-kwon.github.io/public_for_sharing/iaa2026_schedule.html)**
+- **[IAA 2026 일정 — 전체 보기](https://hyojung-kwon.github.io/public_for_sharing/iaa2026_full.html)**
