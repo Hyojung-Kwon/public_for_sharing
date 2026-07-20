@@ -387,7 +387,162 @@
 
 </div><!-- /city-shuttle -->
 <div id="tech" class="sub-tab-content"> <div class="section-heading">Level 4 상용화 조건 및 ODD 확장 전략</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">핵심 조건</div> <h3>ODD 정의와 단계적 확장</h3> <p>운행설계범위(ODD)를 명확히 정의하고, 날씨·도로·속도·지역 제약을 걸어 통제된 환경에서 시작. ODD 경계를 점진적으로 넓히는 것이 상용화 속도의 핵심 변수.</p> </div> <div class="trend-card" style="border-left-color:#ef4444;"> <div class="trend-tag" style="background:#fee2e2;color:#991b1b;">검증 방법론</div> <h3>Safety Case 구축</h3> <p>실 주행 데이터 + 시뮬레이션 병행으로 안전성 주장(Safety Case) 구축. Waymo는 2,000만+ 실 마일 + 수십억 시뮬레이션 마일 기반. 규제기관 설득의 핵심 자산.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">상용화 경로</div> <h3>통제 환경 → 도심 → 고속도로</h3> <p>공항·캠퍼스(로보셔틀) → 특정 도심 구역(로보택시) → 고속도로·전국 확장 순. ODD가 좁을수록 규제 진입이 쉽고 실증도시 조기 착수에 유리.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">기술 병목</div> <h3>엣지 케이스 대응</h3> <p>드문 상황(역주행 차량, 공사 구간, 비정형 보행자 등)에서의 안전 대응이 L4 상용화의 최대 기술 과제. E2E AI와 시뮬레이션 기반 학습으로 해결 시도 중.</p> </div> </div> <div class="section-heading">국가별 규제·인증 동향 비교</div> <table> <thead><tr><th>국가/지역</th><th>주요 규제 기관</th><th>핵심 제도·법령</th><th>규제 기조</th><th>특이사항</th></tr></thead> <tbody> <tr> <td><strong>🇺🇸 미국</strong></td> <td>NHTSA (연방) · CPUC (캘리포니아) · 주 차량 관리국</td> <td>CPUC Driverless Permit · 주별 AV 허가법 (연방 통일법 미통과)</td> <td><span class="badge badge-testing">주 단위 분산 규제</span></td> <td class="note">제조사 자체 인증 · 주별 규제 편차 큼 · 주행 성능·사고 정기 보고 의무 (CA) · Cruise 사고 이후 CPUC 강화</td> </tr> <tr> <td><strong>🇨🇳 중국</strong></td> <td>공업정보화부 (MIIT) · 공안부 · 지방정부</td> <td>자율주행 관리규범 · 스마트카 혁신발전전략 · 도시별 시범구 지정</td> <td><span class="badge badge-commercial">산업 활성화 우선</span></td> <td class="note">국가 표준 기반 안전 인증 · 공안부 운행 허가 · 정기 보고 의무 · 교통위반·사회적 영향 큰 경우 허가 취소</td> </tr> <tr> <td><strong> 유럽</strong></td> <td>UNECE WP.29 · EU 집행위 · 독일 KBA · 각국 도로청 (스위스 NPRA 등)</td> <td>독일 L4 자율주행법 (2021) · CCAM 정책 프레임 · EU AI Act · SOTIF (ISO 21448) · UNECE 국제 표준</td> <td><span class="badge badge-planned">규제 프레임워크 선도</span></td> <td class="note">독일 지방자치단체 허가 + KBA 정기 모니터링 · 스위스 칸톤 단위 노선별 허가 · 노르웨이 NPRA 허가 · 안전·윤리 기준 선도 · 법률 위반·인명 피해 시 허가 취소</td> </tr> <tr> <td><strong>🇰🇷 한국</strong></td> <td>국토교통부</td> <td>자율주행자동차법 · 자율주행 실증도시 사업 · 임시운행허가</td> <td><span class="badge badge-testing">실증 중심 단계적 허용</span></td> <td class="note">자기인증 + 국토부 확인 혼합 · 안전정보 플랫폼 사고·오작동 보고 의무 · 광주 실증도시 '26년 착수 · 완전 무인 허가 제도 정비 중</td> </tr> <tr> <td><strong>🇯🇵 일본</strong></td> <td>국토교통성 · 경찰청 (공공안전위원회)</td> <td>도로교통법 개정 (2023, L4 허용) · 자동운전 비즈니스 검토회</td> <td><span class="badge badge-testing">공공교통 DX 중심</span></td> <td class="note">정부 승인 방식 · 공공안전위원회 운행 허가 · 보고 의무 없음 · 위반 시 공공안전위원회가 허가 취소 · 고령화·교통소외 대응 중심</td> </tr> <tr> <td><strong>🌍 기타 (UAE·사우디)</strong></td> <td>UAE RTA (도로교통청) · 사우디 TGA / SASO</td> <td>RTA 특수 허가 · 사우디 규제 샌드박스 · SASO 안전 인증</td> <td><span class="badge badge-planned">규제 친화·샌드박스</span></td> <td class="note">UAE RTA 정기 성능 평가·점검 / 표준 미준수 시 허가 취소 · 사우디 파일럿 데이터 공유 의무, 상용화 전환 절차 미정의</td> </tr> </tbody> </table> </div>  
-<div id="biz" class="sub-tab-content"> <div class="section-heading">사업모델: 기업별 분류</div> <table> <thead> <tr><th>기업</th><th>사업모델</th><th>핵심 구조</th><th>시사점</th></tr> </thead> <tbody> <tr> <td><span class="company-tag t-waymo">Waymo</span></td> <td><strong>기술 자립 + 직접 운영</strong></td> <td class="note">자체 AV 기술 → 자체 Fleet 운영 → 자체 앱 (Waymo One)</td> <td class="note">기술 자립도 최고 / 확장 속도는 느림 / 도시별 규제 진입이 병목</td> </tr> <tr> <td><span class="company-tag t-tesla">Tesla</span></td> <td><strong>수직통합 (차량→SW→네트워크)</strong></td> <td class="note">차량 판매 → FSD 구독 → 차량 소유자 네트워크 로보택시화</td> <td class="note">가장 빠른 데이터 집적 / 규제·안전 입증이 상용화 병목</td> </tr> <tr> <td><span class="company-tag t-baidu">Baidu Apollo</span></td> <td><strong>직접 운영 + AI 클라우드 B2B</strong></td> <td class="note">AV 기술 → 직접 운행 → AI 플랫폼 B2B 수익 병행</td> <td class="note">저비용 대규모 운영 모델 / 중국 정책 지원 의존도 높음</td> </tr> <tr> <td><span class="company-tag t-ponyai">Pony.ai</span></td> <td><strong>직접 운영 + B2B 기술 공급 (멀티 도메인)</strong></td> <td class="note">AV 기술 → 로보택시·로보트럭 직접 운영 → OEM 파트너(Toyota·HMG)에 기술 공급 병행</td> <td class="note">승용+화물 멀티 도메인 전략 / 나스닥 상장으로 글로벌 파트너 신뢰 확보 / 1인 텔레오퍼레이터 다차량 감독으로 운영 효율화</td> </tr> <tr> <td><span class="company-tag t-uber">Uber (UAS)</span></td> <td><strong>플랫폼 중개 (기술 無)</strong></td> <td class="note">수요·UX·운영 솔루션 제공 → AV 파트너에게 수요 전달</td> <td class="note">기술 없이 시장 지배 / 셔클(모빌리티사업부) A-MaaS 방향의 핵심 레퍼런스</td> </tr> <tr> <td><span class="company-tag t-motional">Motional</span></td> <td><strong>플랫폼 파트너십 (Uber 경유)</strong></td> <td class="note">AV 기술+Fleet 보유 → Uber 앱 경유 수요 연결</td> <td class="note">AV 기술 보유 + 플랫폼(수요) 의존 구조 — 플랫폼 내재화 없이 지속가능성 한계</td> </tr> <tr> <td><span class="company-tag t-mobileye">Mobileye</span></td> <td><strong>기술 라이선싱 (B2B 공급)</strong></td> <td class="note">AV 칩·SW → OEM·사업자에 공급 → 라이선스 수익</td> <td class="note">직접 운행 없음 / HMG 공급망 옵션으로 검토 가능</td> </tr> <tr> <td><span class="company-tag t-easymile">EasyMile</span></td> <td><strong>셔틀 차량 판매 + 운영 계약 (B2G)</strong></td> <td class="note">전용 셔틀 차량 판매 또는 운영 계약 → 지자체·기업 고객</td> <td class="note">로보셔틀 B2G 수익 모델 레퍼런스 / 광주 실증도시 셔틀 파트 참고</td> </tr> </tbody> </table> <div class="section-heading">주요 수익 모델 유형</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">B2C 플랫폼</div> <h3>호출 수수료 모델</h3> <p>이용자가 앱으로 자율주행 차량을 호출하고 거리·시간 기반 요금 지불. Waymo One, Baidu Apollo Go가 대표 사례. 수요·공급 밸런싱과 차량 가동률이 핵심 변수.</p> </div> <div class="trend-card" style="border-left-color:#ef4444;"> <div class="trend-tag" style="background:#fee2e2;color:#991b1b;">B2C 수직통합</div> <h3>차량 판매 + 구독 + 네트워크</h3> <p>차량 판매(하드웨어), FSD 구독(소프트웨어), 로보택시 네트워크 수수료를 통합한 Tesla식 수직통합 모델. 오너가 차량을 네트워크에 투입해 수익 공유.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">B2B 플랫폼</div> <h3>운영 인프라 구독 모델</h3> <p>AV 사업자에게 수요 연결·운영 솔루션·보험·금융을 패키지로 제공하고 구독료·수수료 수취. Uber UAS가 대표 사례. 기술 없이도 시장 지배 가능한 구조.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">B2B 기술 라이선싱</div> <h3>칩·SW 기술 공급 모델</h3> <p>자율주행 칩셋·소프트웨어를 OEM·사업자에게 공급하고 라이선스·유지보수 수익 확보. Mobileye EyeQ 칩, NVIDIA DRIVE가 대표 사례. 직접 운행 없이 생태계 장악.</p> </div> <div class="trend-card" style="border-left-color:#f59e0b;"> <div class="trend-tag" style="background:#fef3c7;color:#92400e;">B2G 공공계약</div> <h3>공공교통 운행 계약 모델</h3> <p>지자체·교통공사와 자율주행 셔틀·버스 운행 계약 체결. 고정 노선·DRT 기반. 실증도시, EU ULTIMO 프로젝트, 일본 커먼즈 프로젝트가 해당. 안정적 수익이나 규모 확장에 한계.</p> </div> <div class="trend-card" style="border-left-color:#6b7280;"> <div class="trend-tag" style="background:#f3f4f6;color:#374151;">데이터·클라우드</div> <h3>AI·데이터 플랫폼 수익</h3> <p>자율주행 사업 과정에서 수집한 데이터·AI 역량을 B2B 클라우드 서비스로 판매. Baidu Apollo의 AI Cloud가 대표 사례. 자율주행 외 수익원으로 포트폴리오 다각화.</p> </div> </div> <div class="section-heading">플랫폼 vs 수직통합 모델 비교</div> <table> <thead><tr><th>기준</th><th>플랫폼 모델 (Uber UAS형)</th><th>수직통합 모델 (Tesla형)</th><th>하이브리드 (Waymo형)</th></tr></thead> <tbody> <tr><td><strong>자본 지출</strong></td><td><span class="badge badge-green">낮음</span> <span style="font-size:12px;color:#6b7280;">차량·기술 외부 조달</span></td><td><span class="badge badge-red">매우 높음</span> <span style="font-size:12px;color:#6b7280;">차량·칩·SW 자체 개발</span></td><td><span class="badge badge-amber">높음</span> <span style="font-size:12px;color:#6b7280;">기술 자체, 차량 외부</span></td></tr> <tr><td><strong>확장 속도</strong></td><td><span class="badge badge-green">빠름</span> <span style="font-size:12px;color:#6b7280;">파트너 확장 용이</span></td><td><span class="badge badge-red">느림</span> <span style="font-size:12px;color:#6b7280;">차량 생산 병목</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>데이터 통제</strong></td><td><span class="badge badge-red">낮음</span> <span style="font-size:12px;color:#6b7280;">파트너 데이터에 의존</span></td><td><span class="badge badge-green">최고</span> <span style="font-size:12px;color:#6b7280;">전 스택 통제</span></td><td><span class="badge badge-blue">높음</span> <span style="font-size:12px;color:#6b7280;">기술 레이어 통제</span></td></tr> <tr><td><strong>파트너 의존</strong></td><td><span class="badge badge-red">높음</span> <span style="font-size:12px;color:#6b7280;">AV 기업에 의존</span></td><td><span class="badge badge-green">없음</span> <span style="font-size:12px;color:#6b7280;">자체 완결</span></td><td><span class="badge badge-amber">중간</span> <span style="font-size:12px;color:#6b7280;">차량 OEM 의존</span></td></tr> <tr><td><strong>원가 절감 여력</strong></td><td><span class="badge badge-amber">제한적</span></td><td><span class="badge badge-green">매우 높음</span> <span style="font-size:12px;color:#6b7280;">수직통합 효과</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>대표 기업</strong></td><td><span class="company-tag t-uber">Uber UAS</span></td><td><span class="company-tag t-tesla">Tesla</span></td><td><span class="company-tag t-waymo">Waymo</span> <span class="company-tag t-baidu">Baidu</span> <span class="company-tag t-ponyai">Pony.ai</span></td></tr> </tbody> </table> <div class="section-heading">Unit Economics 관점: 수익성까지의 경로</div> <table> <thead><tr><th>비용 항목</th><th>현재 수준</th><th>2030년 전망</th><th>개선 방향</th></tr></thead> <tbody> <tr><td><strong>차량 하드웨어 (센서·칩)</strong></td><td>대당 $50K~100K+</td><td>$10K 이하 목표</td><td class="note">LiDAR 가격 하락, 자체 칩 개발, 양산 효과</td></tr> <tr><td><strong>원격 모니터링·운영</strong></td><td>차량당 상시 인력 필요</td><td>1인 : 10~20대 관리</td><td class="note">AI 자동화, 원격 지원 효율화</td></tr> <tr><td><strong>보험·사고 비용</strong></td><td>데이터 부족으로 높음</td><td>실주행 데이터 축적 시 하락</td><td class="note">안전 데이터 규제기관 제출 → 보험료 협상력 확보</td></tr> <tr><td><strong>차량 가동률</strong></td><td>40~60% (충전·정비 시간)</td><td>70~80% 목표</td><td class="note">배터리 교환식, 최적 배차 알고리즘</td></tr> <tr><td><strong>마일당 수익</strong></td><td>Waymo ~$3~5/마일 (추정)</td><td>볼륨 확대 시 개선</td><td class="note">프리미엄 서비스 차별화, 광고·데이터 수익 추가</td></tr> </tbody> </table> <div class="section-heading">확장 수익모델: 운영 솔루션·보험·금융</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">운영 솔루션</div> <h3>Fleet 관리·원격 지원 SaaS</h3> <p>자율주행 차량 운영에 필요한 배차 최적화, 원격 모니터링, 사고 대응 시스템을 SaaS로 제공. AV 사업자에게 B2B 구독 수익. Uber UAS가 대표 방향.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">보험</div> <h3>AV 특화 보험 상품</h3> <p>자율주행 차량의 사고 책임 구조가 운전자→제조사·운영사로 전환됨에 따라 AV 전용 보험 상품 수요 발생. Uber는 보험 연계를 수익 확장 핵심 레버로 활용.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">금융·리스</div> <h3>차량 금융·구독형 리스</h3> <p>AV 차량 구매 부담 완화를 위한 금융·리스 상품 연계. 플랫폼 사업자가 Fleet 구매 후 임대하는 구조로 진화 가능. 차량 제조사·금융사 협업 기회.</p> </div> </div> </div>
+<div id="biz" class="sub-tab-content"> <div class="section-heading">사업모델: 기업별 분류</div> <table> <thead> <tr><th>기업</th><th>사업모델</th><th>핵심 구조</th><th>시사점</th></tr> </thead> <tbody> <tr> <td><span class="company-tag t-waymo">Waymo</span></td> <td><strong>기술 자립 + 직접 운영</strong></td> <td class="note">자체 AV 기술 → 자체 Fleet 운영 → 자체 앱 (Waymo One)</td> <td class="note">기술 자립도 최고 / 확장 속도는 느림 / 도시별 규제 진입이 병목</td> </tr> <tr> <td><span class="company-tag t-tesla">Tesla</span></td> <td><strong>수직통합 (차량→SW→네트워크)</strong></td> <td class="note">차량 판매 → FSD 구독 → 차량 소유자 네트워크 로보택시화</td> <td class="note">가장 빠른 데이터 집적 / 규제·안전 입증이 상용화 병목</td> </tr> <tr> <td><span class="company-tag t-baidu">Baidu Apollo</span></td> <td><strong>직접 운영 + AI 클라우드 B2B</strong></td> <td class="note">AV 기술 → 직접 운행 → AI 플랫폼 B2B 수익 병행</td> <td class="note">저비용 대규모 운영 모델 / 중국 정책 지원 의존도 높음</td> </tr> <tr> <td><span class="company-tag t-ponyai">Pony.ai</span></td> <td><strong>직접 운영 + B2B 기술 공급 (멀티 도메인)</strong></td> <td class="note">AV 기술 → 로보택시·로보트럭 직접 운영 → OEM 파트너(Toyota·HMG)에 기술 공급 병행</td> <td class="note">승용+화물 멀티 도메인 전략 / 나스닥 상장으로 글로벌 파트너 신뢰 확보 / 1인 텔레오퍼레이터 다차량 감독으로 운영 효율화</td> </tr> <tr> <td><span class="company-tag t-uber">Uber (UAS)</span></td> <td><strong>플랫폼 중개 (기술 無)</strong></td> <td class="note">수요·UX·운영 솔루션 제공 → AV 파트너에게 수요 전달</td> <td class="note">기술 없이 시장 지배 / 셔클(모빌리티사업부) A-MaaS 방향의 핵심 레퍼런스</td> </tr> <tr> <td><span class="company-tag t-motional">Motional</span></td> <td><strong>플랫폼 파트너십 (Uber 경유)</strong></td> <td class="note">AV 기술+Fleet 보유 → Uber 앱 경유 수요 연결</td> <td class="note">AV 기술 보유 + 플랫폼(수요) 의존 구조 — 플랫폼 내재화 없이 지속가능성 한계</td> </tr> <tr> <td><span class="company-tag t-mobileye">Mobileye</span></td> <td><strong>기술 라이선싱 (B2B 공급)</strong></td> <td class="note">AV 칩·SW → OEM·사업자에 공급 → 라이선스 수익</td> <td class="note">직접 운행 없음 / HMG 공급망 옵션으로 검토 가능</td> </tr> <tr> <td><span class="company-tag t-easymile">EasyMile</span></td> <td><strong>셔틀 차량 판매 + 운영 계약 (B2G)</strong></td> <td class="note">전용 셔틀 차량 판매 또는 운영 계약 → 지자체·기업 고객</td> <td class="note">로보셔틀 B2G 수익 모델 레퍼런스 / 광주 실증도시 셔틀 파트 참고</td> </tr> </tbody> </table> <div class="section-heading">주요 수익 모델 유형</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">B2C 플랫폼</div> <h3>호출 수수료 모델</h3> <p>이용자가 앱으로 자율주행 차량을 호출하고 거리·시간 기반 요금 지불. Waymo One, Baidu Apollo Go가 대표 사례. 수요·공급 밸런싱과 차량 가동률이 핵심 변수.</p> </div> <div class="trend-card" style="border-left-color:#ef4444;"> <div class="trend-tag" style="background:#fee2e2;color:#991b1b;">B2C 수직통합</div> <h3>차량 판매 + 구독 + 네트워크</h3> <p>차량 판매(하드웨어), FSD 구독(소프트웨어), 로보택시 네트워크 수수료를 통합한 Tesla식 수직통합 모델. 오너가 차량을 네트워크에 투입해 수익 공유.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">B2B 플랫폼</div> <h3>운영 인프라 구독 모델</h3> <p>AV 사업자에게 수요 연결·운영 솔루션·보험·금융을 패키지로 제공하고 구독료·수수료 수취. Uber UAS가 대표 사례. 기술 없이도 시장 지배 가능한 구조.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">B2B 기술 라이선싱</div> <h3>칩·SW 기술 공급 모델</h3> <p>자율주행 칩셋·소프트웨어를 OEM·사업자에게 공급하고 라이선스·유지보수 수익 확보. Mobileye EyeQ 칩, NVIDIA DRIVE가 대표 사례. 직접 운행 없이 생태계 장악.</p> </div> <div class="trend-card" style="border-left-color:#f59e0b;"> <div class="trend-tag" style="background:#fef3c7;color:#92400e;">B2G 공공계약</div> <h3>공공교통 운행 계약 모델</h3> <p>지자체·교통공사와 자율주행 셔틀·버스 운행 계약 체결. 고정 노선·DRT 기반. 실증도시, EU ULTIMO 프로젝트, 일본 커먼즈 프로젝트가 해당. 안정적 수익이나 규모 확장에 한계.</p> </div> <div class="trend-card" style="border-left-color:#6b7280;"> <div class="trend-tag" style="background:#f3f4f6;color:#374151;">데이터·클라우드</div> <h3>AI·데이터 플랫폼 수익</h3> <p>자율주행 사업 과정에서 수집한 데이터·AI 역량을 B2B 클라우드 서비스로 판매. Baidu Apollo의 AI Cloud가 대표 사례. 자율주행 외 수익원으로 포트폴리오 다각화.</p> </div> </div> <div class="section-heading">플랫폼 vs 수직통합 모델 비교</div> <table> <thead><tr><th>기준</th><th>플랫폼 모델 (Uber UAS형)</th><th>수직통합 모델 (Tesla형)</th><th>하이브리드 (Waymo형)</th></tr></thead> <tbody> <tr><td><strong>자본 지출</strong></td><td><span class="badge badge-green">낮음</span> <span style="font-size:12px;color:#6b7280;">차량·기술 외부 조달</span></td><td><span class="badge badge-red">매우 높음</span> <span style="font-size:12px;color:#6b7280;">차량·칩·SW 자체 개발</span></td><td><span class="badge badge-amber">높음</span> <span style="font-size:12px;color:#6b7280;">기술 자체, 차량 외부</span></td></tr> <tr><td><strong>확장 속도</strong></td><td><span class="badge badge-green">빠름</span> <span style="font-size:12px;color:#6b7280;">파트너 확장 용이</span></td><td><span class="badge badge-red">느림</span> <span style="font-size:12px;color:#6b7280;">차량 생산 병목</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>데이터 통제</strong></td><td><span class="badge badge-red">낮음</span> <span style="font-size:12px;color:#6b7280;">파트너 데이터에 의존</span></td><td><span class="badge badge-green">최고</span> <span style="font-size:12px;color:#6b7280;">전 스택 통제</span></td><td><span class="badge badge-blue">높음</span> <span style="font-size:12px;color:#6b7280;">기술 레이어 통제</span></td></tr> <tr><td><strong>파트너 의존</strong></td><td><span class="badge badge-red">높음</span> <span style="font-size:12px;color:#6b7280;">AV 기업에 의존</span></td><td><span class="badge badge-green">없음</span> <span style="font-size:12px;color:#6b7280;">자체 완결</span></td><td><span class="badge badge-amber">중간</span> <span style="font-size:12px;color:#6b7280;">차량 OEM 의존</span></td></tr> <tr><td><strong>원가 절감 여력</strong></td><td><span class="badge badge-amber">제한적</span></td><td><span class="badge badge-green">매우 높음</span> <span style="font-size:12px;color:#6b7280;">수직통합 효과</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>대표 기업</strong></td><td><span class="company-tag t-uber">Uber UAS</span></td><td><span class="company-tag t-tesla">Tesla</span></td><td><span class="company-tag t-waymo">Waymo</span> <span class="company-tag t-baidu">Baidu</span> <span class="company-tag t-ponyai">Pony.ai</span></td></tr> </tbody> </table> <div class="section-heading">Unit Economics 관점: 수익성까지의 경로</div> <table> <thead><tr><th>비용 항목</th><th>현재 수준</th><th>2030년 전망</th><th>개선 방향</th></tr></thead> <tbody> <tr><td><strong>차량 하드웨어 (센서·칩)</strong></td><td>대당 $50K~100K+</td><td>$10K 이하 목표</td><td class="note">LiDAR 가격 하락, 자체 칩 개발, 양산 효과</td></tr> <tr><td><strong>원격 모니터링·운영</strong></td><td>차량당 상시 인력 필요</td><td>1인 : 10~20대 관리</td><td class="note">AI 자동화, 원격 지원 효율화</td></tr> <tr><td><strong>보험·사고 비용</strong></td><td>데이터 부족으로 높음</td><td>실주행 데이터 축적 시 하락</td><td class="note">안전 데이터 규제기관 제출 → 보험료 협상력 확보</td></tr> <tr><td><strong>차량 가동률</strong></td><td>40~60% (충전·정비 시간)</td><td>70~80% 목표</td><td class="note">배터리 교환식, 최적 배차 알고리즘</td></tr> <tr><td><strong>마일당 수익</strong></td><td>Waymo ~$3~5/마일 (추정)</td><td>볼륨 확대 시 개선</td><td class="note">프리미엄 서비스 차별화, 광고·데이터 수익 추가</td></tr> </tbody> </table> <div class="section-heading">확장 수익모델</div>
+<style>
+.rev-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom:8px; overflow:hidden; border-left:3px solid #e5e7eb; transition:border-color 0.2s; }
+.rev-card:hover { border-left-color:#3b82f6; }
+.rev-header { display:flex; align-items:center; gap:10px; padding:12px 16px; cursor:pointer;
+  user-select:none; background:#fff; }
+.rev-tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px; white-space:nowrap; }
+.rev-title { font-size:13px; font-weight:700; color:#0d1b2a; flex:1; }
+.rev-arrow { font-size:12px; color:#9ca3af; transition:transform 0.2s; flex-shrink:0; }
+.rev-body { display:none; padding:0 16px 14px 16px; font-size:12.5px; color:#374151; line-height:1.75;
+  border-top:1px solid #f3f4f6; }
+.rev-body.open { display:block; }
+.rev-card.open .rev-arrow { transform:rotate(180deg); }
+.rev-near { color:#6b7280; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
+  background:#f3f4f6; margin-left:6px; }
+.rev-future { color:#5b21b6; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
+  background:#ede9fe; margin-left:6px; }
+</style>
+<script>
+function toggleRev(el) {
+  var card = el.closest('.rev-card');
+  var body = card.querySelector('.rev-body');
+  var isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+</script>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:6px;margin-bottom:32px;">
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#dbeafe;color:#1e40af;">운영 솔루션</span>
+    <span class="rev-title">Fleet 관리·원격 지원 SaaS</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV Fleet 운영에 필요한 배차 최적화·원격 모니터링·사고 대응 시스템을 SaaS로 제공. AV 사업자에게 per-vehicle 구독 수익. Uber UAS, Via Transportation이 대표 방향. Fleet 1,000대 기준 월 수억 원 구독 가능.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#ede9fe;color:#6d28d9;">보험</span>
+    <span class="rev-title">AV 특화 보험 상품</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">사고 책임 구조가 운전자 → 제조사·운영사로 전환되면서 AV 전용 보험 시장 형성. 실주행 데이터 기반 정밀 리스크 산정으로 기존 대비 낮은 보험료 가능. Uber는 보험 연계를 수익 확장 핵심 레버로 활용 중. Swiss Re·AXA XL이 AV 전용 상품 개발 중.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#d1fae5;color:#065f46;">금융·리스</span>
+    <span class="rev-title">차량 금융·구독형 리스</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV 차량 구매 부담 완화를 위한 금융·리스 상품 연계. 플랫폼 사업자가 Fleet 구매 후 운영사에 임대하는 구조로 진화 가능. 차량 제조사·금융사 협업 기회. 구독형 전환 시 운영사 CapEx 부담 경감 → 진입 장벽 하락.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#fef3c7;color:#92400e;">데이터 판매</span>
+    <span class="rev-title">주행 데이터 B2B 라이선싱</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV 센서가 수집한 도로 상태·교통 패턴·상권 유동인구·건물 상태 데이터를 지자체·유통사·광고주에 B2B 판매. Waymo는 이미 HD맵 데이터를 제3자에 라이선싱 중. 도시 단위 연간 구독 계약 시 안정적 반복 수익. 차량 대수↑ = 데이터 정밀도↑ = 단가↑ 선순환.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#fef3c7;color:#92400e;">HD맵 구독</span>
+    <span class="rev-title">HD맵·정밀지도 구독 서비스</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">실시간 갱신 고정밀 지도 데이터를 AV 기술사·물류사·스마트시티에 월정액 구독으로 제공. 크라우드소싱 방식으로 차량 대수 증가 = 자동 갱신 = 데이터 경쟁력 강화. Mobileye REM(Road Experience Management)이 선행 모델. 한국 내 AV 사업자 1위 시 지도 표준 선점 가능.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#fce7f3;color:#9d174d;">차내 광고</span>
+    <span class="rev-title">차내 디스플레이 광고 플랫폼</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">완전무인화로 탑승자가 화면에 집중 가능해지면서 차내 광고 단가 급상승. 위치·시간·목적지 맞춤형 광고(근처 식당·매장 추천). Google Maps 광고의 차내 버전. 동의 기반 운영으로 GDPR 대응. 장거리 이동일수록 노출 시간↑→단가↑. Zoox, Waymo 모두 광고 수익 로드맵 검토 중.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#fce7f3;color:#9d174d;">콘텐츠·커머스</span>
+    <span class="rev-title">차내 콘텐츠·이커머스 구독</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">운전 해방으로 생기는 이동 시간이 소비 시간으로 전환. Netflix·Spotify 차내 파트너십 수수료 수취. 이동 중 이커머스 구매 시 차량이 배송 수령지로 자동 연동 → 거래 수수료. Amazon Echo Auto와 유사하나 AV 특화 UX로 차별화. Waymo Ojai에서 iHeart Radio·Spotify 이미 시작.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#d1fae5;color:#065f46;">야간 배달</span>
+    <span class="rev-title">야간 자율 배달 Fleet 전환</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">낮엔 사람, 밤엔 물건을 나르는 Fleet 이중 활용. 야간 시간대 AV를 자율 배달 차량으로 전환, 쿠팡·배민·CJ대한통운과 파트너십. 차량 가동률이 40→80%로 상승 → Unit Economics 대폭 개선. 냉장 모듈 탑재 시 콜드체인 새벽 배송도 가능. 인건비 비중 40~60%인 물류사에 강력한 대체 가치 제안.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#ccfbf1;color:#0f766e;">B2G 운영</span>
+    <span class="rev-title">공공 모빌리티 운영 위탁 (B2G)</span>
+    <span class="rev-near">단기 가능</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">지자체 버스·DRT·셔틀 노선 완전 자율화 운영을 아웃소싱 계약으로 수주. 기사 인력난 해결 + 운영비 절감 제안으로 B2G 장기 계약 확보. 한국 고령화 지역·교통소외지역 특화 가능. EasyMile(벨기에 10년 계약), Karsan(노르웨이·스웨덴)이 선행 모델. 셔클 기존 B2G 네트워크가 핵심 진입 레버.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#ccfbf1;color:#0f766e;">스마트시티 SaaS</span>
+    <span class="rev-title">도시 교통 관제 플랫폼 SaaS</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">도시 전체 AV 교통 흐름 최적화·신호 연동·혼잡 예측·사고 자동 대응 시스템을 지자체에 구독형으로 판매. Via Transportation(미국), MKX(싱가포르)가 선행 모델. 도시 하나 계약이 수십억 연간 구독. 데이터 주권 이슈를 피하기 위해 온프레미스 SaaS 옵션 병행 필요.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#dcfce7;color:#15803d;">탄소 크레딧</span>
+    <span class="rev-title">탄소 크레딧 거래</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">전기 기반 AV 운행으로 발생한 탄소 감축분을 EU ETS·K-ETS에서 크레딧으로 매도. Fleet 규모가 클수록 크레딧 물량↑. 제조사·항공사·정유사 등 탄소 배출권이 필요한 기업에 B2B 판매. 2030년 탄소세 강화 시 크레딧 단가 급등 예상. ESG 공시 의무화로 수요 기반 확실.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#fdf2f8;color:#86198f;">프리미엄 경험</span>
+    <span class="rev-title">차내 프리미엄 경험 구독</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV 내부를 이동식 수면실·1인 업무 캐빈·미팅룸·명상 공간으로 업그레이드한 프리미엄 서비스 구독. 공항 야간 이동·장거리 통근·기업 임원 셔틀에 수요 예상. 일반 로보택시 대비 2~5배 단가. 시간당 공간 판매 개념. WeWork의 이동 버전. Waymo Ojai가 "거실 같은 차"로 초기 포지셔닝.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#eff6ff;color:#1d4ed8;">앱 마켓</span>
+    <span class="rev-title">서드파티 차내 앱 마켓</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV 차내를 새로운 OS 플랫폼으로 정의. 서드파티 개발자가 차내 서비스(게임·교육·명상·미팅)를 배포할 수 있는 앱스토어 운영. Apple App Store처럼 15~30% 거래 수수료 수취. 차내 OS 선점 기업이 생태계 장악. 현재 Waymo·Zoox가 차내 UX 구축 중이나 개방형 앱 마켓까지는 미진출.</div>
+</div>
+<div class="rev-card">
+  <div class="rev-header" onclick="toggleRev(this)">
+    <span class="rev-tag" style="background:#eff6ff;color:#1d4ed8;">이동 금융</span>
+    <span class="rev-title">이동 기반 신용·금융 데이터</span>
+    <span class="rev-future">완전 성숙 이후</span>
+    <span class="rev-arrow">▾</span>
+  </div>
+  <div class="rev-body">AV 이동 패턴(어디를, 얼마나, 정기적으로)을 신용 평가 보조 데이터로 활용. 금융 이력 없는 소외 계층도 이동 데이터로 신용 평가 가능 → 금융 포용성 확대. 핀테크·금융사에 이동 인사이트 B2B 제공. 개인정보 민감도가 높아 동의 기반 운영 및 마이데이터 프레임워크 적용 필수.</div>
+</div>
+</div>
 </div>
 </div>
 
