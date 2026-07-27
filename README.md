@@ -23,6 +23,7 @@
 - **[셔클레터_Issue.002_EN](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002_EN.html)**
 - **[셔클레터_Issue.002 (Cuttly버전)](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002_cuttly.html)**
 - **[셔클레터_Issue.002 (HMG 내부 공유용)](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002_cuttly_HMG.html)**
+- **[셔클레터_Issue.002 (HMG 여백 테스트)](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.002_cuttly_HMG_test.html)**
 
 ---
 
