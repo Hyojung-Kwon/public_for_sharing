@@ -115,6 +115,41 @@
 
     footer { max-width: 1200px; margin: 0 auto; font-size: 11px; color: #9ca3af; padding: 16px 0 32px; border-top: 1px solid #e5e7eb; }
   </style>
+<style>
+.rev-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom:8px; overflow:hidden; border-left:3px solid #e5e7eb; transition:border-color 0.2s; }
+.rev-card:hover { border-left-color:#3b82f6; }
+.rev-header { display:flex; align-items:center; gap:10px; padding:12px 16px; cursor:pointer;
+  user-select:none; background:#fff; }
+.rev-tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px; white-space:nowrap; }
+.rev-title { font-size:13px; font-weight:700; color:#0d1b2a; flex:1; }
+.rev-arrow { font-size:12px; color:#9ca3af; transition:transform 0.2s; flex-shrink:0; }
+.rev-body { display:none; padding:0 16px 14px 16px; font-size:12.5px; color:#374151; line-height:1.75;
+  border-top:1px solid #f3f4f6; }
+.rev-body.open { display:block; }
+.rev-card.open .rev-arrow { transform:rotate(180deg); }
+.rev-near { color:#6b7280; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
+  background:#f3f4f6; margin-left:6px; }
+.rev-future { color:#5b21b6; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
+  background:#ede9fe; margin-left:6px; }
+</style>
+<script>
+function toggleRev(el) {
+  var card = el.closest('.rev-card');
+  var body = card.querySelector('.rev-body');
+  var isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+</script>
+<script>
+function switchCoType(type, btn) {
+  document.querySelectorAll('.co-type-section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.co-type-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('co-section-' + type).style.display = 'block';
+  btn.classList.add('active');
+}
+</script>
 </head>
 <body> <header class="site-header"> <h1>글로벌 자율주행 플레이어 동향 및 사업 전략 리서치</h1> <p>모빌리티플랫폼기획팀 전략기획파트 | 2026.07 | v0.3</p>
 </header> <nav class="tab-nav"> <button class="tab-btn active" onclick="switchTab('market', this)">1. 글로벌 시장 개요</button> <button class="tab-btn" onclick="switchTab('robotaxi', this)">2. 로보택시 &amp; 로보셔틀 동향</button> <button class="tab-btn" onclick="switchTab('players', this)">3. 국가/기업별 추진 현황</button> <button class="tab-btn" onclick="switchTab('companies', this)">4. 기업별 상세 리서치</button> <button class="tab-btn" onclick="switchTab('korea', this)">5. 국내 자율주행 실증도시</button> <button class="tab-btn" onclick="switchTab('ops', this)">6. 관제·운영 플랫폼</button>
@@ -388,33 +423,8 @@
 </div><!-- /city-shuttle -->
 <div id="tech" class="sub-tab-content"> <div class="section-heading">Level 4 상용화 조건 및 ODD 확장 전략</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">핵심 조건</div> <h3>ODD 정의와 단계적 확장</h3> <p>운행설계범위(ODD)를 명확히 정의하고, 날씨·도로·속도·지역 제약을 걸어 통제된 환경에서 시작. ODD 경계를 점진적으로 넓히는 것이 상용화 속도의 핵심 변수.</p> </div> <div class="trend-card" style="border-left-color:#ef4444;"> <div class="trend-tag" style="background:#fee2e2;color:#991b1b;">검증 방법론</div> <h3>Safety&nbsp;Case 구축</h3> <p>실 주행 데이터 + 시뮬레이션 병행으로 안전성 주장(Safety&nbsp;Case) 구축. Waymo는 2,000만+ 실 마일 + 수십억 시뮬레이션 마일 기반. 규제기관 설득의 핵심 자산.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">상용화 경로</div> <h3>통제 환경 → 도심 → 고속도로</h3> <p>공항·캠퍼스(로보셔틀) → 특정 도심 구역(로보택시) → 고속도로·전국 확장 순. ODD가 좁을수록 규제 진입이 쉽고 실증도시 조기 착수에 유리.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">기술 병목</div> <h3>엣지 케이스 대응</h3> <p>드문 상황(역주행 차량, 공사 구간, 비정형 보행자 등)에서의 안전 대응이 L4 상용화의 최대 기술 과제. E2E AI와 시뮬레이션 기반 학습으로 해결 시도 중.</p> </div> </div> <div class="section-heading">국가별 규제·인증 동향 비교</div> <table> <thead><tr><th>국가/지역</th><th>주요 규제 기관</th><th>핵심 제도·법령</th><th>규제 기조</th><th>특이사항</th></tr></thead> <tbody> <tr> <td><strong>🇺🇸 미국</strong></td> <td>NHTSA (연방) · CPUC (캘리포니아) · 주 차량 관리국</td> <td>CPUC Driverless Permit · 주별 AV 허가법 (연방 통일법 미통과)</td> <td><span class="badge badge-testing">주 단위 분산 규제</span></td> <td class="note">제조사 자체 인증 · 주별 규제 편차 큼 · 주행 성능·사고 정기 보고 의무 (CA) · Cruise 사고 이후 CPUC 강화</td> </tr> <tr> <td><strong>🇨🇳 중국</strong></td> <td>공업정보화부 (MIIT) · 공안부 · 지방정부</td> <td>자율주행 관리규범 · 스마트카 혁신발전전략 · 도시별 시범구 지정</td> <td><span class="badge badge-commercial">산업 활성화 우선</span></td> <td class="note">국가 표준 기반 안전 인증 · 공안부 운행 허가 · 정기 보고 의무 · 교통위반·사회적 영향 큰 경우 허가 취소</td> </tr> <tr> <td><strong> 유럽</strong></td> <td>UNECE WP.29 · EU 집행위 · 독일 KBA · 각국 도로청 (스위스 NPRA 등)</td> <td>독일 L4 자율주행법 (2021) · CCAM 정책 프레임 · EU AI Act · SOTIF (ISO 21448) · UNECE 국제 표준</td> <td><span class="badge badge-planned">규제 프레임워크 선도</span></td> <td class="note">독일 지방자치단체 허가 + KBA 정기 모니터링 · 스위스 칸톤 단위 노선별 허가 · 노르웨이 NPRA 허가 · 안전·윤리 기준 선도 · 법률 위반·인명 피해 시 허가 취소</td> </tr> <tr> <td><strong>🇰🇷 한국</strong></td> <td>국토교통부</td> <td>자율주행자동차법 · 자율주행 실증도시 사업 · 임시운행허가</td> <td><span class="badge badge-testing">실증 중심 단계적 허용</span></td> <td class="note">자기인증 + 국토부 확인 혼합 · 안전정보 플랫폼 사고·오작동 보고 의무 · 광주 실증도시 '26년 착수 · 완전 무인 허가 제도 정비 중</td> </tr> <tr> <td><strong>🇯🇵 일본</strong></td> <td>국토교통성 · 경찰청 (공공안전위원회)</td> <td>도로교통법 개정 (2023, L4 허용) · 자동운전 비즈니스 검토회</td> <td><span class="badge badge-testing">공공교통 DX 중심</span></td> <td class="note">정부 승인 방식 · 공공안전위원회 운행 허가 · 보고 의무 없음 · 위반 시 공공안전위원회가 허가 취소 · 고령화·교통소외 대응 중심</td> </tr> <tr> <td><strong>🌍 기타 (UAE·사우디)</strong></td> <td>UAE RTA (도로교통청) · 사우디 TGA / SASO</td> <td>RTA 특수 허가 · 사우디 규제 샌드박스 · SASO 안전 인증</td> <td><span class="badge badge-planned">규제 친화·샌드박스</span></td> <td class="note">UAE RTA 정기 성능 평가·점검 / 표준 미준수 시 허가 취소 · 사우디 파일럿 데이터 공유 의무, 상용화 전환 절차 미정의</td> </tr> </tbody> </table> </div>  
 <div id="biz" class="sub-tab-content"> <div class="section-heading">사업모델: 기업별 분류</div> <table> <thead> <tr><th>기업</th><th>사업모델</th><th>핵심 구조</th><th>시사점</th></tr> </thead> <tbody> <tr> <td><span class="company-tag t-waymo">Waymo</span></td> <td><strong>기술 자립 + 직접 운영</strong></td> <td class="note">자체 AV 기술 → 자체 Fleet 운영 → 자체 앱 (Waymo&nbsp;One)</td> <td class="note">기술 자립도 최고 / 확장 속도는 느림 / 도시별 규제 진입이 병목</td> </tr> <tr> <td><span class="company-tag t-tesla">Tesla</span></td> <td><strong>수직통합 (차량→SW→네트워크)</strong></td> <td class="note">차량 판매 → FSD 구독 → 차량 소유자 네트워크 로보택시화</td> <td class="note">가장 빠른 데이터 집적 / 규제·안전 입증이 상용화 병목</td> </tr> <tr> <td><span class="company-tag t-baidu">Baidu&nbsp;Apollo</span></td> <td><strong>직접 운영 + AI 클라우드 B2B</strong></td> <td class="note">AV 기술 → 직접 운행 → AI 플랫폼 B2B 수익 병행</td> <td class="note">저비용 대규모 운영 모델 / 중국 정책 지원 의존도 높음</td> </tr> <tr> <td><span class="company-tag t-ponyai">Pony.ai</span></td> <td><strong>직접 운영 + B2B 기술 공급 (멀티 도메인)</strong></td> <td class="note">AV 기술 → 로보택시·로보트럭 직접 운영 → OEM 파트너(Toyota·HMG)에 기술 공급 병행</td> <td class="note">승용+화물 멀티 도메인 전략 / 나스닥 상장으로 글로벌 파트너 신뢰 확보 / 1인 텔레오퍼레이터 다차량 감독으로 운영 효율화</td> </tr> <tr> <td><span class="company-tag t-uber">Uber (UAS)</span></td> <td><strong>플랫폼 중개 (기술 無)</strong></td> <td class="note">수요·UX·운영 솔루션 제공 → AV 파트너에게 수요 전달</td> <td class="note">기술 없이 시장 지배 / 셔클(모빌리티사업부) A-MaaS 방향의 핵심 레퍼런스</td> </tr> <tr> <td><span class="company-tag t-motional">Motional</span></td> <td><strong>플랫폼 파트너십 (Uber 경유)</strong></td> <td class="note">AV 기술+Fleet 보유 → Uber 앱 경유 수요 연결</td> <td class="note">AV 기술 보유 + 플랫폼(수요) 의존 구조 — 플랫폼 내재화 없이 지속가능성 한계</td> </tr> <tr> <td><span class="company-tag t-mobileye">Mobileye</span></td> <td><strong>기술 라이선싱 (B2B 공급)</strong></td> <td class="note">AV 칩·SW → OEM·사업자에 공급 → 라이선스 수익</td> <td class="note">직접 운행 없음 / HMG 공급망 옵션으로 검토 가능</td> </tr> <tr> <td><span class="company-tag t-easymile">EasyMile</span></td> <td><strong>셔틀 차량 판매 + 운영 계약 (B2G)</strong></td> <td class="note">전용 셔틀 차량 판매 또는 운영 계약 → 지자체·기업 고객</td> <td class="note">로보셔틀 B2G 수익 모델 레퍼런스 / 광주 실증도시 셔틀 파트 참고</td> </tr> </tbody> </table> <div class="section-heading">주요 수익 모델 유형</div> <div class="trend-grid"> <div class="trend-card"> <div class="trend-tag">B2C 플랫폼</div> <h3>호출 수수료 모델</h3> <p>이용자가 앱으로 자율주행 차량을 호출하고 거리·시간 기반 요금 지불. Waymo&nbsp;One, Baidu&nbsp;Apollo&nbsp;Go가 대표 사례. 수요·공급 밸런싱과 차량 가동률이 핵심 변수.</p> </div> <div class="trend-card" style="border-left-color:#ef4444;"> <div class="trend-tag" style="background:#fee2e2;color:#991b1b;">B2C 수직통합</div> <h3>차량 판매 + 구독 + 네트워크</h3> <p>차량 판매(하드웨어), FSD 구독(소프트웨어), 로보택시 네트워크 수수료를 통합한 Tesla식 수직통합 모델. 오너가 차량을 네트워크에 투입해 수익 공유.</p> </div> <div class="trend-card" style="border-left-color:#8b5cf6;"> <div class="trend-tag" style="background:#ede9fe;color:#6d28d9;">B2B 플랫폼</div> <h3>운영 인프라 구독 모델</h3> <p>AV 사업자에게 수요 연결·운영 솔루션·보험·금융을 패키지로 제공하고 구독료·수수료 수취. Uber&nbsp;UAS가 대표 사례. 기술 없이도 시장 지배 가능한 구조.</p> </div> <div class="trend-card" style="border-left-color:#10b981;"> <div class="trend-tag" style="background:#d1fae5;color:#065f46;">B2B 기술 라이선싱</div> <h3>칩·SW 기술 공급 모델</h3> <p>자율주행 칩셋·소프트웨어를 OEM·사업자에게 공급하고 라이선스·유지보수 수익 확보. Mobileye EyeQ 칩, NVIDIA DRIVE가 대표 사례. 직접 운행 없이 생태계 장악.</p> </div> <div class="trend-card" style="border-left-color:#f59e0b;"> <div class="trend-tag" style="background:#fef3c7;color:#92400e;">B2G 공공계약</div> <h3>공공교통 운행 계약 모델</h3> <p>지자체·교통공사와 자율주행 셔틀·버스 운행 계약 체결. 고정 노선·DRT 기반. 실증도시, EU&nbsp;ULTIMO 프로젝트, 일본 커먼즈 프로젝트가 해당. 안정적 수익이나 규모 확장에 한계.</p> </div> <div class="trend-card" style="border-left-color:#6b7280;"> <div class="trend-tag" style="background:#f3f4f6;color:#374151;">데이터·클라우드</div> <h3>AI·데이터 플랫폼 수익</h3> <p>자율주행 사업 과정에서 수집한 데이터·AI 역량을 B2B 클라우드 서비스로 판매. Baidu&nbsp;Apollo의 AI&nbsp;Cloud가 대표 사례. 자율주행 외 수익원으로 포트폴리오 다각화.</p> </div> </div> <div class="section-heading">플랫폼 vs 수직통합 모델 비교</div> <table> <thead><tr><th>기준</th><th>플랫폼 모델 (Uber&nbsp;UAS형)</th><th>수직통합 모델 (Tesla형)</th><th>하이브리드 (Waymo형)</th></tr></thead> <tbody> <tr><td><strong>자본 지출</strong></td><td><span class="badge badge-green">낮음</span> <span style="font-size:12px;color:#6b7280;">차량·기술 외부 조달</span></td><td><span class="badge badge-red">매우 높음</span> <span style="font-size:12px;color:#6b7280;">차량·칩·SW 자체 개발</span></td><td><span class="badge badge-amber">높음</span> <span style="font-size:12px;color:#6b7280;">기술 자체, 차량 외부</span></td></tr> <tr><td><strong>확장 속도</strong></td><td><span class="badge badge-green">빠름</span> <span style="font-size:12px;color:#6b7280;">파트너 확장 용이</span></td><td><span class="badge badge-red">느림</span> <span style="font-size:12px;color:#6b7280;">차량 생산 병목</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>데이터 통제</strong></td><td><span class="badge badge-red">낮음</span> <span style="font-size:12px;color:#6b7280;">파트너 데이터에 의존</span></td><td><span class="badge badge-green">최고</span> <span style="font-size:12px;color:#6b7280;">전 스택 통제</span></td><td><span class="badge badge-blue">높음</span> <span style="font-size:12px;color:#6b7280;">기술 레이어 통제</span></td></tr> <tr><td><strong>파트너 의존</strong></td><td><span class="badge badge-red">높음</span> <span style="font-size:12px;color:#6b7280;">AV 기업에 의존</span></td><td><span class="badge badge-green">없음</span> <span style="font-size:12px;color:#6b7280;">자체 완결</span></td><td><span class="badge badge-amber">중간</span> <span style="font-size:12px;color:#6b7280;">차량 OEM 의존</span></td></tr> <tr><td><strong>원가 절감 여력</strong></td><td><span class="badge badge-amber">제한적</span></td><td><span class="badge badge-green">매우 높음</span> <span style="font-size:12px;color:#6b7280;">수직통합 효과</span></td><td><span class="badge badge-amber">중간</span></td></tr> <tr><td><strong>대표 기업</strong></td><td><span class="company-tag t-uber">Uber&nbsp;UAS</span></td><td><span class="company-tag t-tesla">Tesla</span></td><td><span class="company-tag t-waymo">Waymo</span> <span class="company-tag t-baidu">Baidu</span> <span class="company-tag t-ponyai">Pony.ai</span></td></tr> </tbody> </table> <div class="section-heading">Unit Economics 관점: 수익성까지의 경로</div> <table> <thead><tr><th>비용 항목</th><th>현재 수준</th><th>2030년 전망</th><th>개선 방향</th></tr></thead> <tbody> <tr><td><strong>차량 하드웨어 (센서·칩)</strong></td><td>대당 $50K~100K+</td><td>$10K 이하 목표</td><td class="note">LiDAR 가격 하락, 자체 칩 개발, 양산 효과</td></tr> <tr><td><strong>원격 모니터링·운영</strong></td><td>차량당 상시 인력 필요</td><td>1인 : 10~20대 관리</td><td class="note">AI 자동화, 원격 지원 효율화</td></tr> <tr><td><strong>보험·사고 비용</strong></td><td>데이터 부족으로 높음</td><td>실주행 데이터 축적 시 하락</td><td class="note">안전 데이터 규제기관 제출 → 보험료 협상력 확보</td></tr> <tr><td><strong>차량 가동률</strong></td><td>40~60% (충전·정비 시간)</td><td>70~80% 목표</td><td class="note">배터리 교환식, 최적 배차 알고리즘</td></tr> <tr><td><strong>마일당 수익</strong></td><td>Waymo ~$3~5/마일 (추정)</td><td>볼륨 확대 시 개선</td><td class="note">프리미엄 서비스 차별화, 광고·데이터 수익 추가</td></tr> </tbody> </table> <div class="section-heading">확장 수익모델</div>
-<style>
-.rev-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,0.08);
-  margin-bottom:8px; overflow:hidden; border-left:3px solid #e5e7eb; transition:border-color 0.2s; }
-.rev-card:hover { border-left-color:#3b82f6; }
-.rev-header { display:flex; align-items:center; gap:10px; padding:12px 16px; cursor:pointer;
-  user-select:none; background:#fff; }
-.rev-tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px; white-space:nowrap; }
-.rev-title { font-size:13px; font-weight:700; color:#0d1b2a; flex:1; }
-.rev-arrow { font-size:12px; color:#9ca3af; transition:transform 0.2s; flex-shrink:0; }
-.rev-body { display:none; padding:0 16px 14px 16px; font-size:12.5px; color:#374151; line-height:1.75;
-  border-top:1px solid #f3f4f6; }
-.rev-body.open { display:block; }
-.rev-card.open .rev-arrow { transform:rotate(180deg); }
-.rev-near { color:#6b7280; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
-  background:#f3f4f6; margin-left:6px; }
-.rev-future { color:#5b21b6; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px;
-  background:#ede9fe; margin-left:6px; }
-</style>
-<script>
-function toggleRev(el) {
-  var card = el.closest('.rev-card');
-  var body = card.querySelector('.rev-body');
-  var isOpen = card.classList.contains('open');
-  card.classList.toggle('open', !isOpen);
-  body.classList.toggle('open', !isOpen);
-}
-</script>
+
+
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:6px;margin-bottom:32px;align-items:start;">
 <div class="rev-card">
   <div class="rev-header" onclick="toggleRev(this)">
@@ -548,14 +558,7 @@ function toggleRev(el) {
 
 <div id="companies" class="tab-content"> <div class="section-wrap">
 
-<script>
-function switchCoType(type, btn) {
-  document.querySelectorAll('.co-type-section').forEach(s => { s.style.display = 'none'; });
-  document.querySelectorAll('.co-type-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('co-section-' + type).style.display = 'block';
-  btn.classList.add('active');
-}
-</script>
+
 
 <!-- 상위 타입 전환 버튼 -->
 <div style="display:flex;gap:10px;margin-bottom:16px;">
