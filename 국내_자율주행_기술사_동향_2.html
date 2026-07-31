@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>국내 자율주행 기술사 동향_2/3</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px 52px;
+    }
+    .slide {
+      background: #fff;
+      width: 960px;
+      padding: 38px 48px 28px;
+      box-shadow: 0 6px 36px rgba(0,0,0,0.18);
+      position: relative;
+    }
+
+    /* ── Header ── */
+    .slide-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 10px;
+    }
+    h1 {
+      font-size: 30px;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+    .meta {
+      text-align: right;
+      font-size: 11.5px;
+      color: #555;
+      line-height: 2;
+      flex-shrink: 0;
+    }
+    .divider { height: 2.5px; background: #111; margin-bottom: 24px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 22px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 11px;
+    }
+    .section-bar { width: 4px; height: 20px; background: #1a4f96; flex-shrink: 0; }
+    .section-title { font-size: 15px; font-weight: 800; color: #111; }
+    .section-sub { font-size: 11px; color: #888; margin-left: 2px; }
+
+    /* ── Bullets ── */
+    .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #1a1a1a;
+    }
+    .chk {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #1a4f96;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 10px;
+      color: #1a4f96;
+      font-weight: bold;
+    }
+    em {
+      font-style: normal;
+      color: #1a4f96;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: #a8c4e8;
+    }
+    strong { font-weight: 700; }
+
+    /* ── Table ── */
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    thead tr { background: #1a4f96; color: #fff; }
+    th {
+      padding: 9px 12px;
+      font-weight: 700;
+      text-align: center;
+      border: 1px solid #1a4f96;
+    }
+    td {
+      padding: 9px 12px;
+      border: 1px solid #d0dff0;
+      vertical-align: top;
+      line-height: 1.65;
+      color: #1a1a1a;
+    }
+    tr:nth-child(even) td { background: #f3f7fd; }
+    .co { font-weight: 800; font-size: 13px; }
+    .co-sub { font-size: 10px; color: #888; display: block; margin-top: 1px; }
+    .tag {
+      display: inline-block;
+      background: #1a4f96;
+      color: #fff;
+      font-size: 9.5px;
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-right: 3px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .tag-hot { background: #d44000; }
+    .tag-new { background: #0a7c3e; }
+    .dot { color: #888; margin: 2px 0; font-size: 11px; }
+
+    /* ── Footer ── */
+    .slide-footer {
+      margin-top: 22px;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-note { font-size: 9.5px; color: #999; }
+    .page-num { font-size: 11px; color: #bbb; }
+  </style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Header -->
+  <div class="slide-top">
+    <h1>국내 자율주행 기술사 동향_2/3</h1>
+    <div class="meta">
+      2026. 7. 31<br>
+      AVP본부 모빌리티사업부
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- ① SWM 서비스 확장 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <span class="section-title">SWM — 서울시 서비스 확장 계획</span>
+    </div>
+
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>강남·서초구 중심 운영에서 <em>서초·송파·강동 추가 4개구로 확대 예정</em> — 서울 도심 자율주행 커버리지 단계적 확장</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>서울시가 법인택시 <em>1,000대 감차</em> 단행 후 잔여 <em>500대 면허를 자율주행 운행에 전환</em> 추진 · SWM이 면허 기반 확장의 핵심 기술 파트너</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>이용자 현황: <em>20~30대 젊은층</em> 비중 높음 · 7월 기준 누적 <em>7,754건 · 사고 0건</em> · 운행 차량 5대 유지</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>레노버와 차세대 자율주행 컨트롤러 <em>AP-700 공동 개발</em> 진행 중 (엔비디아 Thor 칩·2,000 TOPS) · 하반기 실 노선 투입 예정</div>
+    </div>
+  </div>
+
+  <!-- ② 상암 A02 DRT -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <span class="section-title">상암 A02 DRT — 운영 실태</span>
+      <span class="section-sub">7/29 직접 시승 기준</span>
+    </div>
+
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>결제: <em>카카오T 앱 선결제 · 호출당 2,000원</em> (탑승 인원수 무관) · SWM 자율주행 기술 + 카카오T 앱 연동 구조</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>운행 특성: <em>합승 불가</em> · 호출 없는 정류장은 통과 · 미호출 시 지정 장소 대기 · 드라이브 앱(태블릿 가로형) + 기술사 모니터 탑재</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>서비스 성격 재정의: 순수 DRT(수요응답형)가 아닌 <em>"노선을 따라 운행하는 택시형"</em> — 고정 노선 유지하되 호출 기반으로 운행</div>
+    </div>
+    <div class="bullet">
+      <div class="chk">✓</div>
+      <div>서울시 기조: DRT 효용성을 낮게 평가 · 향후 <em>구역형 자율주행 택시 전환</em>에 더 집중하는 방향으로 선회 중</div>
+    </div>
+  </div>
+
+  <!-- ③ 기술사별 실증 현황 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <span class="section-title">기술사별 최근 실증 및 협력 현황</span>
+      <span class="section-sub">26년 5~7월 기준</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:9%">기술사</th>
+          <th style="width:22%">주요 실증 영역</th>
+          <th style="width:40%">최근 주요 이슈 (5~7월)</th>
+          <th style="width:29%">셔클/모사부 협력 현황</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="co">라이드플럭스</span></td>
+          <td>
+            광주 자율주행 실증도시<br>
+            서울 로보버스 실증<br>
+            유상 화물 운송
+          </td>
+          <td>
+            <span class="tag tag-new">7/1</span> 국내 최초 유상 화물 운송 개시 (군산→대전 116km, 한진 협력)<br>
+            <div class="dot">·</div>
+            <span class="tag">5월</span> 코스닥 기술성평가 A·A 획득, 하반기 상장 추진<br>
+            <div class="dot">·</div>
+            <span class="tag">4월</span> 광주 자율주행 실증도시 선정 (현대차·A2Z 컨소시엄)
+          </td>
+          <td>
+            교통취약지역 실증<br>
+            컨소시엄 파트너 후보<br>
+            <span style="color:#888;font-size:11px">(셔클 플랫폼 + 라이드플럭스 기술)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="co">SWM</span></td>
+          <td>
+            강남 로보택시 유상 운영<br>
+            서울시 플랫폼 사업
+          </td>
+          <td>
+            <span class="tag">6월</span> 레노버와 AP-700 공동개발 계약 체결<br>
+            <div class="dot">·</div>
+            <span class="tag tag-hot">7/14</span> 현대차 모사부 대표 미팅 진행<br>
+            <div class="dot">·</div>
+            4개구 확대 · 카카오T 연동 고도화 논의 중
+          </td>
+          <td>
+            서울시 플랫폼 사업자 공모<br>
+            셔클 연동 희망 (SWM 측 요청)<br>
+            <span style="color:#1a4f96;font-size:11px">실무 미팅 추진 중</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="co">SUM</span></td>
+          <td>
+            서울 새벽동행버스<br>
+            동작구 마을버스<br>
+            서울 로보버스 파트너
+          </td>
+          <td>
+            <span class="tag tag-new">7/16</span> A148 노선 개통 (상계역↔고속터미널, 무료 운영 중)<br>
+            <div class="dot">·</div>
+            <span class="tag">6/29</span> AI 데이터 플랫폼 'Abyss' 공개<br>
+            <div class="dot">·</div>
+            동작구 자율주행 마을버스 운행 개시
+          </td>
+          <td>
+            교통취약지역 실증<br>
+            컨소시엄 파트너 후보<br>
+            <span style="color:#1a4f96;font-size:11px">실무 미팅 추진 중</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="co">A2Z</span></td>
+          <td>
+            청계A01 운영<br>
+            싱가포르 ROii 실증<br>
+            광주 실증도시 참여
+          </td>
+          <td>
+            <span class="tag">5/27</span> 자율주행 누적 100만 km 돌파<br>
+            <div class="dot">·</div>
+            <span class="tag tag-new">7/9</span> 싱가포르 NCS 행사서 ROii 최초 공개, 원격 주행 시연<br>
+            <div class="dot">·</div>
+            프리IPO 405억 유치 (누적 1,225억), IPO 추진 중
+          </td>
+          <td>
+            현재 직접 협력 논의 없음<br>
+            <span style="color:#888;font-size:11px">(광주 컨소시엄은 별도 구조)</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="co">ETRI</span>
+            <span class="co-sub">국책기관</span>
+          </td>
+          <td>대전시 자율주행 실증</td>
+          <td>
+            대전시 측에서 ETRI 선호 의향 인입<br>
+            <div class="dot">·</div>
+            교통취약지역 실증사업 기술사 후보 검토 단계
+          </td>
+          <td>
+            대전 지역 컨소시엄 구성 시<br>검토 대상
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="slide-footer">
+    <div class="footer-note">본 문서는 현대자동차·기아의 정보자산으로 관련 법령에 의해 보호받습니다.</div>
+    <div class="page-num">2</div>
+  </div>
+
+</div>
+</body>
+</html>
