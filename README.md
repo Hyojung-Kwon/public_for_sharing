@@ -4,16 +4,15 @@
 
 ---
 
-## 콘텐츠 목록
+## 글로벌 자율주행 플레이어 동향 및 사업 전략 리서치
 
-- **[글로벌 자율주행 플레이어 동향 및 사업 전략 리서치](https://hyojung-kwon.github.io/public_for_sharing/글로벌_자율주행_리서치.html)**
+- **[글로벌 자율주행 리서치](https://hyojung-kwon.github.io/public_for_sharing/글로벌_자율주행_리서치.html)**
 
 ---
 
 ## 자율주행서비스 체험 (청계 A01 맛집지도)
 
-- **[자율주행서비스 체험 (청계 A01 맛집지도)](https://hyojung-kwon.github.io/public_for_sharing/)**
-  자율주행버스 A01 노선(청계광장 ↔ 광장시장) 주변 점심 맛집 인터랙티브 지도
+- **[청계 A01 · 종로 점심 맛집지도](https://hyojung-kwon.github.io/public_for_sharing/)**
 
 ---
 
