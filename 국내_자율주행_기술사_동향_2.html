@@ -28,30 +28,13 @@
       align-items: flex-start;
       padding-bottom: 10px;
     }
-    h1 {
-      font-size: 30px;
-      font-weight: 900;
-      color: #111;
-      letter-spacing: -1px;
-      line-height: 1.2;
-    }
-    .meta {
-      text-align: right;
-      font-size: 11.5px;
-      color: #555;
-      line-height: 2;
-      flex-shrink: 0;
-    }
+    h1 { font-size: 30px; font-weight: 900; color: #111; letter-spacing: -1px; line-height: 1.2; }
+    .meta { text-align: right; font-size: 11.5px; color: #555; line-height: 2; flex-shrink: 0; }
     .divider { height: 2.5px; background: #111; margin-bottom: 24px; }
 
     /* ── Section ── */
     .section { margin-bottom: 22px; }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 11px;
-    }
+    .section-header { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; }
     .section-bar { width: 4px; height: 20px; background: #1a4f96; flex-shrink: 0; }
     .section-title { font-size: 15px; font-weight: 800; color: #111; }
     .section-sub { font-size: 11px; color: #888; margin-left: 2px; }
@@ -67,70 +50,48 @@
       color: #1a1a1a;
     }
     .chk {
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       border: 1.5px solid #1a4f96;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-      font-size: 10px;
-      color: #1a4f96;
-      font-weight: bold;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+      font-size: 10px; color: #1a4f96; font-weight: bold;
     }
-    em {
-      font-style: normal;
-      color: #1a4f96;
-      font-weight: 700;
-      text-decoration: underline;
-      text-decoration-color: #a8c4e8;
+    em { font-style: normal; color: #1a4f96; font-weight: 700; text-decoration: underline; text-decoration-color: #a8c4e8; }
+
+    /* ── Source links ── */
+    a.src {
+      display: inline-block;
+      font-size: 9.5px;
+      color: #8899bb;
+      background: #f0f4fa;
+      border: 1px solid #d0dff0;
+      border-radius: 3px;
+      padding: 0px 5px;
+      margin-left: 5px;
+      text-decoration: none;
+      vertical-align: middle;
+      white-space: nowrap;
+      line-height: 1.6;
     }
-    strong { font-weight: 700; }
+    a.src:hover { background: #1a4f96; color: #fff; border-color: #1a4f96; }
+    a.src.gh { background: #f6f8fa; border-color: #c8d4e8; color: #555; }
+    a.src.gh:hover { background: #24292e; color: #fff; border-color: #24292e; }
 
     /* ── Table ── */
     table { width: 100%; border-collapse: collapse; font-size: 12px; }
     thead tr { background: #1a4f96; color: #fff; }
-    th {
-      padding: 9px 12px;
-      font-weight: 700;
-      text-align: center;
-      border: 1px solid #1a4f96;
-    }
-    td {
-      padding: 9px 12px;
-      border: 1px solid #d0dff0;
-      vertical-align: top;
-      line-height: 1.65;
-      color: #1a1a1a;
-    }
+    th { padding: 9px 12px; font-weight: 700; text-align: center; border: 1px solid #1a4f96; }
+    td { padding: 9px 12px; border: 1px solid #d0dff0; vertical-align: top; line-height: 1.65; color: #1a1a1a; }
     tr:nth-child(even) td { background: #f3f7fd; }
     .co { font-weight: 800; font-size: 13px; }
     .co-sub { font-size: 10px; color: #888; display: block; margin-top: 1px; }
-    .tag {
-      display: inline-block;
-      background: #1a4f96;
-      color: #fff;
-      font-size: 9.5px;
-      padding: 1px 5px;
-      border-radius: 2px;
-      margin-right: 3px;
-      vertical-align: middle;
-      white-space: nowrap;
-    }
+    .tag { display: inline-block; background: #1a4f96; color: #fff; font-size: 9.5px; padding: 1px 5px; border-radius: 2px; margin-right: 3px; vertical-align: middle; white-space: nowrap; }
     .tag-hot { background: #d44000; }
     .tag-new { background: #0a7c3e; }
     .dot { color: #888; margin: 2px 0; font-size: 11px; }
 
     /* ── Footer ── */
-    .slide-footer {
-      margin-top: 22px;
-      border-top: 1px solid #ccc;
-      padding-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .slide-footer { margin-top: 22px; border-top: 1px solid #ccc; padding-top: 8px; display: flex; justify-content: space-between; align-items: center; }
     .footer-note { font-size: 9.5px; color: #999; }
     .page-num { font-size: 11px; color: #bbb; }
   </style>
@@ -141,10 +102,7 @@
   <!-- Header -->
   <div class="slide-top">
     <h1>국내 자율주행 기술사 동향_2/3</h1>
-    <div class="meta">
-      2026. 7. 31<br>
-      AVP본부 모빌리티사업부
-    </div>
+    <div class="meta">2026. 7. 31<br>AVP본부 모빌리티사업부</div>
   </div>
   <div class="divider"></div>
 
@@ -157,19 +115,28 @@
 
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>강남·서초구 중심 운영에서 <em>서초·송파·강동 추가 4개구로 확대 예정</em> — 서울 도심 자율주행 커버리지 단계적 확장</div>
+      <div>강남·서초구 중심 운영에서 <em>서초·송파·강동 추가 4개구로 확대 예정</em> — 서울 도심 자율주행 커버리지 단계적 확장
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10881" target="_blank">GitHub #10881</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>서울시가 법인택시 <em>1,000대 감차</em> 단행 후 잔여 <em>500대 면허를 자율주행 운행에 전환</em> 추진 · SWM이 면허 기반 확장의 핵심 기술 파트너</div>
+      <div>서울시가 법인택시 <em>1,000대 감차</em> 단행 후 잔여 <em>500대 면허를 자율주행 운행에 전환</em> 추진 · SWM이 면허 기반 확장의 핵심 기술 파트너
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10881" target="_blank">GitHub #10881</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>이용자 현황: <em>20~30대 젊은층</em> 비중 높음 · 7월 기준 누적 <em>7,754건 · 사고 0건</em> · 운행 차량 5대 유지</div>
+      <div>이용자 현황: <em>20~30대 젊은층</em> 비중 높음 · 7월 기준 누적 <em>7,754건 · 사고 0건</em> · 운행 차량 5대 유지
+        <a class="src" href="https://biz.chosun.com/en/en-policy/2026/07/15/DQ7474XKEJC5RA6T6UNNXRRZJA/" target="_blank">조선비즈</a>
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10881" target="_blank">GitHub #10881</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>레노버와 차세대 자율주행 컨트롤러 <em>AP-700 공동 개발</em> 진행 중 (엔비디아 Thor 칩·2,000 TOPS) · 하반기 실 노선 투입 예정</div>
+      <div>레노버와 차세대 자율주행 컨트롤러 <em>AP-700 공동 개발</em> 진행 중 (엔비디아 Thor 칩·2,000 TOPS) · 하반기 실 노선 투입 예정
+        <a class="src" href="https://www.donga.com/news/Economy/article/all/20260608/134068270/1" target="_blank">동아일보</a>
+      </div>
     </div>
   </div>
 
@@ -183,19 +150,27 @@
 
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>결제: <em>카카오T 앱 선결제 · 호출당 2,000원</em> (탑승 인원수 무관) · SWM 자율주행 기술 + 카카오T 앱 연동 구조</div>
+      <div>결제: <em>카카오T 앱 선결제 · 호출당 2,000원</em> (탑승 인원수 무관) · SWM 자율주행 기술 + 카카오T 앱 연동 구조
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10993" target="_blank">GitHub #10993</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>운행 특성: <em>합승 불가</em> · 호출 없는 정류장은 통과 · 미호출 시 지정 장소 대기 · 드라이브 앱(태블릿 가로형) + 기술사 모니터 탑재</div>
+      <div>운행 특성: <em>합승 불가</em> · 호출 없는 정류장은 통과 · 미호출 시 지정 장소 대기 · 드라이브 앱(태블릿 가로형) + 기술사 모니터 탑재
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10993" target="_blank">GitHub #10993</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>서비스 성격 재정의: 순수 DRT(수요응답형)가 아닌 <em>"노선을 따라 운행하는 택시형"</em> — 고정 노선 유지하되 호출 기반으로 운행</div>
+      <div>서비스 성격 재정의: 순수 DRT(수요응답형)가 아닌 <em>"노선을 따라 운행하는 택시형"</em> — 고정 노선 유지하되 호출 기반으로 운행
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10993" target="_blank">GitHub #10993</a>
+      </div>
     </div>
     <div class="bullet">
       <div class="chk">✓</div>
-      <div>서울시 기조: DRT 효용성을 낮게 평가 · 향후 <em>구역형 자율주행 택시 전환</em>에 더 집중하는 방향으로 선회 중</div>
+      <div>서울시 기조: DRT 효용성을 낮게 평가 · 향후 <em>구역형 자율주행 택시 전환</em>에 더 집중하는 방향으로 선회 중
+        <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10993" target="_blank">GitHub #10993</a>
+      </div>
     </div>
   </div>
 
@@ -210,84 +185,80 @@
       <thead>
         <tr>
           <th style="width:9%">기술사</th>
-          <th style="width:22%">주요 실증 영역</th>
-          <th style="width:40%">최근 주요 이슈 (5~7월)</th>
+          <th style="width:21%">주요 실증 영역</th>
+          <th style="width:41%">최근 주요 이슈 (5~7월)</th>
           <th style="width:29%">셔클/모사부 협력 현황</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="co">라이드플럭스</span></td>
+          <td>광주 자율주행 실증도시<br>서울 로보버스 실증<br>유상 화물 운송</td>
           <td>
-            광주 자율주행 실증도시<br>
-            서울 로보버스 실증<br>
-            유상 화물 운송
-          </td>
-          <td>
-            <span class="tag tag-new">7/1</span> 국내 최초 유상 화물 운송 개시 (군산→대전 116km, 한진 협력)<br>
+            <span class="tag tag-new">7/1</span> 국내 최초 유상 화물 운송 개시 (군산→대전 116km, 한진 협력)
+            <a class="src" href="https://www.techsuda.com/rideflux-hanjin-korea-first-paid-autonomous-truck-freight/" target="_blank">테크수다</a>
             <div class="dot">·</div>
-            <span class="tag">5월</span> 코스닥 기술성평가 A·A 획득, 하반기 상장 추진<br>
+            <span class="tag">5월</span> 코스닥 기술성평가 A·A 획득, 하반기 상장 추진
+            <a class="src" href="https://www.unicornfactory.co.kr/article/2026052009160067773" target="_blank">유니콘팩토리</a>
             <div class="dot">·</div>
             <span class="tag">4월</span> 광주 자율주행 실증도시 선정 (현대차·A2Z 컨소시엄)
+            <a class="src" href="https://www.yonhapnewstv.co.kr/news/AKR20260428140055dNl" target="_blank">연합뉴스TV</a>
           </td>
           <td>
-            교통취약지역 실증<br>
-            컨소시엄 파트너 후보<br>
+            교통취약지역 실증<br>컨소시엄 파트너 후보<br>
             <span style="color:#888;font-size:11px">(셔클 플랫폼 + 라이드플럭스 기술)</span>
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10948" target="_blank">GitHub #10948</a>
           </td>
         </tr>
         <tr>
           <td><span class="co">SWM</span></td>
+          <td>강남 로보택시 유상 운영<br>서울시 플랫폼 사업</td>
           <td>
-            강남 로보택시 유상 운영<br>
-            서울시 플랫폼 사업
-          </td>
-          <td>
-            <span class="tag">6월</span> 레노버와 AP-700 공동개발 계약 체결<br>
+            <span class="tag">6월</span> 레노버와 AP-700 공동개발 계약 체결
+            <a class="src" href="https://www.donga.com/news/Economy/article/all/20260608/134068270/1" target="_blank">동아일보</a>
             <div class="dot">·</div>
-            <span class="tag tag-hot">7/14</span> 현대차 모사부 대표 미팅 진행<br>
+            <span class="tag tag-hot">7/14</span> 현대차 모사부 대표 미팅 진행
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10881" target="_blank">GitHub #10881</a>
             <div class="dot">·</div>
             4개구 확대 · 카카오T 연동 고도화 논의 중
           </td>
           <td>
-            서울시 플랫폼 사업자 공모<br>
-            셔클 연동 희망 (SWM 측 요청)<br>
+            서울시 플랫폼 사업자 공모<br>셔클 연동 희망 (SWM 측 요청)<br>
             <span style="color:#1a4f96;font-size:11px">실무 미팅 추진 중</span>
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/11015" target="_blank">GitHub #11015</a>
           </td>
         </tr>
         <tr>
           <td><span class="co">SUM</span></td>
+          <td>서울 새벽동행버스<br>동작구 마을버스<br>서울 로보버스 파트너</td>
           <td>
-            서울 새벽동행버스<br>
-            동작구 마을버스<br>
-            서울 로보버스 파트너
-          </td>
-          <td>
-            <span class="tag tag-new">7/16</span> A148 노선 개통 (상계역↔고속터미널, 무료 운영 중)<br>
+            <span class="tag tag-new">7/16</span> A148 노선 개통 (상계역↔고속터미널, 무료 운영 중)
+            <a class="src" href="https://smobi.ai/pages/news" target="_blank">smobi.ai</a>
             <div class="dot">·</div>
-            <span class="tag">6/29</span> AI 데이터 플랫폼 'Abyss' 공개<br>
+            <span class="tag">6/29</span> AI 데이터 플랫폼 'Abyss' 공개
+            <a class="src" href="https://smobi.ai/pages/news" target="_blank">smobi.ai</a>
             <div class="dot">·</div>
             동작구 자율주행 마을버스 운행 개시
+            <a class="src" href="https://biz.chosun.com/topics/topics_social/2026/05/06/3BRKBETMJFB3NAZL3VEVIT4G5U/" target="_blank">조선비즈</a>
           </td>
           <td>
-            교통취약지역 실증<br>
-            컨소시엄 파트너 후보<br>
+            교통취약지역 실증<br>컨소시엄 파트너 후보<br>
             <span style="color:#1a4f96;font-size:11px">실무 미팅 추진 중</span>
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/11014" target="_blank">GitHub #11014</a>
           </td>
         </tr>
         <tr>
           <td><span class="co">A2Z</span></td>
+          <td>청계A01 운영<br>싱가포르 ROii 실증<br>광주 실증도시 참여</td>
           <td>
-            청계A01 운영<br>
-            싱가포르 ROii 실증<br>
-            광주 실증도시 참여
-          </td>
-          <td>
-            <span class="tag">5/27</span> 자율주행 누적 100만 km 돌파<br>
+            <span class="tag">5/27</span> 자율주행 누적 100만 km 돌파
+            <a class="src" href="https://en.sedaily.com/technology/2026/05/27/autonomous-a2z-surpasses-1-million-kilometers-in-self" target="_blank">서울경제</a>
             <div class="dot">·</div>
-            <span class="tag tag-new">7/9</span> 싱가포르 NCS 행사서 ROii 최초 공개, 원격 주행 시연<br>
+            <span class="tag tag-new">7/9</span> 싱가포르 NCS 행사서 ROii 최초 공개, 원격 주행 시연
+            <a class="src" href="https://www.digitaltoday.co.kr/en/view/80767/autonomous-a2z-steps-up-singapore-commercialisation-roii-debuts-locally" target="_blank">디지털투데이</a>
             <div class="dot">·</div>
             프리IPO 405억 유치 (누적 1,225억), IPO 추진 중
+            <a class="src" href="https://koreatechdesk.com/autonomous-a2z-raises-%E2%82%A940-5b-pre-ipo-as-korea-tests-its-global-autonomous-mobility-play" target="_blank">KoreaTechDesk</a>
           </td>
           <td>
             현재 직접 협력 논의 없음<br>
@@ -301,12 +272,14 @@
           </td>
           <td>대전시 자율주행 실증</td>
           <td>
-            대전시 측에서 ETRI 선호 의향 인입<br>
+            대전시 측에서 ETRI 선호 의향 인입
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10948" target="_blank">GitHub #10948</a>
             <div class="dot">·</div>
             교통취약지역 실증사업 기술사 후보 검토 단계
           </td>
           <td>
-            대전 지역 컨소시엄 구성 시<br>검토 대상
+            대전 지역 컨소시엄 구성 시 검토 대상
+            <a class="src gh" href="https://github.com/hkmc-airlab/shucle-product/issues/10948" target="_blank">GitHub #10948</a>
           </td>
         </tr>
       </tbody>
