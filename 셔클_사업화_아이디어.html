@@ -10,30 +10,100 @@ body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-s
 
 .page { max-width: 1080px; margin: 0 auto; padding: 40px 32px 60px; }
 
-.hd { margin-bottom: 28px; }
+.hd { margin-bottom: 36px; }
 .hd-tag { font-size: 11px; font-weight: 700; color: #3b82f6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
 .hd-title { font-size: 20px; font-weight: 800; color: #0d1b2a; margin-bottom: 4px; }
 .hd-sub { font-size: 12px; color: #9ca3af; }
 
-.lanes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+/* 레인 */
+.lane { margin-bottom: 28px; }
+.lane-label { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.lane-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; }
+.lane-line { flex: 1; height: 1px; background: #e5e7eb; }
+.now  .lane-badge { background: #fee2e2; color: #991b1b; }
+.short .lane-badge { background: #fef3c7; color: #92400e; }
+.mid  .lane-badge { background: #dbeafe; color: #1e40af; }
+.long .lane-badge { background: #f3f4f6; color: #374151; }
 
-.lane-head { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 10px; border-radius: 5px; margin-bottom: 8px; display: inline-block; }
-.now  .lane-head { background: #fee2e2; color: #991b1b; }
-.short .lane-head { background: #fef3c7; color: #92400e; }
-.mid  .lane-head { background: #dbeafe; color: #1e40af; }
-.long .lane-head { background: #f3f4f6; color: #374151; }
+/* 버블 그리드 */
+.bubbles { display: flex; flex-wrap: wrap; gap: 16px; }
 
-.card { background: #fff; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; border-left: 3px solid; }
-.now  .card { border-left-color: #ef4444; }
-.short .card { border-left-color: #f59e0b; }
-.mid  .card { border-left-color: #3b82f6; }
-.long .card { border-left-color: #9ca3af; }
+.bubble {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  border: 2.5px solid transparent;
+  user-select: none;
+}
+.bubble:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(0,0,0,0.13); }
+.bubble:active { transform: scale(0.98); }
 
-.card-num { font-size: 10px; color: #9ca3af; font-weight: 700; margin-bottom: 3px; }
-.card-title { font-size: 12.5px; font-weight: 800; color: #0d1b2a; line-height: 1.4; margin-bottom: 4px; }
-.card-desc { font-size: 11px; color: #6b7280; line-height: 1.55; }
+.now  .bubble { background: #fff1f2; border-color: #ef4444; }
+.short .bubble { background: #fffbeb; border-color: #f59e0b; }
+.mid  .bubble { background: #eff6ff; border-color: #3b82f6; }
+.long .bubble { background: #f9fafb; border-color: #9ca3af; }
 
-footer { margin-top: 28px; font-size: 11px; color: #9ca3af; }
+.bubble-num { font-size: 10px; font-weight: 800; margin-bottom: 5px; }
+.now  .bubble-num { color: #ef4444; }
+.short .bubble-num { color: #f59e0b; }
+.mid  .bubble-num { color: #3b82f6; }
+.long .bubble-num { color: #9ca3af; }
+
+.bubble-title { font-size: 12px; font-weight: 800; color: #0d1b2a; line-height: 1.4; }
+
+/* 모달 */
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,42,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 36px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+.modal-close:hover { color: #374151; }
+.modal-badge { display: inline-block; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 99px; margin-bottom: 12px; }
+.modal-title { font-size: 18px; font-weight: 800; color: #0d1b2a; margin-bottom: 6px; line-height: 1.4; }
+.modal-status { font-size: 12px; color: #9ca3af; margin-bottom: 16px; }
+.modal-body { font-size: 13px; color: #374151; line-height: 1.75; margin-bottom: 16px; }
+.modal-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+.modal-tag { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
+.modal-next { background: #f8fafc; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #374151; }
+.modal-next strong { color: #3b82f6; }
+
+footer { margin-top: 32px; font-size: 11px; color: #9ca3af; border-top: 1px solid #e5e7eb; padding-top: 16px; }
 </style>
 </head>
 <body>
@@ -42,108 +112,242 @@ footer { margin-top: 28px; font-size: 11px; color: #9ca3af; }
   <div class="hd">
     <div class="hd-tag">AI 티미팅 세션 · 셔클 사업화 아이디어</div>
     <div class="hd-title">자율주행 시대, 셔클이 할 수 있는 것들</div>
-    <div class="hd-sub">모빌리티플랫폼기획팀 전략기획파트 · 2026.08</div>
+    <div class="hd-sub">모빌리티플랫폼기획팀 전략기획파트 · 2026.08 · 원을 클릭하면 상세 내용이 나옴</div>
   </div>
 
-  <div class="lanes">
-
-    <div class="now">
-      <div class="lane-head">즉시</div>
-
-      <div class="card">
-        <div class="card-num">①</div>
-        <div class="card-title">AI 콜에이전트 전국 표준화</div>
-        <div class="card-desc">보령 PoC → 전국 89개 군 지자체 B2G 패키지. 앱 없이 전화 한 통으로 호출.</div>
+  <!-- 즉시 -->
+  <div class="lane now">
+    <div class="lane-label">
+      <span class="lane-badge">즉시</span>
+      <div class="lane-line"></div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble" onclick="open(0)">
+        <div class="bubble-num">①</div>
+        <div class="bubble-title">AI 콜에이전트 전국 표준화</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">②</div>
-        <div class="card-title">서울시 AV 플랫폼 3차 공모</div>
-        <div class="card-desc">관제·비상대응·사고조사까지 책임지는 플랫폼. 경찰청 KADIF 연동. 운수사 단계적 독립 운영.</div>
+      <div class="bubble" onclick="open(1)">
+        <div class="bubble-num">②</div>
+        <div class="bubble-title">서울시 AV 플랫폼 3차 공모</div>
       </div>
     </div>
+  </div>
 
-    <div class="short">
-      <div class="lane-head">단기</div>
-
-      <div class="card">
-        <div class="card-num">③</div>
-        <div class="card-title">관광교통 통합플랫폼</div>
-        <div class="card-desc">문체부 연계. 이동+관광+숙박 원스톱. 현대카드·PRIVIA·Pleos Connect 탑재.</div>
+  <!-- 단기 -->
+  <div class="lane short">
+    <div class="lane-label">
+      <span class="lane-badge">단기</span>
+      <div class="lane-line"></div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble" onclick="open(2)">
+        <div class="bubble-num">③</div>
+        <div class="bubble-title">관광교통 통합플랫폼</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑬</div>
-        <div class="card-title">면허 반납 연계 온보딩</div>
-        <div class="card-desc">고령자 면허 반납 시 셔클 콜에이전트 등록 + 이용권 제공. 마케팅 비용 없이 DB 확보.</div>
+      <div class="bubble" onclick="open(3)">
+        <div class="bubble-num">⑬</div>
+        <div class="bubble-title">면허 반납 연계 온보딩</div>
       </div>
     </div>
+  </div>
 
-    <div class="mid">
-      <div class="lane-head">중기</div>
-
-      <div class="card">
-        <div class="card-num">④</div>
-        <div class="card-title">교통취약지역 로보택시</div>
-        <div class="card-desc">농촌·취약지역 AV 투입. 카카오 비진입 영역. 농식품부·국토부 R&D 연계.</div>
+  <!-- 중기 -->
+  <div class="lane mid">
+    <div class="lane-label">
+      <span class="lane-badge">중기</span>
+      <div class="lane-line"></div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble" onclick="open(4)">
+        <div class="bubble-num">④</div>
+        <div class="bubble-title">교통취약지역 로보택시</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑤</div>
-        <div class="card-title">이동 데이터 B2G SaaS</div>
-        <div class="card-desc">이동 패턴 대시보드 + 월별 리포트를 지자체 구독 상품으로 전환.</div>
+      <div class="bubble" onclick="open(5)">
+        <div class="bubble-num">⑤</div>
+        <div class="bubble-title">이동 데이터 B2G SaaS</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑥</div>
-        <div class="card-title">인비히클 서비스</div>
-        <div class="card-desc">AV 탑승 시간을 소비 공간으로. 현대카드·인포 맛집·PRIVIA 연동.</div>
+      <div class="bubble" onclick="open(6)">
+        <div class="bubble-num">⑥</div>
+        <div class="bubble-title">인비히클 서비스</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑨</div>
-        <div class="card-title">AV 기술 검증 컨설팅</div>
-        <div class="card-desc">EU·일본 사례 기반 검증 항목을 지자체 대상 컨설팅 상품으로.</div>
+      <div class="bubble" onclick="open(7)">
+        <div class="bubble-num">⑨</div>
+        <div class="bubble-title">AV 기술 검증 컨설팅</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑩</div>
-        <div class="card-title">이동·차량 데이터 기반 보험</div>
-        <div class="card-desc">현대해상·삼성화재 협업. UBI / 교통약자 안심보험 / AV 운행 책임보험.</div>
+      <div class="bubble" onclick="open(8)">
+        <div class="bubble-num">⑩</div>
+        <div class="bubble-title">이동·차량 데이터 기반 보험</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑪</div>
-        <div class="card-title">AV 세차·정비 인프라</div>
-        <div class="card-desc">자율주행 최대 비용이 세차. 현대글로비스·블루핸즈 파트너십으로 운수사 락인.</div>
+      <div class="bubble" onclick="open(9)">
+        <div class="bubble-num">⑪</div>
+        <div class="bubble-title">AV 세차·정비 인프라</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑫</div>
-        <div class="card-title">기사 → AV 관제사 전환 교육</div>
-        <div class="card-desc">일자리 잃는 기사를 셔클 관제사로 재교육. 고용노동부 사업 연계.</div>
+      <div class="bubble" onclick="open(10)">
+        <div class="bubble-num">⑫</div>
+        <div class="bubble-title">기사 → AV 관제사 전환 교육</div>
       </div>
     </div>
+  </div>
 
-    <div class="long">
-      <div class="lane-head">장기</div>
-
-      <div class="card">
-        <div class="card-num">⑦</div>
-        <div class="card-title">유휴차량 공유 플랫폼</div>
-        <div class="card-desc">P2P 전 단계. 현대차 차량 + 셔클 플랫폼 + 현대캐피탈 금융 묶음.</div>
+  <!-- 장기 -->
+  <div class="lane long">
+    <div class="lane-label">
+      <span class="lane-badge">장기</span>
+      <div class="lane-line"></div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble" onclick="open(11)">
+        <div class="bubble-num">⑦</div>
+        <div class="bubble-title">유휴차량 공유 플랫폼</div>
       </div>
-
-      <div class="card">
-        <div class="card-num">⑧</div>
-        <div class="card-title">해외 DRT 수출 (인도)</div>
-        <div class="card-desc">한국 검증 모델을 HMG 현지 제조 기반 신흥국에 이식. 인도 워크샵 진행 중.</div>
+      <div class="bubble" onclick="open(12)">
+        <div class="bubble-num">⑧</div>
+        <div class="bubble-title">해외 DRT 수출 (인도)</div>
       </div>
     </div>
-
   </div>
 
   <footer>모빌리티플랫폼기획팀 전략기획파트 · AI 티미팅 세션 · 2026.08</footer>
 </div>
+
+<!-- 모달 -->
+<div class="modal-bg" id="modalBg" onclick="closeBg(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="close()">✕</button>
+    <div id="modal-badge" class="modal-badge"></div>
+    <div id="modal-title" class="modal-title"></div>
+    <div id="modal-status" class="modal-status"></div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-tags" class="modal-tags"></div>
+    <div id="modal-next" class="modal-next"></div>
+  </div>
+</div>
+
+<script>
+const DATA = [
+  {
+    badge: '즉시', bc: '#fee2e2', tc: '#991b1b',
+    title: 'AI 콜에이전트 — 전국 표준 모델 설계 후 확산',
+    status: '현황: 보령 PoC 진행 중',
+    body: '단순 기능이 아니라 전국 어디서나 동일하게 적용 가능한 표준 패키지로 설계하는 게 핵심. 상품 구성: AI 콜에이전트 + DRT 운영 + 월별 데이터 리포트. 표준 검증 항목: 호출 성공률 / 대화 효율 / 오류 회복률 / 정류장 인식 정확도. 지자체 도입 단계: PoC(2개월) → 시범운영(6개월) → 정식계약. 타깃: 고령화율 상위 군 단위 지자체 (전국 89개 군).',
+    tags: [{t:'B2G', c:'#d1fae5', tc:'#065f46'},{t:'교통약자', c:'#dbeafe', tc:'#1e40af'},{t:'농식품부 연계', c:'#fef3c7', tc:'#92400e'}],
+    next: 'PoC 지표 정리 → 타 지자체 제안서 템플릿화 → 농식품부 AI 상용화 사업 예산 연계'
+  },
+  {
+    badge: '즉시', bc: '#fee2e2', tc: '#991b1b',
+    title: '서울시 자율주행 플랫폼 3차 공모 — 책임 체계 재정의',
+    status: '현황: 공모 준비 중 + 경찰청 관제 협력 논의 중',
+    body: '카카오(중개만 하고 운영 단 책임 회피)와 달리 관제·비상대응·사고조사까지 책임지는 플랫폼으로 차별화. 경찰청 통합관제 플랫폼(KADIF)과 데이터 연동 → 이상상황 협력 시나리오 구축. 단계별 책임 이관: 셔클 관제 → 운수사 자체 관제로 점진적 이전. 1차(42dot)·2차(카카오) 모두 실패 → 3차는 운수사 주도 운영이 목표.',
+    tags: [{t:'B2G', c:'#dbeafe', tc:'#1e40af'},{t:'카카오 대체', c:'#fee2e2', tc:'#991b1b'},{t:'경찰청 협력', c:'#ede9fe', tc:'#5b21b6'}],
+    next: '경찰청 관제 연동 시나리오 포함 제안서 완성 + 셔클 앱 홍보 강화'
+  },
+  {
+    badge: '단기', bc: '#fef3c7', tc: '#92400e',
+    title: '관광교통 통합플랫폼 (문체부 연계)',
+    status: '현황: 초광역 관광교통 통합플랫폼 구축 용역 진행 중. 워커힐 B2B 실증 개발 중 (8월말 오픈 예정).',
+    body: '이동 + 관광 정보 + 숙박을 하나로 연결하는 플랫폼. 우버의 Travel Mode와 방향은 같지만 한국 관광지 특화 + B2G 구조로 차별화. 현대카드·현대호텔·PRIVIA·인포 맛집 데이터와 연계 시 HMG 생태계 내 락인 구조 형성. Pleos Connect 연동 → 네이버지도·현대카드 멤버십 자동 연결. 검증 지표: 탑승률 / 관광 소비 연계율 / 재이용률.',
+    tags: [{t:'문체부', c:'#fef3c7', tc:'#92400e'},{t:'HMG 연계', c:'#ede9fe', tc:'#5b21b6'},{t:'Pleos', c:'#dbeafe', tc:'#1e40af'}],
+    next: '워커힐·현대호텔·PRIVIA 파트너십 기반으로 파일럿 설계'
+  },
+  {
+    badge: '단기', bc: '#fef3c7', tc: '#92400e',
+    title: '고령자 면허 반납 연계 셔클 온보딩',
+    status: '현황: 아이디어 단계 (사업개발파트 씽크업 — 고령자 면허 반납사업 논의 중)',
+    body: '고령자가 운전면허를 자진 반납할 때 셔클 콜에이전트 등록 + 이용권을 인센티브로 제공하는 프로그램. 면허를 반납하면 이동 수단이 사라지는 불안감이 가장 큰 반납 장벽인데, 셔클이 그 공백을 채우는 구조. 운영 방식: 경찰청·지자체 면허 반납 창구와 셔클 등록 연계. 인센티브: 반납 시 셔클 이용권 N회 제공 + 콜에이전트 자동 가입. 고령자 신규 이용자 대규모 유입 — 마케팅 비용 없이 DB 확보. "면허 반납해도 이동 걱정 없다" 사회 메시지 → 언론·정책 노출 효과.',
+    tags: [{t:'고령자', c:'#dbeafe', tc:'#1e40af'},{t:'경찰청 협력', c:'#d1fae5', tc:'#065f46'}],
+    next: '경찰청 교통안전과 협력 이슈 연계 → 면허 반납 연계 파일럿 지자체 1곳 선정'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '교통취약지역 로보택시 (농촌·지방 특화)',
+    status: '현황: 논의 중 (국토부 교통취약지역 과제 연계)',
+    body: '농촌·교통취약지역에 자율주행 차량 투입. 카카오가 수익성 없어 진입하지 않는 영역. 농식품부 AI 응용제품 사업 + 국토부 지역특화 자율주행 R&D와 연계. B2G 영업 DNA + 교통약자 서비스 운영 경험. 콜에이전트(전화 호출)와 결합 시 앱 없이 자율주행 차 호출 가능. 지자체 입장에서 운수사 구하기 어려운 지역 → 현대차가 직접 운영 가능.',
+    tags: [{t:'B2G', c:'#d1fae5', tc:'#065f46'},{t:'농촌 특화', c:'#dbeafe', tc:'#1e40af'},{t:'국토부 R&D', c:'#fef3c7', tc:'#92400e'}],
+    next: '광주 자율주행 실증 이후 농촌 지역 확장 시나리오 수립'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '이동 데이터 관제 솔루션 — 지자체 구매형 SaaS',
+    status: '현황: 지역 교통 분석 고도화 진행 중 (대중교통 접근성 분석, POI 히트맵)',
+    body: '이미 개발 중인 분석 기능을 지자체가 직접 구독하는 B2G SaaS 상품으로 전환. 상품: 이동 패턴 대시보드 + 월별 리포트 + 취약 구간 알림. 활용: 복지 예산 배분 / 교통 정책 수립 / DRT 노선 최적화. 가격: 지자체 인구 규모별 구독 요금. 확장: 특정 지역 → 표준화 → 타 지자체 복제 가능한 구조. 장기적으로 항저우 시티브레인처럼 도시 운영 데이터 인프라로 확장. 전제 조건: 개인정보 최소화 + 동의 구조 선설계.',
+    tags: [{t:'데이터', c:'#dbeafe', tc:'#1e40af'},{t:'SaaS', c:'#d1fae5', tc:'#065f46'},{t:'개인정보 선설계', c:'#f3f4f6', tc:'#374151'}],
+    next: '현재 분석 기능 → 상품 정의서 작성 (insight.shucle.com 고도화)'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '인비히클 서비스 (자율주행 공간 활용)',
+    status: '현황: 아이디어 단계 (로보버스·로보셔틀 실증과 병행)',
+    body: '자율주행 전환 시 운전에서 해방된 탑승 시간을 새로운 소비 공간으로. HMG 자산과 연결하면 경쟁사가 따라오기 어려운 구조. 연결 가능한 HMG 자산: 현대카드 멤버십(탑승 중 결제·할인) / 인포 맛집 로드(목적지 맛집 추천·예약) / 현대호텔·PRIVIA(체크인 연동 자동 픽업) / 현대차 카메라·센서(차내 공기질·취향 데이터 수집). Pleos Connect 내 26개 파트너사 연동 구조 활용.',
+    tags: [{t:'HMG 생태계', c:'#ede9fe', tc:'#5b21b6'},{t:'Pleos', c:'#dbeafe', tc:'#1e40af'},{t:'인비히클', c:'#d1fae5', tc:'#065f46'}],
+    next: '로보버스·로보셔틀 내 인비히클 서비스 기획 시작'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '자율주행 기술 검증 체계 → B2G 컨설팅 상품',
+    status: '현황: EU·일본 사례 기반 검증 항목 설계 중',
+    body: 'EU·일본 사례 기반으로 설계한 자율주행 기술 검증 항목을 지자체·공공기관이 구매하는 컨설팅 상품으로 전환. 상품: 자율주행 도입 가능성 평가 리포트 + 단계별 로드맵. 타깃: AV 도입 검토 중인 지자체, 국토부 R&D 과제 참여 기관. 강점: 광주 실증 운영 경험 기반 → 실제 데이터로 검증된 기준. 확장: 평가 기준 표준화 → 정부 가이드라인으로 채택 가능성.',
+    tags: [{t:'B2G', c:'#d1fae5', tc:'#065f46'},{t:'표준화', c:'#dbeafe', tc:'#1e40af'},{t:'광주 실증', c:'#fef3c7', tc:'#92400e'}],
+    next: '광주 실증 데이터 → 평가 리포트 초안 작성'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '이동·차량 데이터 기반 보험 상품 공동 개발',
+    status: '협력사: 현대해상, 삼성화재 · 현황: 협업 진행 중',
+    body: '① UBI (주행 데이터 기반 맞춤 보험) — 운행 거리·시간대·노선 위험도 데이터를 보험사에 제공 → 개인화된 보험료 산정. 안전 노선·저빈도 이용자 보험료 할인. ② 교통약자 이동 안심 보험 — 셔클 앱/콜에이전트로 예약 시 자동 단기 보험 가입. 지자체 복지 예산으로 일괄 가입 구조도 가능. ③ 자율주행 운행 책임 보험 — AV 사고 시 책임 소재가 현재 공백. 셔클 관제 로그 → 사고 원인 규명 근거 데이터 제공.',
+    tags: [{t:'현대해상', c:'#fee2e2', tc:'#991b1b'},{t:'삼성화재', c:'#fee2e2', tc:'#991b1b'},{t:'UBI', c:'#dbeafe', tc:'#1e40af'}],
+    next: '보험사와 데이터 제공 범위·비식별화 기준 협의 → 시범 상품 설계'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: 'AV 세차·정비 인프라 운영',
+    status: '현황: 아이디어 단계 (1차 세션 — "자율주행에서 가장 큰 비용이 세차")',
+    body: 'AV 시대에 운수사의 가장 큰 고민은 차량 관리. 기사가 없으면 세차·점검·충전을 누가 하는지가 운영 비용의 핵심. 셔클이 이 영역을 직접 운영하거나 파트너사와 연결하면 차량만 있으면 셔클 하나로 AV 사업 전체를 운영할 수 있는 구조가 완성. 상품 구성: 세차·충전·정비·보관을 묶은 차량 관리 구독 서비스. 운영 방식: HMG 현대글로비스·블루핸즈 파트너십 or 셔클 직영 거점.',
+    tags: [{t:'현대글로비스', c:'#ede9fe', tc:'#5b21b6'},{t:'블루핸즈', c:'#d1fae5', tc:'#065f46'},{t:'운수사 락인', c:'#dbeafe', tc:'#1e40af'}],
+    next: '광주 실증 운수사 대상 차량 관리 니즈 인터뷰 → 서비스 범위 정의'
+  },
+  {
+    badge: '중기', bc: '#dbeafe', tc: '#1e40af',
+    title: '기사 → AV 관제사 전환 교육 프로그램',
+    status: '현황: 아이디어 단계 (2차 세션 — "AI로 대체되는 직군에 대해 셔클이 할 수 있는 역할")',
+    body: '자율주행 전환으로 일자리를 잃는 기사들을 셔클 관제사·운영 매니저로 재교육하는 프로그램. 기사는 도로와 지역을 가장 잘 아는 사람들로, AV 관제에 필요한 현장 감각을 이미 보유. 교육 내용: AV 모니터링·이상상황 대응·고객 응대·데이터 리포팅. 국토부·고용노동부 재취업 지원사업 연계 → 교육비 정부 지원. 사회적 명분 확보 + 지자체·정부 협력 유리한 고지.',
+    tags: [{t:'고용노동부', c:'#fef3c7', tc:'#92400e'},{t:'사회적 가치', c:'#f3f4f6', tc:'#374151'},{t:'현장 인력 내재화', c:'#d1fae5', tc:'#065f46'}],
+    next: '기사 커뮤니티 니즈 파악 → 고용노동부 재취업 사업 연계 검토'
+  },
+  {
+    badge: '장기', bc: '#f3f4f6', tc: '#374151',
+    title: '유휴차량 공유 플랫폼 (P2P 전 단계)',
+    status: '현황: 아이디어 단계 (2차 세션 논의)',
+    body: '차량 소유 필요성 감소 트렌드에서, 개인 차량을 셔클이 중개해 공유하는 서비스. 캐나다 Turo(렌트카 에어비앤비)와 유사하나 현대차 차량 + 셔클 플랫폼 + 현대캐피탈 금융 묶음으로 차별화. 시나리오: 기업 통근 셔틀로 낮에만 쓰는 차량 → 저녁 개인 공유 / 현대차 신차 구매 고객 → 미사용 시간 셔클 플랫폼에 등록 유도 / 현대캐피탈 할부 구매 고객의 공유 수익으로 할부금 보조.',
+    tags: [{t:'현대캐피탈', c:'#ede9fe', tc:'#5b21b6'},{t:'P2P', c:'#f3f4f6', tc:'#374151'},{t:'현대해상 보험', c:'#fee2e2', tc:'#991b1b'}],
+    next: '현대캐피탈 협업 가능성 검토 + 보험 구조 설계 (현대해상 연계)'
+  },
+  {
+    badge: '장기', bc: '#f3f4f6', tc: '#374151',
+    title: '해외 DRT 플랫폼 수출 (인도 우선)',
+    status: '현황: 인도 권역본부 3차 실무 워크샵 진행 중. 인도 DRT 요금제·규제 검토 중.',
+    body: '한국에서 검증된 DRT 운영 모델 + 셔클 플랫폼을 HMG 현지 제조 기반이 있는 신흥국에 수출. 인도는 대중교통 공백 지역이 넓고, HMG 현지 공장이 있어 차량 수급도 유리. 한국 모델: 지자체 계약 → 셔클 운영 → 데이터 리포트 → 갱신. 해외에서 현대자동차의 인지도는 그 어떤 경쟁사보다 높을 수 있음.',
+    tags: [{t:'인도', c:'#dbeafe', tc:'#1e40af'},{t:'HMG 글로벌', c:'#ede9fe', tc:'#5b21b6'},{t:'DRT 수출', c:'#d1fae5', tc:'#065f46'}],
+    next: '표준 운영 모델 문서화 → 인도 현지 PoC 설계'
+  }
+];
+
+function open(i) {
+  const d = DATA[i];
+  document.getElementById('modal-badge').textContent = d.badge;
+  document.getElementById('modal-badge').style.background = d.bc;
+  document.getElementById('modal-badge').style.color = d.tc;
+  document.getElementById('modal-title').textContent = d.title;
+  document.getElementById('modal-status').textContent = d.status;
+  document.getElementById('modal-body').textContent = d.body;
+  document.getElementById('modal-tags').innerHTML = d.tags.map(t =>
+    `<span class="modal-tag" style="background:${t.c};color:${t.tc}">${t.t}</span>`
+  ).join('');
+  document.getElementById('modal-next').innerHTML = `<strong>Next Step</strong>&nbsp;&nbsp;${d.next}`;
+  document.getElementById('modalBg').classList.add('open');
+}
+function close() { document.getElementById('modalBg').classList.remove('open'); }
+function closeBg(e) { if (e.target === document.getElementById('modalBg')) close(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+</script>
 </body>
 </html>
