@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>셔클 사업화 아이디어 — AI 티미팅 세션</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif; background: #f4f6f9; color: #1a1a2e; word-break: keep-all; overflow-wrap: break-word; }
+
+.page { max-width: 1120px; margin: 0 auto; padding: 40px 32px 60px; }
+
+/* 헤더 */
+.hd { margin-bottom: 32px; }
+.hd-tag { font-size: 11px; font-weight: 700; color: #3b82f6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.hd-title { font-size: 22px; font-weight: 800; color: #0d1b2a; margin-bottom: 6px; }
+.hd-q { font-size: 13px; color: #6b7280; line-height: 1.6; }
+.hd-meta { margin-top: 10px; font-size: 11px; color: #9ca3af; }
+
+/* 범례 */
+.legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #374151; font-weight: 600; }
+.leg-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* 레인 레이아웃 */
+.lanes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+.lane-head { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 7px 12px; border-radius: 6px; margin-bottom: 10px; }
+.lane-now  .lane-head { background: #fee2e2; color: #991b1b; }
+.lane-short .lane-head { background: #fef3c7; color: #92400e; }
+.lane-mid  .lane-head { background: #dbeafe; color: #1e40af; }
+.lane-long .lane-head { background: #f3f4f6; color: #374151; }
+
+/* 카드 */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  border-left: 3px solid #e5e7eb;
+  position: relative;
+}
+.lane-now  .card { border-left-color: #ef4444; }
+.lane-short .card { border-left-color: #f59e0b; }
+.lane-mid  .card { border-left-color: #3b82f6; }
+.lane-long .card { border-left-color: #9ca3af; }
+
+.card-num { font-size: 10px; font-weight: 800; color: #9ca3af; margin-bottom: 4px; }
+.card-title { font-size: 13px; font-weight: 800; color: #0d1b2a; line-height: 1.4; margin-bottom: 6px; }
+.card-desc { font-size: 11.5px; color: #6b7280; line-height: 1.6; margin-bottom: 8px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
+.tag-blue   { background: #dbeafe; color: #1e40af; }
+.tag-green  { background: #d1fae5; color: #065f46; }
+.tag-purple { background: #ede9fe; color: #5b21b6; }
+.tag-amber  { background: #fef3c7; color: #92400e; }
+.tag-red    { background: #fee2e2; color: #991b1b; }
+.tag-gray   { background: #f3f4f6; color: #374151; }
+
+.card-next { margin-top: 8px; padding-top: 8px; border-top: 1px solid #f3f4f6; font-size: 10.5px; color: #374151; }
+.card-next span { font-weight: 700; color: #3b82f6; margin-right: 4px; }
+
+/* 포지셔닝 블록 */
+.position-box {
+  background: #0d1b2a;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.pos-item { flex: 1; min-width: 200px; }
+.pos-label { font-size: 10px; font-weight: 700; color: #3b82f6; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.pos-text { font-size: 13px; color: #e2e8f0; line-height: 1.6; font-weight: 600; }
+
+/* 구분선 */
+.divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+
+/* 데이터 플라이휠 */
+.flywheel { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); margin-bottom: 12px; }
+.fly-title { font-size: 12px; font-weight: 800; color: #374151; margin-bottom: 14px; }
+.fly-steps { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+.fly-step { text-align: center; padding: 12px 16px; border-radius: 8px; min-width: 140px; flex: 1; }
+.fly-arrow { font-size: 18px; color: #d1d5db; padding: 0 4px; flex-shrink: 0; }
+.fly-step-title { font-size: 11px; font-weight: 800; margin-bottom: 3px; }
+.fly-step-sub { font-size: 10px; color: #6b7280; }
+
+footer { font-size: 11px; color: #9ca3af; padding-top: 24px; border-top: 1px solid #e5e7eb; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 헤더 -->
+  <div class="hd">
+    <div class="hd-tag">AI 티미팅 세션 · 셔클 사업화 아이디어</div>
+    <div class="hd-title">자율주행 시대, 셔클이 할 수 있는 것들</div>
+    <div class="hd-q">"AI 에이전트의 발전이 플랫폼 기업을 위협할 거라는 불안감이 있는데, 우리는 무엇을 경쟁력으로 할 수 있을지?"</div>
+    <div class="hd-meta">모빌리티플랫폼기획팀 전략기획파트 · 2026.08</div>
+  </div>
+
+  <!-- 포지셔닝 -->
+  <div class="position-box">
+    <div class="pos-item">
+      <div class="pos-label">셔클의 포지셔닝</div>
+      <div class="pos-text">운수사·지자체가 AV를 직접 운영할 수 있도록 차량·데이터·플랫폼을 통합 제공하는 <span style="color:#3b82f6;">AV 운영 인프라.</span></div>
+    </div>
+    <div class="pos-item">
+      <div class="pos-label">카카오와의 차이</div>
+      <div class="pos-text">카카오는 기사 네트워크 기반 → AV 전환 시 강점 소멸.<br>셔클은 지킬 기사 네트워크 없음 → <span style="color:#10b981;">동등한 출발선.</span></div>
+    </div>
+    <div class="pos-item">
+      <div class="pos-label">Key Risk</div>
+      <div class="pos-text">에이전트가 이동수단을 고를 때 플랫폼 UI가 아닌 <span style="color:#f87171;">API 신뢰도</span>가 경쟁력이 됨.</div>
+    </div>
+  </div>
+
+  <!-- 범례 -->
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#ef4444;"></div>즉시</div>
+    <div class="leg"><div class="leg-dot" style="background:#f59e0b;"></div>단기</div>
+    <div class="leg"><div class="leg-dot" style="background:#3b82f6;"></div>중기</div>
+    <div class="leg"><div class="leg-dot" style="background:#9ca3af;"></div>장기</div>
+  </div>
+
+  <!-- 레인 -->
+  <div class="lanes">
+
+    <!-- 즉시 -->
+    <div class="lane lane-now">
+      <div class="lane-head">즉시</div>
+
+      <div class="card">
+        <div class="card-num">① </div>
+        <div class="card-title">AI 콜에이전트 전국 표준화</div>
+        <div class="card-desc">보령 PoC → 전국 89개 군 단위 지자체 대상 B2G 패키지 상품화. 앱 없이 전화 한 통으로 차 호출.</div>
+        <div class="card-tags">
+          <span class="tag tag-green">B2G</span>
+          <span class="tag tag-blue">교통약자</span>
+          <span class="tag tag-amber">농식품부 연계</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>PoC 지표 → 제안서 템플릿화</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">②</div>
+        <div class="card-title">서울시 AV 플랫폼 3차 공모</div>
+        <div class="card-desc">카카오(중개만)와 달리 관제·비상대응·사고조사까지 책임. 경찰청 KADIF 연동. 운수사 독립 운영 단계적 이관.</div>
+        <div class="card-tags">
+          <span class="tag tag-blue">B2G</span>
+          <span class="tag tag-red">카카오 대체</span>
+          <span class="tag tag-purple">경찰청 협력</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>제안서 완성 + 앱 홍보 강화</div>
+      </div>
+    </div>
+
+    <!-- 단기 -->
+    <div class="lane lane-short">
+      <div class="lane-head">단기</div>
+
+      <div class="card">
+        <div class="card-num">③</div>
+        <div class="card-title">관광교통 통합플랫폼</div>
+        <div class="card-desc">문체부 연계. 이동+관광+숙박 원스톱. 현대카드·PRIVIA·인포 맛집 연동. Pleos Connect 탑재.</div>
+        <div class="card-tags">
+          <span class="tag tag-amber">문체부</span>
+          <span class="tag tag-purple">HMG 연계</span>
+          <span class="tag tag-green">관광지 특화</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>워커힐 파일럿 설계 (8월 오픈)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑬</div>
+        <div class="card-title">면허 반납 연계 온보딩</div>
+        <div class="card-desc">고령자 면허 반납 시 셔클 콜에이전트 등록 + 이용권 제공. 경찰청·지자체 창구 연계. 마케팅 비용 없이 DB 확보.</div>
+        <div class="card-tags">
+          <span class="tag tag-blue">고령자</span>
+          <span class="tag tag-green">경찰청 협력</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>파일럿 지자체 1곳 선정</div>
+      </div>
+    </div>
+
+    <!-- 중기 -->
+    <div class="lane lane-mid">
+      <div class="lane-head">중기</div>
+
+      <div class="card">
+        <div class="card-num">④</div>
+        <div class="card-title">교통취약지역 로보택시</div>
+        <div class="card-desc">농촌·취약지역 AV 투입. 카카오 비진입 영역. 콜에이전트 결합 → 앱 없이 AV 호출. 농식품부·국토부 R&D 연계.</div>
+        <div class="card-tags">
+          <span class="tag tag-green">B2G</span>
+          <span class="tag tag-blue">농촌 특화</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>광주 실증 이후 확장 시나리오</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑤</div>
+        <div class="card-title">이동 데이터 B2G SaaS</div>
+        <div class="card-desc">이동 패턴 대시보드 + 월별 리포트를 지자체 구독 상품으로. 복지 예산 배분·교통 정책 수립에 활용.</div>
+        <div class="card-tags">
+          <span class="tag tag-blue">데이터</span>
+          <span class="tag tag-green">SaaS</span>
+          <span class="tag tag-gray">개인정보 선설계</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>상품 정의서 작성</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑥</div>
+        <div class="card-title">인비히클 서비스</div>
+        <div class="card-desc">AV 탑승 시간을 소비 공간으로. 현대카드·인포 맛집·PRIVIA·차내 공기질 데이터. Pleos 26개 파트너 연동.</div>
+        <div class="card-tags">
+          <span class="tag tag-purple">HMG 생태계</span>
+          <span class="tag tag-blue">Pleos</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>로보버스 실증과 병행 기획</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑨</div>
+        <div class="card-title">AV 기술 검증 컨설팅</div>
+        <div class="card-desc">EU·일본 사례 기반 검증 항목을 지자체·공공기관 대상 컨설팅 상품으로. 광주 실증 데이터가 강점.</div>
+        <div class="card-tags">
+          <span class="tag tag-green">B2G</span>
+          <span class="tag tag-blue">표준화</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>평가 리포트 초안 작성</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑩</div>
+        <div class="card-title">이동·차량 데이터 기반 보험</div>
+        <div class="card-desc">현대해상·삼성화재 협업. UBI / 교통약자 안심보험 / AV 운행 책임보험 3종. 관제 로그로 사고 책임 근거 제공.</div>
+        <div class="card-tags">
+          <span class="tag tag-red">현대해상</span>
+          <span class="tag tag-red">삼성화재</span>
+          <span class="tag tag-blue">UBI</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>데이터 제공 범위 협의</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑪</div>
+        <div class="card-title">AV 세차·정비 인프라</div>
+        <div class="card-desc">자율주행 최대 비용이 세차. 셔클이 직접 운영하면 운수사 락인 강화. 현대글로비스·블루핸즈 파트너십 활용.</div>
+        <div class="card-tags">
+          <span class="tag tag-purple">HMG</span>
+          <span class="tag tag-green">운수사 락인</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>광주 운수사 니즈 인터뷰</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑫</div>
+        <div class="card-title">기사 → AV 관제사 전환 교육</div>
+        <div class="card-desc">AV로 일자리 잃는 기사를 셔클 관제사로 재교육. 고용노동부 재취업 사업 연계. 사회적 명분 + 현장 인력 내재화.</div>
+        <div class="card-tags">
+          <span class="tag tag-amber">고용노동부</span>
+          <span class="tag tag-gray">사회적 가치</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>기사 커뮤니티 니즈 파악</div>
+      </div>
+    </div>
+
+    <!-- 장기 -->
+    <div class="lane lane-long">
+      <div class="lane-head">장기</div>
+
+      <div class="card">
+        <div class="card-num">⑦</div>
+        <div class="card-title">유휴차량 공유 플랫폼</div>
+        <div class="card-desc">Turo 유사 P2P 전 단계. 현대차 차량 + 셔클 플랫폼 + 현대캐피탈 금융 묶음. 할부금 보조 구조.</div>
+        <div class="card-tags">
+          <span class="tag tag-purple">현대캐피탈</span>
+          <span class="tag tag-gray">P2P</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>현대캐피탈 협업 가능성 검토</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">⑧</div>
+        <div class="card-title">해외 DRT 수출 (인도)</div>
+        <div class="card-desc">한국 검증 모델을 HMG 현지 제조 기반 신흥국에 이식. 인도 대중교통 공백 지역 타깃. 인도 권역본부 워크샵 진행 중.</div>
+        <div class="card-tags">
+          <span class="tag tag-blue">인도</span>
+          <span class="tag tag-purple">HMG 글로벌</span>
+        </div>
+        <div class="card-next"><span>Next Step</span>현지 PoC 설계</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- 데이터 플라이휠 -->
+  <div class="flywheel">
+    <div class="fly-title">데이터 플라이휠 구조</div>
+    <div class="fly-steps">
+      <div class="fly-step" style="background:#eff6ff;">
+        <div class="fly-step-title" style="color:#1d4ed8;">콜에이전트 운영</div>
+        <div class="fly-step-sub">음성·이동 데이터 축적</div>
+      </div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-step" style="background:#f0fdf4;">
+        <div class="fly-step-title" style="color:#047857;">데이터 상품화</div>
+        <div class="fly-step-sub">보험·마케팅·복지 판매</div>
+      </div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-step" style="background:#fffbeb;">
+        <div class="fly-step-title" style="color:#b45309;">AV 실증 투자</div>
+        <div class="fly-step-sub">교통취약·관광·공항</div>
+      </div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-step" style="background:#fdf4ff;">
+        <div class="fly-step-title" style="color:#6d28d9;">AV 운영 데이터</div>
+        <div class="fly-step-sub">기술 검증·컨설팅</div>
+      </div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-step" style="background:#f8fafc;">
+        <div class="fly-step-title" style="color:#374151;">파트너 락인</div>
+        <div class="fly-step-sub">운수사·지자체·보험사</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>모빌리티플랫폼기획팀 전략기획파트 · AI 티미팅 세션 결과물 · 2026.08</footer>
+</div>
+</body>
+</html>
