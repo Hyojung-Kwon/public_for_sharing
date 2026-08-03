@@ -154,7 +154,7 @@ function switchCoType(type, btn) {
 </script>
 </head>
 <body> <header class="site-header"> <h1>글로벌 자율주행 플레이어 동향 및 사업 전략 리서치</h1> <p>모빌리티플랫폼기획팀 전략기획파트 | 2026.07 | v0.3</p>
-</header> <nav class="tab-nav"> <button class="tab-btn active" onclick="switchTab('market', this)">1. 글로벌 시장 개요</button> <button class="tab-btn" onclick="switchTab('robotaxi', this)">2. 로보택시 &amp; 로보셔틀 동향</button> <button class="tab-btn" onclick="switchTab('players', this)">3. 국가/기업별 추진 현황</button> <button class="tab-btn" onclick="switchTab('companies', this)">4. 기업별 상세 리서치</button> <button class="tab-btn" onclick="switchTab('korea', this)">5. 국내 자율주행 실증도시</button> <button class="tab-btn" onclick="switchTab('ops', this)">6. 관제·운영 플랫폼</button>
+</header> <nav class="tab-nav"> <button class="tab-btn active" onclick="switchTab('market', this)">1. 글로벌 시장 개요</button> <button class="tab-btn" onclick="switchTab('robotaxi', this)">2. 로보택시 &amp; 로보셔틀 동향</button> <button class="tab-btn" onclick="switchTab('players', this)">3. 국가/기업별 추진 현황</button> <button class="tab-btn" onclick="switchTab('companies', this)">4. 기업별 상세 리서치</button> <button class="tab-btn" onclick="switchTab('korea', this)">5. 국내 자율주행 실증도시</button> <button class="tab-btn" onclick="switchTab('ops', this)">6. 관제·운영 플랫폼</button> <button class="tab-btn" onclick="switchTab('aitm', this)">7. AI 티미팅 세션</button>
 </nav> <!-- ══════════════════════════════════════
      TAB 1: 글로벌 자율주행 시장 개요
 ══════════════════════════════════════ -->
@@ -1090,6 +1090,475 @@ function switchCoType(type, btn) {
 
  </div>
 </div></div>
+<!-- ══════════════════════════════════════
+     TAB 7: AI 티미팅 세션
+══════════════════════════════════════ -->
+<div id="aitm" class="tab-content">
+<div class="section-wrap">
+
+  <!-- 세션 컨텍스트 -->
+  <div style="background:#0d1b2a;border-radius:12px;padding:24px 28px;margin-bottom:28px;">
+    <div style="font-size:11px;font-weight:700;color:#3b82f6;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">AI 티미팅 세션 · 셔클의 다음 질문</div>
+    <div style="font-size:17px;font-weight:800;color:#fff;line-height:1.6;margin-bottom:12px;">"AI 에이전트의 발전이 플랫폼 기업을 위협할 거라는 불안감이 있는데,<br>우리는 무엇을 경쟁력으로 할 수 있을지?"</div>
+    <div style="font-size:13px;color:#94a3b8;line-height:1.7;">정답을 찾는 자리가 아닌, 셔클이 앞으로 어떤 방식으로 존재해야 하는지를 함께 고민하고 생각을 확장하는 세션. 직급·역할 무관 자유 의견 교환.</div>
+  </div>
+
+  <!-- 서브탭 -->
+  <div class="sub-tab-nav">
+    <button class="sub-tab-btn active" onclick="switchSubTab('aitm-research', this)">리서치 요약</button>
+    <button class="sub-tab-btn" onclick="switchSubTab('aitm-position', this)">셔클 포지셔닝</button>
+    <button class="sub-tab-btn" onclick="switchSubTab('aitm-biz', this)">사업화 아이디어</button>
+    <button class="sub-tab-btn" onclick="switchSubTab('aitm-data', this)">데이터 상품화</button>
+  </div>
+
+  <!-- ① 리서치 요약 -->
+  <div id="aitm-research" class="sub-tab-content active">
+
+    <div class="section-heading">Uber Go-Get 2026 핵심 전략</div>
+    <div style="font-size:12px;color:#6b7280;margin-bottom:12px;">발표일: 2026년 4월 29일 · CEO Dara Khosrowshahi · 핵심 방향: <strong>"앱 전환 마찰을 없애라"</strong></div>
+    <table style="margin-bottom:28px;">
+      <thead><tr><th>발표 내용</th><th>의미</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hotels on Uber</strong> (Expedia 700만+ 숙박)</td><td>이동 → 숙박까지 원스톱</td></tr>
+        <tr><td><strong>Travel Mode</strong> (OpenTable, 공항 컨시어지)</td><td>여행의 전 맥락을 앱 안에</td></tr>
+        <tr><td><strong>Shop for Me</strong> (비파트너 매장 포함)</td><td>오픈 커머스 에이전트</td></tr>
+        <tr><td><strong>Eats for the Way</strong> (탑승 중 음식 픽업)</td><td>이동 중 소비 행동 연결</td></tr>
+        <tr><td><strong>Voice Booking</strong> AI</td><td>에이전틱 인터페이스 선점</td></tr>
+        <tr><td><strong>One Search</strong></td><td>서비스 간 검색 통합</td></tr>
+        <tr><td><strong>Uber One 멤버십</strong></td><td>생태계 락인(lock-in) 엔진</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-heading">에이전틱 AI가 플랫폼에 가하는 위협의 본질</div>
+    <table style="margin-bottom:16px;">
+      <thead><tr><th>기존 플랫폼 모델</th><th>에이전틱 AI 이후</th></tr></thead>
+      <tbody>
+        <tr><td>유저가 앱을 연다</td><td>에이전트가 필요를 예측·실행</td></tr>
+        <tr><td>유저가 검색·탐색한다</td><td>에이전트가 큐레이션해서 제안</td></tr>
+        <tr><td>유저가 고객센터 연락</td><td>에이전트가 자율 해결</td></tr>
+        <tr><td>플랫폼이 이탈 후 반응</td><td>에이전트가 이탈 전 방어</td></tr>
+      </tbody>
+    </table>
+    <div style="background:#eff6ff;border-radius:10px;border-left:4px solid #3b82f6;padding:14px 18px;margin-bottom:28px;">
+      <div style="font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">진짜 위협</div>
+      <div style="font-size:13px;color:#1e3a5f;line-height:1.7;">유저가 "앱을 여는 행동" 자체가 사라질 수 있다. 에이전트가 대신 예약하고, 결제하고, 이동수단을 부르는 세상이 오면 — <strong>플랫폼의 유저 접점(UI/UX)은 에이전트의 API 호출로 대체된다.</strong></div>
+    </div>
+
+    <div class="section-heading">세션 핵심 논의</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#3b82f6;">
+        <div class="trend-tag">1차 세션</div>
+        <h3>우버 Go-Get 2026 리뷰 + 셔클 시사점</h3>
+        <p>우버 슈퍼앱 전략을 직접 보고 기능별 관찰·분석. "기존 앱들의 기능을 통합한 느낌이지만 실행한 건 우버가 먼저"라는 평가. B2G 고객 특성상 락인 구조가 다르고, HMG 자산 연결 방안과 데이터 축적 방식 논의. 카카오(중개·책임 회피)와 셔클(운수사 운영 지원·데이터 제공) 차별화 방향 도출.</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#8b5cf6;">
+        <div class="trend-tag">2차 세션</div>
+        <h3>자율주행 시대 셔클 역할 아이데이션</h3>
+        <p>차량 소유 필요성 감소와 유휴차량 공유 가능성 논의. 교통약자 이동 데이터 DB화 방안, AI로 대체되는 직군에 대한 셔클 역할, 지역 행동 데이터 센싱을 통한 취약계층 돌봄 가능성 탐색. 항저우 시티브레인·KBS 인재전쟁 다큐 레퍼런스 참고. 구체적인 시나리오 기록을 다음을 위한 생각거리로 남김.</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#10b981;">
+        <div class="trend-tag">핵심 질문</div>
+        <h3>SaaS 플랫폼으로서 계속 선택받으려면?</h3>
+        <p>MCP 구조 확장 시 유저 직접 접점이 소멸 가능. 결제·대출·이동이 하나로 통합되는 방향 → SaaS 기업 전반의 공통 위기. 관련 기업 주가 하락 이미 진행 중. 셔클의 핵심 질문: <strong>"에이전트가 이동수단을 고를 때, 왜 셔클을 선택해야 하는가?"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 셔클 포지셔닝 -->
+  <div id="aitm-position" class="sub-tab-content">
+
+    <div class="section-heading">카카오 vs 셔클 — 자율주행 전환점에서의 구도</div>
+    <table style="margin-bottom:16px;">
+      <thead><tr><th></th><th>카카오모빌리티</th><th>셔클 (현대차 모빌리티사업부)</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:#374151;">현재</td><td>기사 네트워크 + 앱 (독점적 락인)</td><td>후발주자, 네트워크 열세</td></tr>
+        <tr class="highlight"><td style="font-weight:700;color:#374151;">자율주행 이후</td><td>기사 없는 앱 <span class="badge badge-red">강점 소멸</span></td><td>동등한 출발선 + 선제 포지셔닝 가능 <span class="badge badge-green">기회</span></td></tr>
+      </tbody>
+    </table>
+    <div style="background:#fffbeb;border-radius:10px;border-left:4px solid #f59e0b;padding:14px 18px;margin-bottom:28px;font-size:13px;color:#374151;line-height:1.7;">
+      카카오는 기존 기사 조합과의 관계 때문에 AV 전환을 공격적으로 추진하기 어렵습니다. 셔클에겐 지킬 기사 네트워크가 없습니다. <strong>이것이 역설적 강점입니다.</strong>
+    </div>
+
+    <div class="section-heading">셔클의 포지셔닝</div>
+    <div style="background:#0d1b2a;border-radius:12px;padding:20px 24px;margin-bottom:28px;">
+      <div style="font-size:14px;font-weight:800;color:#fff;line-height:1.7;">셔클은 자율주행 시대에 <span style="color:#3b82f6;">운수사·지자체가 AV를 직접 운영할 수 있도록</span> 차량·데이터·플랫폼을 통합 제공하는 <span style="color:#3b82f6;">AV 운영 인프라</span>입니다.</div>
+      <div style="font-size:12px;color:#94a3b8;margin-top:10px;">유저를 모으는 플랫폼이 아니라, 에이전트가 가장 먼저 선택하는 이동 API이자 운수사가 AV 시대에 살아남을 수 있게 해주는 파트너.</div>
+    </div>
+
+    <div class="section-heading">AV 시대 셔클의 핵심 역할 3가지</div>
+    <div class="trend-grid" style="margin-bottom:28px;">
+      <div class="trend-card" style="border-left-color:#3b82f6;">
+        <div class="trend-tag">① AV 운영 플랫폼</div>
+        <h3>차량 관제·배차·정비·세차까지 원스톱</h3>
+        <p>운수사는 차량만 있으면 셔클을 통해 바로 AV 사업 시작 가능. 현대차만 줄 수 있는 번들: 차량(AS·정비) + 플랫폼 + 파이낸싱 원스톱.</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#8b5cf6;">
+        <div class="trend-tag">② 이동 맥락 데이터 보유자</div>
+        <h3>"언제, 어디서, 왜 이동하는가"를 가장 잘 아는 주체</h3>
+        <p>AV 에이전트가 이동을 처리할 때 셔클 데이터를 참조하는 구조. 지자체·복지기관에 이동 패턴 데이터를 제공하는 B2G 자산으로 진화.</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#10b981;">
+        <div class="trend-tag">③ 특화 버티컬의 표준 운영자</div>
+        <h3>공항·교통취약지역·관광·기업통근 4개 버티컬</h3>
+        <p>전국 모든 이동을 커버하려 하지 않고, 특정 맥락에서 압도적 운영 경험 축적. 에이전트는 "이 맥락에서 가장 신뢰할 수 있는 서비스"를 선택.</p>
+      </div>
+    </div>
+
+    <div class="section-heading">버티컬별 AV 시대 시나리오</div>
+    <table>
+      <thead><tr><th>버티컬</th><th>시나리오</th><th>지금 해야 할 것</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:#1d4ed8;">공항 셔틀</td><td>도착 게이트 연동 자동 배차 → 목적지까지 논스톱. 현대호텔·PRIVIA 체크인 시간 연동. AI 에이전트가 여행 예약 시 자동 포함.</td><td>공항 구간 데이터 축적 + 파트너십 계약</td></tr>
+        <tr><td style="font-weight:700;color:#047857;">교통취약지역</td><td>앱 없이 콜에이전트(전화)로 AV 호출. 기사 없어도 24시간 운영. 지자체가 예산으로 구매하는 복지 이동 서비스.</td><td>보령 PoC → 농촌 AV 실증 확장</td></tr>
+        <tr><td style="font-weight:700;color:#b45309;">관광 로보셔틀</td><td>제주·경주·강릉 전용 AV 노선. 인포 맛집 + 현대카드 멤버십 + 셔클 이동이 하나로. 문체부 관광교통 플랫폼 사업 병행.</td><td>워커힐 파트너십 → 관광지 파일럿 설계</td></tr>
+        <tr><td style="font-weight:700;color:#6d28d9;">기업 통근</td><td>고정 노선·고정 수요 → AV 도입 최적 조건. HR 시스템 연동, 비용 자동 정산. AV 전환 시 운영비 절감분을 기업에 환원.</td><td>판교·마곡 기업 셔틀 계약 선점</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ③ 사업화 아이디어 -->
+  <div id="aitm-biz" class="sub-tab-content">
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;">
+      <span style="font-size:12px;color:#6b7280;font-weight:600;">추진 단계:</span>
+      <span class="badge badge-red">즉시</span>
+      <span class="badge badge-amber">단기</span>
+      <span class="badge badge-blue">중기</span>
+      <span class="badge badge-gray">장기</span>
+    </div>
+
+    <!-- 1 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-red rev-tag">즉시</span>
+        <span class="rev-title">① AI 콜에이전트 — 전국 표준 모델 설계 후 확산</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 보령 PoC 진행 중</p>
+        <p style="margin-bottom:8px;">단순 기능이 아니라 <strong>전국 어디서나 동일하게 적용 가능한 표준 패키지</strong>로 설계하는 게 핵심. 상품 구성: AI 콜에이전트 + DRT 운영 + 월별 데이터 리포트. 표준 검증 항목: 호출 성공률 / 대화 효율 / 오류 회복률 / 정류장 인식 정확도. 지자체 도입 단계: PoC(2개월) → 시범운영(6개월) → 정식계약. 타깃: 고령화율 상위 군 단위 지자체 (전국 89개 군).</p>
+        <p><strong>Next Step:</strong> 보령 PoC 지표 정리 → 타 지자체 제안서 템플릿화 → 농식품부 AI 상용화 사업 예산 연계</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-red rev-tag">즉시</span>
+        <span class="rev-title">② 서울시 자율주행 플랫폼 3차 공모 — 책임 체계 재정의</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 공모 준비 중 + 경찰청 관제 협력 논의 중</p>
+        <p style="margin-bottom:8px;">카카오(중개만 하고 운영 단 책임 회피)와 달리 <strong>관제·비상대응·사고조사까지 책임지는 플랫폼</strong>으로 차별화. 경찰청 통합관제 플랫폼(KADIF)과 데이터 연동 → 이상상황 협력 시나리오 구축. 단계별 책임 이관: 셔클 관제 → 운수사 자체 관제로 점진적 이전. 1차(42dot)·2차(카카오) 모두 실패 → 3차는 운수사 주도 운영이 목표.</p>
+        <p><strong>Next Step:</strong> 경찰청 관제 연동 시나리오 포함 제안서 완성 + 셔클 앱 홍보 강화</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-amber rev-tag">단기</span>
+        <span class="rev-title">③ 관광교통 통합플랫폼 (문체부 연계)</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 초광역 관광교통 통합플랫폼 구축 용역 진행 중. 워커힐 B2B 실증 개발 중 (8월말 오픈 예정).</p>
+        <p style="margin-bottom:8px;">이동 + 관광 정보 + 숙박을 하나로 연결하는 플랫폼. 우버의 Travel Mode와 방향은 같지만 <strong>한국 관광지 특화 + B2G 구조</strong>로 차별화. 현대카드·현대호텔·PRIVIA·인포 맛집 데이터와 연계 시 HMG 생태계 내 락인 구조 형성. Pleos Connect 연동 → 네이버지도·현대카드 멤버십 자동 연결. 검증 지표: 탑승률 / 관광 소비 연계율 / 재이용률.</p>
+        <p><strong>Next Step:</strong> 워커힐·현대호텔·PRIVIA 파트너십 기반으로 파일럿 설계</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">④ 교통취약지역 로보택시 (농촌·지방 특화)</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 논의 중 (국토부 교통취약지역 과제 연계)</p>
+        <p style="margin-bottom:8px;">농촌·교통취약지역에 자율주행 차량 투입. 카카오가 수익성 없어 진입하지 않는 영역. 농식품부 AI 응용제품 사업 + 국토부 지역특화 자율주행 R&D와 연계. B2G 영업 DNA + 교통약자 서비스 운영 경험. 콜에이전트(전화 호출)와 결합 시 앱 없이 자율주행 차 호출 가능.</p>
+        <p><strong>Next Step:</strong> 광주 자율주행 실증 이후 농촌 지역 확장 시나리오 수립</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑤ 이동 데이터 관제 솔루션 — 지자체 구매형 SaaS</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 지역 교통 분석 고도화 진행 중 (대중교통 접근성 분석, POI 히트맵)</p>
+        <p style="margin-bottom:8px;">이미 개발 중인 분석 기능을 <strong>지자체가 직접 구독하는 B2G SaaS 상품</strong>으로 전환. 상품: 이동 패턴 대시보드 + 월별 리포트 + 취약 구간 알림. 활용: 복지 예산 배분 / 교통 정책 수립 / DRT 노선 최적화. 가격: 지자체 인구 규모별 구독 요금. 확장: 특정 지역 → 표준화 → 타 지자체 복제 가능한 구조. 장기적으로 항저우 시티브레인처럼 도시 운영 데이터 인프라로 확장. <strong>전제 조건:</strong> 개인정보 최소화 + 동의 구조 선설계.</p>
+        <p><strong>Next Step:</strong> 현재 분석 기능 → 상품 정의서 작성 (insight.shucle.com 고도화)</p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑥ 인비히클 서비스 (자율주행 공간 활용)</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 아이디어 단계 (로보버스·로보셔틀 실증과 병행)</p>
+        <p style="margin-bottom:8px;">자율주행 전환 시 운전에서 해방된 탑승 시간을 새로운 소비 공간으로. HMG 자산과 연결하면 경쟁사가 따라오기 어려운 구조. 연결 가능한 HMG 자산: 현대카드 멤버십(탑승 중 결제·할인) / 인포 맛집 로드(목적지 맛집 추천·예약) / 현대호텔·PRIVIA(체크인 연동 자동 픽업) / 현대차 카메라·센서(차내 공기질·취향 데이터 수집). Pleos Connect 내 26개 파트너사 연동 구조 활용.</p>
+        <p><strong>Next Step:</strong> 로보버스·로보셔틀 내 인비히클 서비스 기획 시작</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-gray rev-tag">장기</span>
+        <span class="rev-title">⑦ 유휴차량 공유 플랫폼 (P2P 전 단계)</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 아이디어 단계 (2차 세션 논의)</p>
+        <p style="margin-bottom:8px;">차량 소유 필요성 감소 트렌드에서, 개인 차량을 셔클이 중개해 공유하는 서비스. 캐나다 Turo(렌트카 에어비앤비)와 유사하나 <strong>현대차 차량 + 셔클 플랫폼 + 현대캐피탈 금융</strong> 묶음으로 차별화. 시나리오: 기업 통근 셔틀로 낮에만 쓰는 차량 → 저녁 개인 공유 / 현대차 신차 구매 고객 → 미사용 시간 셔클 플랫폼에 등록 유도 / 현대캐피탈 할부 구매 고객의 공유 수익으로 할부금 보조.</p>
+        <p><strong>Next Step:</strong> 현대캐피탈 협업 가능성 검토 + 보험 구조 설계 (현대해상 연계)</p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-gray rev-tag">장기</span>
+        <span class="rev-title">⑧ 해외 DRT 플랫폼 수출 (인도 우선)</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 인도 권역본부 3차 실무 워크샵 진행 중. 인도 DRT 요금제·규제 검토 진행 중.</p>
+        <p style="margin-bottom:8px;">한국에서 검증된 DRT 운영 모델 + 셔클 플랫폼을 HMG 현지 제조 기반이 있는 신흥국에 수출. 인도는 대중교통 공백 지역이 넓고, HMG 현지 공장이 있어 차량 수급도 유리. 한국 모델: 지자체 계약 → 셔클 운영 → 데이터 리포트 → 갱신. 해외에서 현대자동차의 인지도는 그 어떤 경쟁사보다 높을 수 있음.</p>
+        <p><strong>Next Step:</strong> 표준 운영 모델 문서화 → 인도 현지 PoC 설계</p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑨ 자율주행 기술 검증 체계 → B2G 컨설팅 상품</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> EU·일본 사례 기반 검증 항목 설계 중</p>
+        <p style="margin-bottom:8px;">EU·일본 사례 기반으로 설계한 자율주행 기술 검증 항목을 <strong>지자체·공공기관이 구매하는 컨설팅 상품</strong>으로 전환. 상품: 자율주행 도입 가능성 평가 리포트 + 단계별 로드맵. 타깃: AV 도입 검토 중인 지자체, 국토부 R&D 과제 참여 기관. 강점: 광주 실증 운영 경험 기반 → 실제 데이터로 검증된 기준. 확장: 평가 기준 표준화 → 정부 가이드라인으로 채택 가능성.</p>
+        <p><strong>Next Step:</strong> 광주 실증 데이터 → 평가 리포트 초안 작성</p>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑩ 이동·차량 데이터 기반 보험 상품 공동 개발</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>협력사:</strong> 현대해상, 삼성화재 · <strong>현황:</strong> 협업 진행 중</p>
+        <p style="margin-bottom:8px;">① <strong>UBI (주행 데이터 기반 맞춤 보험)</strong> — 운행 거리·시간대·노선 위험도 데이터를 보험사에 제공 → 개인화된 보험료 산정. 안전 노선·저빈도 이용자 보험료 할인. ② <strong>교통약자 이동 안심 보험</strong> — 셔클 앱/콜에이전트로 예약 시 자동 단기 보험 가입. 지자체 복지 예산으로 일괄 가입 구조도 가능. ③ <strong>자율주행 운행 책임 보험</strong> — AV 사고 시 책임 소재가 현재 공백. 셔클 관제 로그 → 사고 원인 규명 근거 데이터 제공. 경찰청 협력과 연결해 책임 체계 명문화.</p>
+        <p><strong>Next Step:</strong> 보험사와 데이터 제공 범위·비식별화 기준 협의 → 시범 상품 설계</p>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑪ AV 세차·정비 인프라 운영</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 아이디어 단계 (1차 세션 — "자율주행에서 가장 큰 비용이 세차")</p>
+        <p style="margin-bottom:8px;">AV 시대에 운수사의 가장 큰 고민은 차량 관리. 기사가 없으면 세차·점검·충전을 누가 하는지가 운영 비용의 핵심. 셔클이 이 영역을 직접 운영하거나 파트너사와 연결하면 <strong>차량만 있으면 셔클 하나로 AV 사업 전체를 운영할 수 있는 구조</strong>가 완성. 상품 구성: 세차·충전·정비·보관을 묶은 차량 관리 구독 서비스. 운영 방식: HMG 현대글로비스·블루핸즈 파트너십 or 셔클 직영 거점.</p>
+        <p><strong>Next Step:</strong> 광주 실증 운수사 대상 차량 관리 니즈 인터뷰 → 서비스 범위 정의</p>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-blue rev-tag">중기</span>
+        <span class="rev-title">⑫ 기사 → AV 관제사 전환 교육 프로그램</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 아이디어 단계 (2차 세션 — "AI로 대체되는 직군에 대해 셔클이 할 수 있는 역할", KBS 인재전쟁 다큐 연계)</p>
+        <p style="margin-bottom:8px;">자율주행 전환으로 일자리를 잃는 기사들을 셔클 관제사·운영 매니저로 재교육하는 프로그램. 기사는 도로와 지역을 가장 잘 아는 사람들로, AV 관제에 필요한 현장 감각을 이미 보유. 교육 내용: AV 모니터링·이상상황 대응·고객 응대·데이터 리포팅. 국토부·고용노동부 재취업 지원사업 연계 → 교육비 정부 지원. 사회적 명분 확보 + 지자체·정부 협력 유리한 고지.</p>
+        <p><strong>Next Step:</strong> 기사 커뮤니티 니즈 파악 → 고용노동부 재취업 사업 연계 검토</p>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="rev-card">
+      <div class="rev-header" onclick="toggleRev(this)">
+        <span class="badge badge-amber rev-tag">단기</span>
+        <span class="rev-title">⑬ 고령자 면허 반납 연계 셔클 온보딩</span>
+        <span class="rev-arrow">▼</span>
+      </div>
+      <div class="rev-body">
+        <p style="margin-bottom:8px;"><strong>현황:</strong> 아이디어 단계 (사업개발파트 씽크업 — 고령자 면허 반납사업 논의 중)</p>
+        <p style="margin-bottom:8px;">고령자가 운전면허를 자진 반납할 때 <strong>셔클 콜에이전트 등록 + 이용권을 인센티브로 제공</strong>하는 프로그램. 면허를 반납하면 이동 수단이 사라지는 불안감이 가장 큰 반납 장벽인데, 셔클이 그 공백을 채우는 구조. 운영 방식: 경찰청·지자체 면허 반납 창구와 셔클 등록 연계. 인센티브: 반납 시 셔클 이용권 N회 제공 + 콜에이전트 자동 가입. 고령자 신규 이용자 대규모 유입 — 마케팅 비용 없이 DB 확보. "면허 반납해도 이동 걱정 없다" 사회 메시지 → 언론·정책 노출 효과.</p>
+        <p><strong>Next Step:</strong> 경찰청 교통안전과 협력 이슈 연계 → 면허 반납 연계 파일럿 지자체 1곳 선정</p>
+      </div>
+    </div>
+
+    <!-- 우선순위 요약 -->
+    <div class="section-heading" style="margin-top:28px;">우선순위 요약</div>
+    <table>
+      <thead><tr><th>아이디어</th><th>추진 단계</th><th>핵심 레버</th></tr></thead>
+      <tbody>
+        <tr><td>① AI 콜에이전트 표준화</td><td><span class="badge badge-red">즉시</span></td><td>보령 PoC → B2G 패키지화</td></tr>
+        <tr><td>② 서울시 AV 플랫폼 공모</td><td><span class="badge badge-red">즉시</span></td><td>운수사 지원형 차별화</td></tr>
+        <tr><td>③ 관광교통 통합플랫폼</td><td><span class="badge badge-amber">단기</span></td><td>HMG 파트너십 연계</td></tr>
+        <tr><td>⑬ 면허 반납 연계 온보딩</td><td><span class="badge badge-amber">단기</span></td><td>경찰청 협력 채널 활용</td></tr>
+        <tr><td>④ 교통취약지역 로보택시</td><td><span class="badge badge-blue">중기</span></td><td>광주 실증 후 확장</td></tr>
+        <tr><td>⑤ 이동 데이터 B2G SaaS</td><td><span class="badge badge-blue">중기</span></td><td>데이터 정제 체계 선행</td></tr>
+        <tr><td>⑥ 인비히클 서비스</td><td><span class="badge badge-blue">중기</span></td><td>로보버스 실증과 병행</td></tr>
+        <tr><td>⑨ AV 기술 검증 컨설팅</td><td><span class="badge badge-blue">중기</span></td><td>광주 실증 데이터 활용</td></tr>
+        <tr><td>⑩ 보험 상품 공동 개발</td><td><span class="badge badge-blue">중기</span></td><td>현대해상·삼성화재</td></tr>
+        <tr><td>⑪ AV 세차·정비 인프라</td><td><span class="badge badge-blue">중기</span></td><td>현대글로비스·블루핸즈</td></tr>
+        <tr><td>⑫ 기사 관제사 전환 교육</td><td><span class="badge badge-blue">중기</span></td><td>고용노동부 연계</td></tr>
+        <tr><td>⑦ 유휴차량 공유</td><td><span class="badge badge-gray">장기</span></td><td>현대캐피탈 협업 필요</td></tr>
+        <tr><td>⑧ 해외 DRT 수출</td><td><span class="badge badge-gray">장기</span></td><td>인도 워크샵 결과 기반</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ④ 데이터 상품화 -->
+  <div id="aitm-data" class="sub-tab-content">
+
+    <div style="background:#eff6ff;border-radius:10px;border-left:4px solid #3b82f6;padding:14px 18px;margin-bottom:24px;">
+      <div style="font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">전제 조건 (개인정보 동의 가정)</div>
+      <div style="font-size:13px;color:#1e3a5f;line-height:1.7;">콜에이전트 통화에서 추출 가능한 데이터: 목소리 특성(연령·성별 추정) + 출발지·목적지 + 이동 시간대 + 이동 빈도 + 방언·억양(지역성) + 통화 내용 키워드. 개인 식별 불가 수준의 집계·비식별 처리 + 지역 단위 통계만 제공. 핵심 강점: 기존 통계청·행안부 데이터와 달리 <strong>실시간·행동 기반 데이터.</strong></div>
+    </div>
+
+    <!-- 보험 -->
+    <div class="section-heading">보험</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#3b82f6;">
+        <div class="trend-tag">① 고령자 활동성 지수</div>
+        <h3>이동 빈도·거리·시간대 패턴으로 지수화</h3>
+        <p>활용: 장기요양보험 위험도 산정, 생명보험 언더라이팅<br>구매자: 현대해상, 삼성화재, 국민건강보험공단</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#3b82f6;">
+        <div class="trend-tag">② 사회적 고립 지수</div>
+        <h3>콜 빈도 급감·이동 단절 패턴 감지</h3>
+        <p>활용: 고독사 위험군 보험 상품 설계, 지자체 복지 경보 시스템<br>구매자: 보험사, 복지부, 지자체</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#3b82f6;">
+        <div class="trend-tag">③ 노선별 위험도 지수</div>
+        <h3>구간별 사고·이상호출 발생 패턴</h3>
+        <p>활용: 탑승자 상해보험 요율 산정, 운수사 배상책임보험<br>구매자: 보험사, 운수사</p>
+      </div>
+    </div>
+
+    <!-- 마케팅 -->
+    <div class="section-heading">마케팅 / 로컬 비즈니스</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#10b981;">
+        <div class="trend-tag">④ 지역 상권 유동인구 리포트</div>
+        <h3>시장·병원·마트 목적지별 이동 집계</h3>
+        <p>활용: 상권 입지 분석, 광고 타이밍 최적화<br>구매자: 프랜차이즈 본사, 부동산 개발사, 로컬 광고 대행사</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#10b981;">
+        <div class="trend-tag">⑤ 시니어 소비 패턴 인사이트</div>
+        <h3>농촌·취약지역 고령자 구매 목적지·빈도</h3>
+        <p>활용: 시니어 타깃 마케팅, 방문판매 경로 최적화<br>구매자: 소비재 기업, 홈쇼핑, 실버케어 브랜드</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#10b981;">
+        <div class="trend-tag">⑥ 농촌 수요 시계열 데이터</div>
+        <h3>계절·날씨·행사별 이동 수요 변화</h3>
+        <p>활용: 농촌 대상 배달·유통 서비스 수요 예측<br>구매자: 쿠팡·컬리, 농협유통</p>
+      </div>
+    </div>
+
+    <!-- 공공·복지 -->
+    <div class="section-heading">공공 / 복지 / 헬스케어</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#8b5cf6;">
+        <div class="trend-tag">⑦ 의료기관 방문 패턴 리포트</div>
+        <h3>지역 노인의 병원 이동 시간대·경로</h3>
+        <p>활용: 지역 의료 수요 예측, 찾아가는 보건소 노선 설계<br>구매자: 지자체 보건소, 건강보험심사평가원, 제약사</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#8b5cf6;">
+        <div class="trend-tag">⑧ 교통 취약지역 SOC 수요 분석</div>
+        <h3>이동 패턴 공백 지역 = 인프라 부재 자동 식별</h3>
+        <p>활용: 정류장·의원·마트 신설 우선순위 결정<br>구매자: 국토부, 지자체 도시계획 부서</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#8b5cf6;">
+        <div class="trend-tag">⑨ 노인 돌봄 이상 감지 알림</div>
+        <h3>평소 이동 패턴 대비 급격한 변화 감지</h3>
+        <p>활용: 독거노인 안전 확인 서비스, 스마트 복지 시스템<br>구매자: 지자체, 사회보장정보원, 복지부</p>
+      </div>
+    </div>
+
+    <!-- 부동산·도시계획 -->
+    <div class="section-heading">부동산 / 도시계획</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#f59e0b;">
+        <div class="trend-tag">⑩ 생활권 이동 반경 지도</div>
+        <h3>실제 이동 데이터 기반 생활권 경계 재정의</h3>
+        <p>활용: 상업시설 입지 분석, 아파트 분양 마케팅<br>구매자: 건설사, 부동산 리서치 기관, 국토연구원</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#f59e0b;">
+        <div class="trend-tag">⑪ 교통 접근성 등급 데이터</div>
+        <h3>이동 가능 거리·소요 시간 기반 지역별 지수</h3>
+        <p>활용: 지방소멸지수 고도화, 정부 예산 배분 근거<br>구매자: 행안부, 국토연구원, 한국교통연구원</p>
+      </div>
+    </div>
+
+    <!-- 금융 -->
+    <div class="section-heading">금융</div>
+    <div class="trend-grid">
+      <div class="trend-card" style="border-left-color:#ef4444;">
+        <div class="trend-tag">⑫ 지역 경제 활성도 지수</div>
+        <h3>이동량 증감 = 지역 경기 선행 지표</h3>
+        <p>활용: 지역 소상공인 대출 심사, 지역화폐 활성도 예측<br>구매자: 지방은행, 신용보증기금, 소상공인시장진흥공단</p>
+      </div>
+      <div class="trend-card" style="border-left-color:#ef4444;">
+        <div class="trend-tag">⑬ 농촌 가구 라이프스타일 세그먼트</div>
+        <h3>이동 패턴으로 농촌 가구 유형화</h3>
+        <p>활용: 금융 상품 타깃팅, 맞춤형 보험 설계<br>구매자: NH농협은행, 신협, 보험사</p>
+      </div>
+    </div>
+
+    <!-- 데이터 플라이휠 -->
+    <div class="section-heading">데이터 플라이휠 구조</div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);padding:24px 28px;margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;">
+        <div style="text-align:center;padding:16px 20px;background:#eff6ff;border-radius:10px;min-width:160px;">
+          <div style="font-size:12px;font-weight:700;color:#1d4ed8;">콜에이전트 운영</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px;">음성·이동 데이터 축적</div>
+        </div>
+        <div style="font-size:20px;color:#9ca3af;padding:0 8px;">→</div>
+        <div style="text-align:center;padding:16px 20px;background:#f0fdf4;border-radius:10px;min-width:160px;">
+          <div style="font-size:12px;font-weight:700;color:#047857;">데이터 상품화</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px;">보험·마케팅·복지 판매</div>
+        </div>
+        <div style="font-size:20px;color:#9ca3af;padding:0 8px;">→</div>
+        <div style="text-align:center;padding:16px 20px;background:#fffbeb;border-radius:10px;min-width:160px;">
+          <div style="font-size:12px;font-weight:700;color:#b45309;">수익으로 AV 실증 투자</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px;">교통취약지역·관광·공항</div>
+        </div>
+        <div style="font-size:20px;color:#9ca3af;padding:0 8px;">→</div>
+        <div style="text-align:center;padding:16px 20px;background:#fdf4ff;border-radius:10px;min-width:160px;">
+          <div style="font-size:12px;font-weight:700;color:#6d28d9;">AV 운영 데이터</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px;">기술 검증 컨설팅 상품</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section-wrap -->
+</div><!-- /tab aitm -->
+
 <script> function switchTab(id, btn) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
