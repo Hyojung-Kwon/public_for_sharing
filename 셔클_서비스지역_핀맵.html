@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>셔클 서비스 지역 현황</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #060d18;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 44px;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+    }
+    h1 { color: #d5e8f5; font-size: 20px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px; }
+    .sub { color: #2d4e62; font-size: 12px; margin-bottom: 20px; }
+    .stats {
+      display: flex; gap: 16px; margin-bottom: 24px;
+    }
+    .stat {
+      background: #0f1e2e;
+      border: 1px solid #1a3248;
+      border-radius: 10px;
+      padding: 12px 24px;
+      text-align: center;
+    }
+    .stat-num { color: #3b82f6; font-size: 26px; font-weight: 800; }
+    .stat-label { color: #5a8aa0; font-size: 11px; margin-top: 3px; }
+    .map-wrap {
+      position: relative;
+      max-width: 760px;
+      width: 100%;
+    }
+    svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .korea-land { fill: #0f2035; stroke: #1e4060; stroke-width: 1.5; }
+    .island { fill: #0f2035; stroke: #1e4060; stroke-width: 1.2; }
+    .pin { cursor: pointer; }
+    .pin-dot {
+      fill: #ef4444;
+      stroke: #fff;
+      stroke-width: 1.5;
+      transition: all 0.15s;
+    }
+    .pin:hover .pin-dot {
+      fill: #fbbf24;
+      r: 7;
+      stroke-width: 2;
+    }
+    .tooltip {
+      position: fixed;
+      background: rgba(10, 20, 35, 0.95);
+      color: #d5e8f5;
+      padding: 7px 12px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      pointer-events: none;
+      display: none;
+      border: 1px solid #2563eb;
+      z-index: 100;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .tooltip .sub-t { color: #5a8aa0; font-size: 11px; font-weight: 400; margin-top: 2px; }
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-top: 16px;
+      align-items: center;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #7aafc8; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; border: 1.5px solid #fff; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<h1>셔클 서비스 지역 현황</h1>
+<div class="sub">2026년 8월 기준 · 국내 40개 지자체 · 97개 세부 지역</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">40</div><div class="stat-label">지자체</div></div>
+  <div class="stat"><div class="stat-num">97</div><div class="stat-label">세부 서비스 지역</div></div>
+</div>
+
+<div class="map-wrap">
+<svg viewBox="0 0 700 750" xmlns="http://www.w3.org/2000/svg">
+
+<!-- 배경 -->
+<rect width="700" height="750" fill="#080f1a" rx="14"/>
+
+<!-- 한국 본토 외곽선 (simplified) -->
+<polygon class="korea-land" points="
+  140,88 194,50 323,50 377,63 431,88
+  442,100 485,150 528,188 539,250 539,313
+  528,375 539,438 496,488 431,513 380,535
+  323,525 280,530 215,525 194,513
+  162,438 162,375 162,313 162,250 162,188
+  194,150 140,88
+"/>
+
+<!-- 제주도 -->
+<ellipse class="island" cx="220" cy="688" rx="42" ry="20"/>
+
+<!-- 울릉도 -->
+<ellipse class="island" cx="649" cy="188" rx="12" ry="11"/>
+<text x="649" y="208" fill="#3a6080" font-size="9" text-anchor="middle">울릉도</text>
+
+<!-- 격자선 (subtle) -->
+<line x1="0" y1="0" x2="700" y2="0" stroke="#0c1a28" stroke-width="0.5"/>
+
+<!-- ═══════════ PINS ═══════════ -->
+
+<!-- 수도권/경기 밀집 지역 -->
+<g class="pin" data-name="서울특별시" data-count="1개">
+  <circle class="pin-dot" cx="269" cy="179" r="5.5"/>
+</g>
+<g class="pin" data-name="고양시" data-count="4개">
+  <circle class="pin-dot" cx="252" cy="168" r="5"/>
+</g>
+<g class="pin" data-name="의정부시" data-count="2개">
+  <circle class="pin-dot" cx="274" cy="158" r="5"/>
+</g>
+<g class="pin" data-name="양주시" data-count="5개">
+  <circle class="pin-dot" cx="267" cy="151" r="5"/>
+</g>
+<g class="pin" data-name="연천군" data-count="1개">
+  <circle class="pin-dot" cx="277" cy="114" r="5"/>
+</g>
+<g class="pin" data-name="파주시" data-count="4개">
+  <circle class="pin-dot" cx="245" cy="146" r="5"/>
+</g>
+<g class="pin" data-name="김포시" data-count="1개">
+  <circle class="pin-dot" cx="238" cy="170" r="5"/>
+</g>
+<g class="pin" data-name="인천광역시" data-count="1개">
+  <circle class="pin-dot" cx="218" cy="193" r="5"/>
+</g>
+<g class="pin" data-name="부천시" data-count="2개">
+  <circle class="pin-dot" cx="240" cy="188" r="5"/>
+</g>
+<g class="pin" data-name="광명시" data-count="2개">
+  <circle class="pin-dot" cx="255" cy="190" r="5"/>
+</g>
+<g class="pin" data-name="안양시" data-count="2개">
+  <circle class="pin-dot" cx="264" cy="201" r="5"/>
+</g>
+<g class="pin" data-name="시흥시" data-count="2개">
+  <circle class="pin-dot" cx="245" cy="203" r="5"/>
+</g>
+<g class="pin" data-name="의왕시" data-count="1개">
+  <circle class="pin-dot" cx="266" cy="208" r="5"/>
+</g>
+<g class="pin" data-name="수원시" data-count="5개">
+  <circle class="pin-dot" cx="272" cy="218" r="5.5"/>
+</g>
+<g class="pin" data-name="하남시" data-count="2개">
+  <circle class="pin-dot" cx="293" cy="183" r="5"/>
+</g>
+<g class="pin" data-name="광주시(경기)" data-count="7개">
+  <circle class="pin-dot" cx="297" cy="196" r="5.5"/>
+</g>
+<g class="pin" data-name="화성시" data-count="6개">
+  <circle class="pin-dot" cx="252" cy="228" r="5.5"/>
+</g>
+<g class="pin" data-name="안산시" data-count="3개">
+  <circle class="pin-dot" cx="238" cy="212" r="5"/>
+</g>
+<g class="pin" data-name="용인시" data-count="3개">
+  <circle class="pin-dot" cx="291" cy="221" r="5"/>
+</g>
+<g class="pin" data-name="이천시" data-count="6개">
+  <circle class="pin-dot" cx="317" cy="216" r="5.5"/>
+</g>
+<g class="pin" data-name="여주시" data-count="5개">
+  <circle class="pin-dot" cx="337" cy="213" r="5.5"/>
+</g>
+<g class="pin" data-name="평택시" data-count="3개">
+  <circle class="pin-dot" cx="258" cy="250" r="5"/>
+</g>
+<g class="pin" data-name="안성시" data-count="4개">
+  <circle class="pin-dot" cx="283" cy="252" r="5"/>
+</g>
+
+<!-- 충청권 -->
+<g class="pin" data-name="서산시" data-count="2개">
+  <circle class="pin-dot" cx="185" cy="278" r="5"/>
+</g>
+<g class="pin" data-name="아산시" data-count="1개">
+  <circle class="pin-dot" cx="248" cy="276" r="5"/>
+</g>
+<g class="pin" data-name="보령시" data-count="2개">
+  <circle class="pin-dot" cx="193" cy="335" r="5"/>
+</g>
+<g class="pin" data-name="충북혁신도시" data-count="1개">
+  <circle class="pin-dot" cx="316" cy="269" r="5"/>
+</g>
+<g class="pin" data-name="세종시" data-count="4개">
+  <circle class="pin-dot" cx="296" cy="315" r="5.5"/>
+</g>
+<g class="pin" data-name="공주시" data-count="1개">
+  <circle class="pin-dot" cx="266" cy="319" r="5"/>
+</g>
+<g class="pin" data-name="부여군" data-count="1개">
+  <circle class="pin-dot" cx="245" cy="341" r="5"/>
+</g>
+<g class="pin" data-name="대전광역시" data-count="1개">
+  <circle class="pin-dot" cx="310" cy="331" r="5.5"/>
+</g>
+<g class="pin" data-name="충청남도(금산군)" data-count="1개">
+  <circle class="pin-dot" cx="318" cy="361" r="5"/>
+</g>
+<g class="pin" data-name="제천시" data-count="1개">
+  <circle class="pin-dot" cx="387" cy="234" r="5"/>
+</g>
+
+<!-- 강원 -->
+<g class="pin" data-name="양구군" data-count="1개">
+  <circle class="pin-dot" cx="376" cy="111" r="5"/>
+</g>
+<g class="pin" data-name="강릉시" data-count="1개">
+  <circle class="pin-dot" cx="465" cy="156" r="5"/>
+</g>
+
+<!-- 전라권 -->
+<g class="pin" data-name="새만금단지" data-count="1개">
+  <circle class="pin-dot" cx="196" cy="400" r="5"/>
+</g>
+<g class="pin" data-name="광주광역시" data-count="3개">
+  <circle class="pin-dot" cx="253" cy="480" r="5.5"/>
+</g>
+<g class="pin" data-name="영암군" data-count="1개">
+  <circle class="pin-dot" cx="237" cy="520" r="5"/>
+</g>
+
+<!-- 경상권 -->
+<g class="pin" data-name="영덕군" data-count="1개">
+  <circle class="pin-dot" cx="510" cy="310" r="5"/>
+</g>
+
+<!-- 울릉군 -->
+<g class="pin" data-name="울릉군" data-count="1개">
+  <circle class="pin-dot" cx="649" cy="188" r="5"/>
+</g>
+
+<!-- 지역명 라벨 (주요 지역만) -->
+<text x="265" y="176" fill="#7aafc8" font-size="9.5" text-anchor="middle" opacity="0.9">서울</text>
+<text x="290" y="330" fill="#7aafc8" font-size="9.5" text-anchor="middle" opacity="0.9">세종</text>
+<text x="314" y="345" fill="#7aafc8" font-size="9.5" text-anchor="middle" opacity="0.9">대전</text>
+<text x="253" y="495" fill="#7aafc8" font-size="9.5" text-anchor="middle" opacity="0.9">광주</text>
+<text x="466" y="152" fill="#7aafc8" font-size="9.5" text-anchor="end" opacity="0.8">강릉</text>
+<text x="375" y="106" fill="#7aafc8" font-size="9.5" text-anchor="middle" opacity="0.8">양구</text>
+
+</svg>
+</div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot"></div>
+    서비스 운영 지자체 (핀 위에 마우스 올리면 상세 확인)
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+  const tooltip = document.getElementById('tooltip');
+  document.querySelectorAll('.pin').forEach(pin => {
+    pin.addEventListener('mouseenter', (e) => {
+      const name = pin.dataset.name;
+      const count = pin.dataset.count;
+      tooltip.innerHTML = `<div>${name}</div><div class="sub-t">세부 지역 ${count}</div>`;
+      tooltip.style.display = 'block';
+    });
+    pin.addEventListener('mousemove', (e) => {
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    });
+    pin.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+</script>
+
+</body>
+</html>
