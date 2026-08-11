@@ -11,162 +11,147 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      font-family: 'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
-    }
-    .wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 24px;
-    }
-    h2 {
-      color: #d5e8f5;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      opacity: 0.6;
-    }
-    h1 {
-      color: #fff;
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      margin-bottom: 24px;
     }
   </style>
 </head>
 <body>
-<div class="wrap">
-  <h2>서울시 자율주행 기술사 연동 구조</h2>
-  <h1>5개 기술사 · 하나의 플랫폼</h1>
 
-<svg viewBox="0 0 620 460" width="620" height="460" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 620 450" width="620" height="450"
+  xmlns="http://www.w3.org/2000/svg">
 <defs>
   <radialGradient id="bg" cx="50%" cy="50%" r="55%">
     <stop offset="0%" stop-color="#0a1a30"/>
     <stop offset="100%" stop-color="#060d18"/>
   </radialGradient>
-  <radialGradient id="hglow" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#2563eb" stop-opacity="0.25"/>
-    <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
-  </radialGradient>
-  <filter id="g1"><feGaussianBlur stdDeviation="3"/></filter>
-  <filter id="g2"><feGaussianBlur stdDeviation="6"/></filter>
+  <filter id="gl"><feGaussianBlur stdDeviation="3.5"/></filter>
+  <!-- clip for logo boxes -->
+  <clipPath id="clip-rf"><rect x="0" y="0" width="140" height="52" rx="8"/></clipPath>
+  <clipPath id="clip-swm"><rect x="0" y="0" width="120" height="52" rx="8"/></clipPath>
+  <clipPath id="clip-a2z"><rect x="0" y="0" width="130" height="52" rx="8"/></clipPath>
+  <clipPath id="clip-kakao"><rect x="0" y="0" width="160" height="52" rx="8"/></clipPath>
+  <clipPath id="clip-sum"><rect x="0" y="0" width="120" height="52" rx="8"/></clipPath>
 </defs>
 
 <!-- Background -->
-<rect width="620" height="460" rx="16" fill="url(#bg)"/>
+<rect width="620" height="450" rx="16" fill="url(#bg)"/>
 
-<!-- Subtle grid rings -->
-<circle cx="310" cy="230" r="100" fill="none" stroke="#0d2244" stroke-width="1" opacity="0.8"/>
-<circle cx="310" cy="230" r="165" fill="none" stroke="#0d2244" stroke-width="1" opacity="0.5"/>
-<circle cx="310" cy="230" r="210" fill="none" stroke="#0a1830" stroke-width="1" opacity="0.4"/>
+<!-- Subtle rings -->
+<circle cx="310" cy="225" r="105" fill="none" stroke="#0d2244" stroke-width="1" opacity="0.7"/>
+<circle cx="310" cy="225" r="175" fill="none" stroke="#0a1830" stroke-width="1" opacity="0.4"/>
 
-<!-- ─── CONNECTION LINES (static) ─── -->
-<!-- 라이드플럭스 (left) -->
-<line x1="310" y1="230" x2="88" y2="175" stroke="#2563eb" stroke-width="1.8" opacity="0.5"/>
-<circle cx="88" cy="175" r="4" fill="#e879f9" opacity="0.9"/>
-<circle cx="199" cy="202" r="3" fill="#3b82f6" opacity="0.7"/>
+<!-- ── CONNECTION LINES ── -->
+<!-- center = 310, 225 -->
 
-<!-- SWM (bottom-left) -->
-<line x1="310" y1="230" x2="148" y2="370" stroke="#2563eb" stroke-width="1.8" opacity="0.5"/>
-<circle cx="148" cy="370" r="4" fill="#38bdf8" opacity="0.9"/>
-<circle cx="229" cy="300" r="3" fill="#3b82f6" opacity="0.7"/>
+<!-- → 라이드플럭스 (top-left: 148, 153) -->
+<line x1="310" y1="225" x2="148" y2="153"
+  stroke="#2563eb" stroke-width="1.8" opacity="0.45"/>
+<!-- glow -->
+<line x1="310" y1="225" x2="148" y2="153"
+  stroke="#60a5fa" stroke-width="0.8" opacity="0.6" filter="url(#gl)"/>
+<!-- dot midpoint -->
+<circle cx="229" cy="189" r="3.5" fill="#3b82f6" opacity="0.8"/>
+<!-- endpoint dot -->
+<circle cx="148" cy="153" r="5" fill="#a855f7" opacity="0.9"/>
 
-<!-- A2Z (top) -->
-<line x1="310" y1="230" x2="310" y2="68" stroke="#2563eb" stroke-width="1.8" opacity="0.5"/>
-<circle cx="310" cy="68" r="4" fill="#34d399" opacity="0.9"/>
-<circle cx="310" cy="149" r="3" fill="#3b82f6" opacity="0.7"/>
+<!-- → SWM (bottom-left: 148, 298) -->
+<line x1="310" y1="225" x2="148" y2="298"
+  stroke="#2563eb" stroke-width="1.8" opacity="0.45"/>
+<line x1="310" y1="225" x2="148" y2="298"
+  stroke="#60a5fa" stroke-width="0.8" opacity="0.6" filter="url(#gl)"/>
+<circle cx="229" cy="261" r="3.5" fill="#3b82f6" opacity="0.8"/>
+<circle cx="148" cy="298" r="5" fill="#38bdf8" opacity="0.9"/>
 
-<!-- 카카오모빌리티 (right) -->
-<line x1="310" y1="230" x2="532" y2="175" stroke="#f59e0b" stroke-width="1.8" opacity="0.5"/>
-<circle cx="532" cy="175" r="4" fill="#fbbf24" opacity="0.9"/>
-<circle cx="421" cy="202" r="3" fill="#fbbf24" opacity="0.7"/>
+<!-- → A2Z (top: 310, 62) -->
+<line x1="310" y1="225" x2="310" y2="62"
+  stroke="#2563eb" stroke-width="1.8" opacity="0.45"/>
+<line x1="310" y1="225" x2="310" y2="62"
+  stroke="#60a5fa" stroke-width="0.8" opacity="0.6" filter="url(#gl)"/>
+<circle cx="310" cy="143" r="3.5" fill="#3b82f6" opacity="0.8"/>
+<circle cx="310" cy="62" r="5" fill="#34d399" opacity="0.9"/>
 
-<!-- SUM (bottom-right) -->
-<line x1="310" y1="230" x2="472" y2="370" stroke="#2563eb" stroke-width="1.8" opacity="0.5"/>
-<circle cx="472" cy="370" r="4" fill="#818cf8" opacity="0.9"/>
-<circle cx="391" cy="300" r="3" fill="#3b82f6" opacity="0.7"/>
+<!-- → 카카오모빌리티 (top-right: 472, 153) -->
+<line x1="310" y1="225" x2="472" y2="153"
+  stroke="#f59e0b" stroke-width="1.8" opacity="0.45"/>
+<line x1="310" y1="225" x2="472" y2="153"
+  stroke="#fbbf24" stroke-width="0.8" opacity="0.6" filter="url(#gl)"/>
+<circle cx="391" cy="189" r="3.5" fill="#fbbf24" opacity="0.8"/>
+<circle cx="472" cy="153" r="5" fill="#fbbf24" opacity="0.9"/>
 
-<!-- ─── CENTER HUB ─── -->
-<circle cx="310" cy="230" r="105" fill="url(#hglow)"/>
-<circle cx="310" cy="230" r="78" fill="#040d1e" stroke="#2563eb" stroke-width="2.5" opacity="0.9"/>
-<circle cx="310" cy="230" r="70" fill="#050e22"/>
+<!-- → SUM (bottom-right: 472, 298) -->
+<line x1="310" y1="225" x2="472" y2="298"
+  stroke="#2563eb" stroke-width="1.8" opacity="0.45"/>
+<line x1="310" y1="225" x2="472" y2="298"
+  stroke="#60a5fa" stroke-width="0.8" opacity="0.6" filter="url(#gl)"/>
+<circle cx="391" cy="261" r="3.5" fill="#3b82f6" opacity="0.8"/>
+<circle cx="472" cy="298" r="5" fill="#818cf8" opacity="0.9"/>
 
-<!-- 셔클 로고 (white SVG from repo) -->
-<image href="https://hyojung-kwon.github.io/public_for_sharing/img/shucle_logo_white.svg"
-  x="248" y="200" width="124" height="60" opacity="1"/>
 
-<!-- Fallback text if logo fails -->
-<text x="310" y="238" text-anchor="middle" fill="white" font-size="26" font-weight="900"
-  font-family="'Apple SD Gothic Neo',sans-serif" opacity="0"
-  id="fallback">셔클</text>
-<text x="310" y="258" text-anchor="middle" fill="#4a7a9b" font-size="9"
-  font-family="sans-serif" letter-spacing="3" opacity="0">자율주행 플랫폼</text>
+<!-- ══ CENTER: 셔클 로고만 (원 없음) ══ -->
+<image
+  href="https://hyojung-kwon.github.io/public_for_sharing/img/shucle_logo_white.svg"
+  x="238" y="198" width="144" height="54"/>
 
-<!-- ─── COMPANY NODES ─── -->
 
-<!-- 라이드플럭스 (top-left) -->
-<rect x="18" y="138" width="140" height="74" rx="10"
-  fill="#0a0818" stroke="#e879f9" stroke-width="1.5"/>
-<text x="88" y="165" text-anchor="middle" fill="#f0abfc" font-size="16" font-weight="900"
-  font-family="'Apple SD Gothic Neo',sans-serif">라이드플럭스</text>
-<text x="88" y="184" text-anchor="middle" fill="#9c5bb0" font-size="9.5"
-  font-family="sans-serif" letter-spacing="1">RIDEFLUX</text>
-<text x="88" y="200" text-anchor="middle" fill="#7a3090" font-size="9"
-  font-family="'Apple SD Gothic Neo',sans-serif">서대문A01 · 화물</text>
+<!-- ══ 라이드플럭스 (top-left) ══ -->
+<!-- 흰 배경 (로고가 흰색 SVG이므로 불투명 어두운 박스) -->
+<g transform="translate(78,127)">
+  <rect width="140" height="52" rx="8"
+    fill="#0a0818" stroke="#a855f7" stroke-width="1.4"/>
+  <image
+    href="https://framerusercontent.com/images/Af0sLimemFcMqesWgSU0iI1FI8Q.svg"
+    x="10" y="10" width="120" height="32"
+    preserveAspectRatio="xMidYMid meet"/>
+</g>
 
-<!-- SWM (bottom-left) -->
-<rect x="18" y="333" width="130" height="74" rx="10"
-  fill="#04111e" stroke="#38bdf8" stroke-width="1.5"/>
-<text x="83" y="361" text-anchor="middle" fill="#7dd3fc" font-size="28" font-weight="900"
-  font-family="sans-serif" letter-spacing="1">SWM</text>
-<text x="83" y="381" text-anchor="middle" fill="#1e6080" font-size="9"
-  font-family="sans-serif" letter-spacing="0.5">강남 로보택시 · A02 DRT</text>
-<text x="83" y="396" text-anchor="middle" fill="#1e4060" font-size="9"
-  font-family="sans-serif">SWM.AI</text>
 
-<!-- A2Z (top-center) -->
-<rect x="240" y="10" width="140" height="74" rx="10"
-  fill="#04120e" stroke="#34d399" stroke-width="1.5"/>
-<text x="310" y="46" text-anchor="middle" fill="#6ee7b7" font-size="30" font-weight="900"
-  font-family="sans-serif" letter-spacing="2">a2z</text>
-<text x="310" y="66" text-anchor="middle" fill="#1a5038" font-size="9.5"
-  font-family="sans-serif" letter-spacing="1">AUTONOMOUS A2Z</text>
-<text x="310" y="78" text-anchor="middle" fill="#155030" font-size="9"
-  font-family="'Apple SD Gothic Neo',sans-serif">A160·A741·청계·동대문A01</text>
+<!-- ══ SWM (bottom-left) ══ -->
+<g transform="translate(78,272)">
+  <!-- SWM 로고는 다크 계열 → 흰 배경 박스 -->
+  <rect width="120" height="52" rx="8"
+    fill="#ffffff" stroke="#38bdf8" stroke-width="1.4"/>
+  <image
+    href="https://swm.ai/theme/basic/img/common/logo.png"
+    x="10" y="8" width="100" height="36"
+    preserveAspectRatio="xMidYMid meet"/>
+</g>
 
-<!-- 카카오모빌리티 (top-right) -->
-<rect x="462" y="138" width="140" height="74" rx="10"
-  fill="#120b00" stroke="#fbbf24" stroke-width="1.5"/>
-<text x="532" y="160" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="900"
-  font-family="sans-serif" letter-spacing="-0.3">kakao</text>
-<text x="532" y="177" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700"
-  font-family="sans-serif">mobility</text>
-<text x="532" y="194" text-anchor="middle" fill="#78440a" font-size="9"
-  font-family="'Apple SD Gothic Neo',sans-serif">강남 로보택시 · A02 DRT</text>
-<text x="532" y="206" text-anchor="middle" fill="#5a3008" font-size="9"
-  font-family="sans-serif">카카오T 앱 플랫폼</text>
 
-<!-- SUM (bottom-right) -->
-<rect x="472" y="333" width="130" height="74" rx="10"
-  fill="#06061a" stroke="#818cf8" stroke-width="1.5"/>
-<text x="537" y="365" text-anchor="middle" fill="#a5b4fc" font-size="30" font-weight="900"
-  font-family="sans-serif" letter-spacing="3">SUM</text>
-<text x="537" y="384" text-anchor="middle" fill="#2e2870" font-size="9"
-  font-family="sans-serif" letter-spacing="0.5">SMOBI</text>
-<text x="537" y="397" text-anchor="middle" fill="#252060" font-size="9"
-  font-family="'Apple SD Gothic Neo',sans-serif">새벽버스 5개 · 동작A01</text>
+<!-- ══ A2Z (top-center) ══ -->
+<g transform="translate(245,36)">
+  <rect width="130" height="52" rx="8"
+    fill="#04120e" stroke="#34d399" stroke-width="1.4"/>
+  <!-- A2Z 로고: 첫번째 이미지 시도, fallback 텍스트 -->
+  <image
+    href="https://cdn.imweb.me/upload/S202309086909876845cbd/c3fd8c0dbd0c1.png"
+    x="5" y="4" width="120" height="44"
+    preserveAspectRatio="xMidYMid meet"/>
+</g>
 
-<!-- ─── PLATFORM LABEL at center bottom ─── -->
-<rect x="238" y="286" width="144" height="22" rx="5"
-  fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
-<text x="310" y="300" text-anchor="middle" fill="#3b82f6" font-size="10"
-  font-family="'Apple SD Gothic Neo',sans-serif" letter-spacing="0.5">자율주행 운송 플랫폼</text>
+
+<!-- ══ 카카오모빌리티 (top-right) ══ -->
+<g transform="translate(392,127)">
+  <!-- 카카오 로고 → 흰 배경 -->
+  <rect width="160" height="52" rx="8"
+    fill="#ffffff" stroke="#fbbf24" stroke-width="1.4"/>
+  <image
+    href="https://t1.kakaocdn.net/kakaomobility/company_website/images/logo.svg"
+    x="10" y="10" width="140" height="32"
+    preserveAspectRatio="xMidYMid meet"/>
+</g>
+
+
+<!-- ══ SUM (bottom-right) ══ -->
+<g transform="translate(412,272)">
+  <rect width="120" height="52" rx="8"
+    fill="#06061a" stroke="#818cf8" stroke-width="1.4"/>
+  <!-- logo_blank = 흰색 버전 -->
+  <image
+    href="https://smobi.ai/assets/images/module_contents/logo_blank.png"
+    x="10" y="8" width="100" height="36"
+    preserveAspectRatio="xMidYMid meet"/>
+</g>
 
 </svg>
-</div>
+
 </body>
 </html>
