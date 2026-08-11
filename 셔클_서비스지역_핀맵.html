@@ -8,10 +8,11 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #fff; margin: 0; padding: 0; }
-    #map { height: 100vh; width: 100%; border: none; outline: none; }
-    /* 지형 색상을 연한 따뜻한 단색으로 통일 */
-    .leaflet-tile-pane { filter: sepia(0.35) saturate(0.6) brightness(1.08) hue-rotate(10deg); }
+    html, body { margin: 0; padding: 0; background: #f5f0e8; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; }
+    #map { height: 100vh; width: 100%; border: none !important; outline: none !important; box-shadow: none !important; }
+    .leaflet-container { border: none !important; outline: none !important; }
+    /* 아이보리 단색 톤으로 통일 (지형색 제거 효과) */
+    .leaflet-tile-pane { filter: sepia(0.18) saturate(0.3) brightness(1.06); }
 
     .info-panel {
       position: absolute;
@@ -108,9 +109,10 @@ var map = L.map('map', {
 });
 
 // 지도 타일 (CartoDB Positron — 깨끗한 라이트 지도)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  maxZoom: 19
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 20
 }).addTo(map);
 
 // 서비스 지역 데이터
