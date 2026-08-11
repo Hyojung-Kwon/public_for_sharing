@@ -10,6 +10,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #fff; margin: 0; padding: 0; }
     #map { height: 100vh; width: 100%; border: none; outline: none; }
+    /* 지형 색상을 연한 따뜻한 단색으로 통일 */
+    .leaflet-tile-pane { filter: sepia(0.35) saturate(0.6) brightness(1.08) hue-rotate(10deg); }
 
     .info-panel {
       position: absolute;
@@ -106,10 +108,9 @@ var map = L.map('map', {
 });
 
 // 지도 타일 (CartoDB Positron — 깨끗한 라이트 지도)
-// 연한 노란톤 단색 지도 (Stadia Alidade Smooth)
-L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  maxZoom: 20
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 19
 }).addTo(map);
 
 // 서비스 지역 데이터
