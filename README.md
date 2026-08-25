@@ -7,7 +7,6 @@
 ## 글로벌 자율주행 플레이어 동향 및 사업 전략 리서치
 
 - **[글로벌 자율주행 리서치](https://hyojung-kwon.github.io/public_for_sharing/글로벌_자율주행_리서치.html)**
-- **[국내 자율주행 기술사 최신 동향](https://hyojung-kwon.github.io/public_for_sharing/국내_자율주행_기술사_동향_2.html)**
 - **[서울시 자율주행 서비스 지도 (로보택시·새벽동행버스)](https://hyojung-kwon.github.io/public_for_sharing/서울_자율주행_노선도_로보택시_새벽버스.html)**
 - **[서울시 자율주행 서비스 지도 (순환셔틀·마을버스·DRT)](https://hyojung-kwon.github.io/public_for_sharing/서울_자율주행_노선도_순환마을버스_DRT.html)**
 
