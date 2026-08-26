@@ -1006,60 +1006,92 @@ function switchCoType(type, btn) {
 
 <div id="ops" class="tab-content"> <div class="section-wrap">
  <div class="section-heading">글로벌 관제·운영 플랫폼 심층 사례</div>
- <div style="overflow-x:auto;margin-bottom:32px;">
- <table style="min-width:900px;">
-  <thead><tr><th style="width:13%;">사업자</th><th style="width:12%;">유형</th><th style="width:22%;">관제·운영 핵심 역할</th><th style="width:20%;">기술사 협력 구조</th><th style="width:14%;">수익 모델</th><th style="width:19%;">셔클(모빌리티사업부) 시사점</th></tr></thead>
-  <tbody>
-   <tr>
-    <td><span class="company-tag" style="background:#e0f2fe;color:#0369a1;">MKX (싱가포르)</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">AV 통합 오케스트레이터</div></td>
-    <td class="note">B2G 공공교통 통합 운영사</td>
-    <td class="note">지자체 위임 관제·배차·유지관리 통합. 복수 기술사(BYD·즈다오)를 단일 운영 플랫폼으로 묶는 '오케스트레이터' 역할. 안전 관제·원격 개입·데이터 수집 전담</td>
-    <td class="note">기술사에게 표준 API 요구. 위치·상태·알람 실시간 연동. 기술사는 AV SW만 책임, 운영·서비스 레이어는 MKX 통합</td>
-    <td class="note">정부 운행 위탁 계약 (B2G) + 데이터 공유 수익</td>
-    <td class="note">셔클(모빌리티사업부)의 TO-BE 국내 포지션과 가장 유사. 복수 기술사 통합 관제 구조 설계 시 직접 참고</td>
-   </tr>
-   <tr style="background:#fafafa;">
-    <td><span class="company-tag" style="background:#f0fdf4;color:#166534;">Via Transportation</span><span style="display:inline-block;background:#ede9fe;color:#6d28d9;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:5px;vertical-align:2px;letter-spacing:0.02em;">Global Peer</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">미국 · NYSE: VIA · 순수 운영 SaaS</div></td>
-    <td class="note">B2G/B2B 운영 SaaS (기술 없음)<br><span style="font-size:10px;color:#6b7280;">2025.09 NYSE 상장 · 기업가치 ~$3.7B · 매출 $434M(2025) · Q4 2026 첫 흑자 목표</span></td>
-    <td class="note">DRT·마이크로트랜짓·AV 셔틀 배차 소프트웨어 SaaS 제공. 지자체·교통공사 직접 운영 지원. 관제 대시보드·실시간 배차 최적화·승객 앱 패키지 제공. 차량 무관(vehicle-agnostic) 구조로 버스·자율주행차·학교버스 모두 통합 운영</td>
-    <td class="note">AV 기술사·차량 교체 무관하게 운영 SW만 공급. Waymo·May Mobility·Beep 등과 파트너십으로 AV 공공교통 운영. 미국 AV 공모 시 사실상 표준 운영 플랫폼으로 포지셔닝. 표준 API로 기술사와 연동</td>
-    <td class="note">per-vehicle SaaS 구독료 (매출 97% 반복 구독) + 운영 대행 풀서비스 계약. 정부·공공기관 90%+. SEC 10-K/10-Q 공시로 계약 구조·단가 확인 가능</td>
-    <td class="note">셔클(모빌리티사업부) 플랫폼 구조·B2G 수익 모델과 가장 유사한 글로벌 레퍼런스. 미국 AV 공모에서 경쟁사로 등장. SEC 공시 기반 계약 구조·마진·단가 구조 벤치마크 가능 <span style="background:#d1fae5;color:#065f46;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">핵심 벤치마크</span></td>
-   </tr>
-   <tr>
-    <td><span class="company-tag" style="background:#fef3c7;color:#92400e;">Autofleet / Element Fleet</span><span style="display:inline-block;background:#ede9fe;color:#6d28d9;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:5px;vertical-align:2px;letter-spacing:0.02em;">Global Peer</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">이스라엘·캐나다 · TSX: EFN · 기술 관제 SaaS</div></td>
-    <td class="note">B2B 플릿 관제·최적화 SaaS<br><span style="font-size:10px;color:#6b7280;">Element Fleet: TSX 상장 · 세계 최대 순수 플릿 관리 상장사. Autofleet 2024.08 인수</span></td>
-    <td class="note">AI 기반 플릿 운영 최적화 플랫폼. 배차·라우팅·예약·차량 관리·수요 시뮬레이션 자동화. 자율주행·전기차·일반 차량 혼합 플릿 통합 관제 특화. Keolis에 다중 AV 제공사 통합 관제 공급(유럽 최초 사례)</td>
-    <td class="note">2026.06.15 Waymo와 멀티이어 전략 파트너십 — Element(자본·정비·충전) + Autofleet(관제 SW) 결합으로 Waymo AV 플릿 엔드투엔드 관리. San Diego 첫 배포 → 추가 도시 확장. 한국·미국 AV 공모에서 경쟁사로 등장 가능</td>
-    <td class="note">플릿 관제 SaaS 구독 + 플릿 금융·리스(Element) + 정비·충전 운영 서비스 통합 제공. TSX EFN 공시(AIF·MD&A)로 AV 파트너십 계약 구조 확인 가능</td>
-    <td class="note">기술 관제 레이어 설계 참고 (배차 자동화·혼합 플릿 관리). Element의 플릿 금융+관제+정비 통합 모델이 셔클(모빌리티사업부) 운영 인프라 설계 시 레퍼런스. 공시 자료로 AV 운영 계약 구조 디테일 파악 가능</td>
-   </tr>
-   <tr>
-    <td><span class="company-tag t-waymo">Waymo Fleet Ops</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">자체 관제 모델</div></td>
-    <td class="note">B2C 직접 운영 (관제 자체)</td>
-    <td class="note">원격 지원(Remote&nbsp;Assistance) 팀 상시 운영. 비정상 감지 → 텔레오퍼레이터 원격 개입. 자체 Depot에서 충전·정비·세차. OTA 업데이트 관리</td>
-    <td class="note">Zeekr·Jaguar 차량 조달만 외부. 관제·운영·서비스 100% 자체. Moove에 정비 일부 위탁 시작 (초기 신호)</td>
-    <td class="note">승차 수수료 (B2C) + Uber 앱 연동 수수료</td>
-    <td class="note">원격 지원 팀 개입 기준·1인 다차량 감독 비율이 관제 비용 핵심 변수. 셔클(모빌리티사업부) 관제 인력 설계 기준으로 활용</td>
-   </tr>
-   <tr style="background:#fafafa;">
-    <td><span class="company-tag t-baidu">Baidu&nbsp;Apollo Ops</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">저비용 대규모 모델</div></td>
-    <td class="note">B2C 직접 운영 + B2B 기술</td>
-    <td class="note">우한 = 중앙 원격 관제센터에서 완전 무인 차량 다수 동시 모니터링. 이상 감지 시 원격 개입. 안전원 제거 단계 도시별 차별 적용</td>
-    <td class="note">RT6 자체 설계 로보택시로 하드웨어 원가 60% 절감. 파트너 Fleet에 관제 시스템 공급(B2B). Apollo 오픈소스 생태계 확장 후 운영 레이어 장악</td>
-    <td class="note">운임(B2C) + 스마트도로·AI클라우드(B2B) + 관제 SaaS</td>
-    <td class="note">무인화 비율 확대 = 관제 인력 감소 = 수익성 전환. 셔클(모빌리티사업부)도 안전원→1인 다차량 감독→완전 원격 단계 로드맵 필요</td>
-   </tr>
-   <tr>
-    <td><span class="company-tag t-easymile">EasyMile Remote Mgmt</span><div style="font-size:10px;color:#9ca3af;margin-top:3px;">원격 관제 SaaS</div></td>
-    <td class="note">B2G 차량판매 + 관제 SaaS</td>
-    <td class="note">글로벌 원격 관제 플랫폼으로 30개국 400+ 사이트 통합 모니터링. 1인 텔레오퍼레이터 다수 차량 동시 감독. 충전·정비 일정 통합·이상 감지·원격 제어</td>
-    <td class="note">EasyMile 차량 + 관제 세트로 공급. 지자체·기업이 현장 운영 담당. 차량 구매 또는 운영 계약 선택 가능</td>
-    <td class="note">차량 판매 + 연간 관제 구독 (per-vehicle SaaS)</td>
-    <td class="note">셔클(모빌리티사업부)이 구축해야 할 관제 플랫폼 기능의 벤치마크. 1인 다차량 감독 비율이 운영 단가 결정</td>
-   </tr>
-  </tbody>
- </table>
+ <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px;margin-bottom:32px;">
+
+  <!-- MKX -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;">
+   <div style="background:#0369a1;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">MKX</div><div style="font-size:10px;opacity:0.75;margin-top:1px;">싱가포르 · AV 통합 오케스트레이터</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2G 통합 운영</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>지자체 위임 관제·배차·유지관리 통합. 복수 기술사(BYD·즈다오)를 단일 플랫폼으로 묶는 오케스트레이터. 안전 관제·원격 개입·데이터 수집 전담</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>기술사에게 표준 API 요구. 기술사는 AV SW만 책임, 운영·서비스 레이어는 MKX 통합</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>정부 운행 위탁 계약 (B2G) + 데이터 공유 수익</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">셔클(모빌리티사업부) TO-BE 국내 포지션과 가장 유사. 복수 기술사 통합 관제 구조 설계 시 직접 참고</div></div>
+  </div>
+
+  <!-- Via Transportation -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;border:1.5px solid #ede9fe;">
+   <div style="background:#166534;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">Via Transportation <span style="display:inline-block;background:rgba(255,255,255,0.25);font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;letter-spacing:0.02em;">Global Peer</span></div><div style="font-size:10px;opacity:0.75;margin-top:1px;">미국 · NYSE: VIA · 2025.09 상장 · 기업가치 ~$3.7B</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2G/B2B SaaS</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>DRT·마이크로트랜짓·AV 셔틀 배차 SaaS 제공. 차량 무관(vehicle-agnostic) 구조로 버스·AV·스쿨버스 통합 운영. 관제 대시보드·배차 최적화·승객 앱 패키지</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>Waymo·May Mobility·Beep 등 AV 파트너십으로 공공교통 운영. 미국 AV 공모 시 사실상 표준 운영 플랫폼으로 포지셔닝. 표준 API로 기술사 연동</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>per-vehicle SaaS 구독 (97% 반복 수익) · 정부·공공기관 90%+ · 매출 $434M(2025) · SEC 공시로 계약 구조 확인 가능</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">셔클 플랫폼 구조·B2G 수익 모델과 가장 유사한 글로벌 레퍼런스. 미국 AV 공모에서 경쟁사로 등장. SEC 10-K/10-Q 공시로 계약 단가·마진 벤치마크 가능 <span style="background:#d1fae5;color:#065f46;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">핵심 벤치마크</span></div></div>
+  </div>
+
+  <!-- Autofleet / Element Fleet -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;border:1.5px solid #ede9fe;">
+   <div style="background:#92400e;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">Autofleet / Element Fleet <span style="display:inline-block;background:rgba(255,255,255,0.25);font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;letter-spacing:0.02em;">Global Peer</span></div><div style="font-size:10px;opacity:0.75;margin-top:1px;">이스라엘·캐나다 · TSX: EFN · Autofleet 2024.08 인수</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2B 기술 관제</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>AI 기반 플릿 최적화 SaaS. 배차·라우팅·수요 시뮬레이션 자동화. AV·EV·일반 차량 혼합 플릿 통합 관제. Keolis에 다중 AV 제공사 통합 관제 공급 (유럽 최초)</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>2026.06.15 Waymo 멀티이어 파트너십 — Element(자본·정비·충전) + Autofleet(관제 SW) 결합으로 AV 플릿 엔드투엔드 관리. San Diego 첫 배포 → 추가 도시 확장</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>플릿 관제 SaaS 구독 + 플릿 금융·리스(Element) + 정비·충전 통합 서비스 · TSX EFN 공시로 AV 계약 구조 확인 가능</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">기술 관제 레이어 설계 참고 (배차 자동화·혼합 플릿 관리). 플릿 금융+관제+정비 통합 모델이 셔클 운영 인프라 레퍼런스. TSX 공시로 AV 운영 계약 디테일 파악 가능</div></div>
+  </div>
+
+  <!-- Waymo Fleet Ops -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;">
+   <div style="background:#1e40af;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">Waymo Fleet Ops</div><div style="font-size:10px;opacity:0.75;margin-top:1px;">미국 · 수직통합 자체 관제 모델</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2C 직접 운영</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>Remote Assistance 팀 상시 운영. 비정상 감지 → 텔레오퍼레이터 원격 개입. 자체 Depot에서 충전·정비·세차. OTA 업데이트 관리</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>차량 조달(Zeekr·Jaguar)만 외부. 관제·운영·서비스 100% 자체. Moove에 정비 일부 위탁 시작</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>승차 수수료 (B2C) + Uber 앱 연동 수수료</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">1인 다차량 감독 비율이 관제 비용의 핵심 변수. 셔클(모빌리티사업부) 관제 인력 설계 기준으로 활용</div></div>
+  </div>
+
+  <!-- Baidu Apollo Ops -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;">
+   <div style="background:#9d174d;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">Baidu Apollo Ops</div><div style="font-size:10px;opacity:0.75;margin-top:1px;">중국 · 저비용 대규모 관제 모델</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2C 직접 + B2B</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>중앙 원격 관제센터에서 완전 무인 차량 다수 동시 모니터링. 이상 감지 시 원격 개입. 안전원 제거를 도시별 단계 적용</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>RT6 자체 설계로 하드웨어 원가 60% 절감. 파트너 Fleet에 관제 시스템 공급(B2B). Apollo 오픈소스로 생태계 확장 후 운영 레이어 장악</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>운임(B2C) + 스마트도로·AI클라우드(B2B) + 관제 SaaS</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">무인화 비율 확대 = 관제 인력 감소 = 수익성 전환. 셔클도 안전원 → 1인 다차량 감독 → 완전 원격 단계 로드맵 필요</div></div>
+  </div>
+
+  <!-- EasyMile -->
+  <div style="background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;">
+   <div style="background:#065f46;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:8px;">
+    <div><div style="font-size:14px;font-weight:800;">EasyMile Remote Mgmt</div><div style="font-size:10px;opacity:0.75;margin-top:1px;">유럽 · 원격 관제 SaaS · 30개국 400+ 사이트</div></div>
+    <span style="margin-left:auto;font-size:10px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;white-space:nowrap;">B2G 관제 SaaS</span>
+   </div>
+   <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:#374151;line-height:1.65;">
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">핵심 역할</div>글로벌 원격 관제 플랫폼으로 30개국 통합 모니터링. 1인 텔레오퍼레이터 다수 차량 동시 감독. 충전·정비 일정·이상 감지·원격 제어 통합</div>
+    <div><div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">협력 구조</div>EasyMile 차량 + 관제 세트로 공급. 지자체·기업이 현장 운영 담당. 차량 구매 또는 운영 계약 선택 가능</div>
+   </div>
+   <div style="padding:8px 18px 12px;border-top:1px solid #f3f4f6;font-size:12px;color:#374151;"><span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">수익</span>차량 판매 + 연간 관제 구독 (per-vehicle SaaS)</div>
+   <div style="background:#fffbeb;border-top:2px solid #f59e0b;padding:10px 18px;"><div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:4px;">⭐ 셔클 시사점</div><div style="font-size:12px;color:#374151;line-height:1.6;">셔클이 구축해야 할 관제 플랫폼 기능의 벤치마크. 1인 다차량 감독 비율이 운영 단가 결정</div></div>
+  </div>
+
  </div>
 
  <div class="section-heading">관제·운영 플랫폼 기능 체계</div>
