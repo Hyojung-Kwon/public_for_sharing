@@ -39,7 +39,7 @@
 
 ---
 
-## 셔클 레터 Issue. 004 (2026.08.28.)
+## 셔클 레터 Issue. 004 (2026.09.02.)
 
 - **[셔클레터_Issue.004](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.004.html)**
 
