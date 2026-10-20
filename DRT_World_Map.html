@@ -1724,6 +1724,10 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_L
   maxZoom: 16,
 }).addTo(map);
 
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 16,
+}).addTo(map);
+
 // Custom marker icon — Hyundai logo + label
 function makeIcon(color, label) {
   const short = label ? (label.length > 22 ? label.slice(0, 20) + '…' : label) : '';
