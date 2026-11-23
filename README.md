@@ -51,6 +51,12 @@
 
 ---
 
+## 셔클 레터 Issue. 006 (2026.11.24.)
+
+- **[셔클레터_Issue.006](https://hyojung-kwon.github.io/public_for_sharing/셔클레터_Issue.006.html)**
+
+---
+
 ## Hyundai Motors DRT World Map (분기 별 업데이트)
 
 - **[DRT World Map](https://hyojung-kwon.github.io/public_for_sharing/DRT_World_Map.html)**
